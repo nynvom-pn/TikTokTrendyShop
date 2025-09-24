@@ -88,7 +88,7 @@ const products = [
     category: "ao", 
     gender: "nam", 
     price: "359.000 VNĐ", 
-    image: "Hình/CUAHANG/OWEN1.webp",
+    image: "Hình/CUAHANG/owen1.webp",
     colors: ["white", "lightblue"]
   },
   { 
@@ -118,7 +118,7 @@ const products = [
     category: "vay", 
     gender: "nu", 
     price: "154.600 VNĐ", 
-    image: "Hình/CUAHANG/4LOVA.webp",
+    image: "Hình/CUAHANG/4lova.webp",
     colors: ["black", "red", "green"]
   },
   { 
@@ -233,7 +233,7 @@ const products = [
     category: "quan", 
     gender: "nu", 
     price: "399.000 VNĐ", 
-    image: "Hình/CUAHANG/yody.webp",
+    image: "Hình/CUAHANG/YODY.webp",
     colors: ["blue", "black"]
   },
   { 
@@ -243,7 +243,7 @@ const products = [
     category: "quan", 
     gender: "nam", 
     price: "499.000 VNĐ", 
-    image: "Hình/CUAHANG/aristino.webp",
+    image: "Hình/CUAHANG/ARISTINO.webp",
     colors: ["black", "gray", "navy"]
   },
   
