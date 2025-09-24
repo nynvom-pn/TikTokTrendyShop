@@ -1,56 +1,354 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đăng Nhập / Đăng Kí | TikTok Trendy Shop</title>
-  <link rel="stylesheet" href="css/login.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Đăng Nhập / Đăng Ký | TikTok Trendy Shop</title>
+
+  <!-- Optional: Font Awesome cho icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+  /* ===== Reset + vars ===== */
+  :root{
+    --bg:#070707;
+    --card:#0f1720;
+    --muted:#9aa0a6;
+    --accent:#FE2C55;
+    --accent-2:#FF8A2D;
+    --white:#ffffff;
+    --success:#10b981;
+    --danger:#ff3b30;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%; margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+  body{
+    background: linear-gradient(180deg,#060606 0%, #0b0b0b 100%);
+    color:var(--white);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  /* hidden util */
+  .hidden { display:none !important; }
+
+  /* Container */
+  .auth-wrap{ width:100%; max-width:1100px; display:grid; grid-template-columns: 1fr 1fr; gap:28px; align-items:stretch; }
+
+  /* Left visual */
+  .auth-visual{
+    background: linear-gradient(135deg, rgba(254,45,85,0.07), rgba(255,138,45,0.03));
+    border-radius:14px;
+    padding:28px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:18px;
+    box-shadow: 0 8px 36px rgba(2,6,23,0.38);
+    min-height:420px;
+  }
+  .brand { display:flex; gap:14px; align-items:center; }
+  .brand img{ height:56px; border-radius:8px; display:block }
+  .brand h1{ font-size:1.6rem; margin:0; color:var(--white); }
+  .visual-text{ color:rgba(255,255,255,0.92); font-size:1rem; line-height:1.45 }
+  .visual-cta{ display:flex; gap:10px; margin-top:6px }
+  .visual-cta a{ background:var(--accent); color:#fff; padding:10px 14px; border-radius:10px; text-decoration:none; font-weight:700; box-shadow:0 8px 20px rgba(254,45,85,0.12) }
+  .visual-cta a.secondary{ background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--white) }
+
+  /* Right card */
+  .auth-card{
+    background: rgba(255,255,255,0.03);
+    border-radius:14px;
+    padding:22px;
+    box-shadow: 0 6px 20px rgba(2,6,23,0.36);
+    min-height:420px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+
+  /* Tabs */
+  .tabs{ display:flex; gap:8px; align-items:center }
+  .tab{
+    padding:8px 14px; border-radius:999px; cursor:pointer; font-weight:700;
+    color:rgba(255,255,255,0.85); background:transparent; border:1px solid transparent; transition:all .12s ease;
+  }
+  .tab.active{ background:var(--white); color:var(--bg); transform:translateY(-2px) }
+
+  /* Forms */
+  .forms{ margin-top:6px; display:flex; gap:12px; flex-direction:column }
+  label{ display:block; font-size:0.86rem; color:var(--muted); margin-bottom:6px }
+  input[type="text"], input[type="email"], input[type="password"]{
+    width:100%; padding:10px 12px; border-radius:10px;
+    border:1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); color:var(--white);
+    outline:none; font-size:0.96rem; transition: box-shadow .12s ease, border-color .12s ease;
+  }
+  input::placeholder{ color: rgba(255,255,255,0.35) }
+  input:focus{ box-shadow:0 8px 20px rgba(2,6,23,0.25); border-color:rgba(254,45,85,0.18) }
+
+  .row{ display:flex; gap:12px }
+  .col{ flex:1 }
+
+  .btn{ display:inline-flex; align-items:center; justify-content:center; margin:auto; padding:10px 17px; border-radius:10px; cursor:pointer; font-weight:700; border:0 }
+  .btn-primary{ background:var(--accent); color:#fff; box-shadow:0 10px 30px rgba(254,45,85,0.12) }
+  .btn-ghost{ background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--white) }
+
+  .helper{ font-size:0.88rem; color:rgba(255,255,255,0.6) }
+  .muted{ color:var(--muted); font-size:0.9rem }
+
+  .pw-meter{ height:8px; background: rgba(255,255,255,0.06); border-radius:6px; overflow:hidden; margin-top:8px }
+  .pw-meter > i{ display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); transition:width .28s ease }
+
+  .field-with-icon{ position:relative }
+  .field-with-icon .fa-eye, .field-with-icon .fa-eye-slash{ position:absolute; right:12px; top:50%; transform:translateY(-50%); color:var(--muted); cursor:pointer }
+
+  .error{ color:var(--danger); font-size:0.92rem; margin-top:6px; font-weight:700 }
+  .success{ color:var(--success); font-weight:700 }
+
+  /* small text row for foot */
+  .form-foot{ display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:6px }
+
+  /* Responsive */
+  @media (max-width:980px){
+    .auth-wrap{ grid-template-columns: 1fr; max-width:720px; padding:8px }
+    .auth-visual{ order:2 }
+    .auth-card{ order:1 }
+  }
+
+  /* small tweak to ensure only one form visible by default */
+  form.hidden{ display:none }
+
+  </style>
 </head>
 <body>
-  <div class="login-container">
-    <div class="login-box">
-      <h2>Register</h2>
-      <form id="registerForm" class="register-form">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" required>
+  <div class="auth-wrap" role="main" aria-labelledby="authTitle">
+    <!-- Visual -->
+    <aside class="auth-visual" aria-hidden="false">
+      <div class="brand">
+        <img src="Hình/LOGO/LOGO.png" alt="Logo">
+        <h1>TikTok Trendy Shop</h1>
+      </div>
+      <div class="visual-text">
+        Mua sắm theo xu hướng — xem livestream, tương tác và mua hàng ngay. An toàn, nhanh chóng và luôn có ưu đãi cho bạn.
+      </div>
+      <div class="visual-cta">
+        <a href="store.html">Mua sắm ngay</a>
+        <a class="secondary" href="Introduce.html">Tìm hiểu</a>
+      </div>
+    </aside>
+
+    <!-- Card with forms -->
+    <section class="auth-card" aria-labelledby="authTitle">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="tabs" role="tablist" aria-label="Auth tabs">
+            <button class="tab active" id="tab-register" type="button">Đăng ký</button>
+            <button class="tab" id="tab-login" type="button">Đăng nhập</button>
+          </div>
+          <div id="authSubtitle" class="helper" style="margin-top:6px">Tạo tài khoản mới chỉ trong vài bước</div>
         </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" required>
-        </div>
-        <div class="form-group">
-          <label for="confirmPassword">Confirm Password</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" required>
-        </div>
-        <button type="submit" class="login-btn">Register</button>
-      </form>
-      <p class="signup-text">Already a member? <a href="#" onclick="switchToLogin()">Login</a></p>
-    </div>
-    <div class="login-box hidden" id="loginBox">
-      <h2>Login</h2>
-      <form id="loginForm" class="login-form">
-        <div class="form-group">
-          <label for="loginEmail">Email</label>
-          <input type="email" id="loginEmail" name="loginEmail" required>
-        </div>
-        <div class="form-group">
-          <label for="loginPassword">Password</label>
-          <input type="password" id="loginPassword" name="loginPassword" required>
-        </div>
-        <div class="form-group">
-          <label>Captcha: <span id="captchaText"></span></label>
-          <input type="text" id="captcha" name="captcha" required>
-        </div>
-        <button type="submit" class="register-btn">Login</button>
-      </form>
-      <p class="signup-text">Not a member? <a href="#" onclick="switchToRegister()">Sign up</a></p>
-    </div>
+        <div class="muted">Cần giúp? <a href="hopthoai.html" style="color:var(--accent)">Liên hệ</a></div>
+      </div>
+
+      <div class="forms" id="formsWrap">
+        <!-- REGISTER (mặc định hiển thị) -->
+        <form id="registerForm" autocomplete="on" novalidate>
+          <div class="row">
+            <div class="col">
+              <label for="r_fullname">Họ và tên</label>
+              <input id="r_fullname" name="fullname" type="text" placeholder="Nguyễn Văn A" required>
+            </div>
+            <div class="col">
+              <label for="r_username">Tên đăng nhập</label>
+              <input id="r_username" name="username" type="text" placeholder="ex: nguyenvana" required>
+            </div>
+          </div>
+
+          <label for="r_email">Email</label>
+          <input id="r_email" name="email" type="email" placeholder="email@domain.com" required>
+
+          <label for="r_password">Mật khẩu</label>
+          <div class="field-with-icon">
+            <input id="r_password" name="password" type="password" placeholder="Ít nhất 8 ký tự" required>
+            <i class="fa fa-eye" id="r_toggle" title="Hiện/ẩn mật khẩu" aria-hidden="true"></i>
+          </div>
+          <div class="pw-meter" aria-hidden="true"><i id="r_pwbar"></i></div>
+          <div id="r_pwmsg" class="helper" style="margin-top:6px">Mật khẩu mạnh giúp bảo vệ tài khoản của bạn.</div>
+
+          <label style="margin-top: 5px;" for="r_confirm">Xác nhận mật khẩu</label>
+          <input id="r_confirm" name="confirm" type="password" placeholder="Nhập lại mật khẩu" required>
+
+          <div style="display:flex;gap:12px;align-items:flex-end;margin-top:8px">
+            <div style="flex:1">
+              <label for="r_captcha">Captcha: <strong id="r_captchaText" style="letter-spacing:3px"></strong></label>
+              <input id="r_captcha" name="captcha" type="text" placeholder="Nhập captcha" style="margin-top:6px;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--white);width:100%" required>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <button id="r_refresh" type="button" class="btn btn-ghost" title="Tạo captcha mới">Tạo lại</button>
+            </div>
+          </div>
+
+          <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
+            <button class="btn btn-primary" type="submit">Tạo tài khoản</button>
+          </div>
+          <div id="r_error" class="error" role="alert" style="display:none"></div>
+          <div id="r_success" class="success" role="status" style="display:none;margin-top:6px"></div>
+        </form>
+
+        <!-- LOGIN (mặc định ẩn) -->
+        <form id="loginForm" class="hidden" autocomplete="on" novalidate>
+          <label for="l_email">Email hoặc tên đăng nhập</label>
+          <input id="l_email" name="loginid" type="text" placeholder="email hoặc tên đăng nhập" required>
+
+          <label for="l_password">Mật khẩu</label>
+          <div class="field-with-icon">
+            <input id="l_password" name="password" type="password" placeholder="Mật khẩu" required>
+            <i class="fa fa-eye" id="l_toggle" title="Hiện/ẩn mật khẩu" aria-hidden="true"></i>
+          </div>
+
+          <div class="form-foot">
+            <label class="muted"><input type="checkbox" id="rememberMe"> Ghi nhớ đăng nhập</label>
+            <a href="forgot.html" class="muted" style="text-decoration:none;color:var(--muted)">Quên mật khẩu?</a>
+          </div>
+
+          <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
+            <button class="btn btn-primary" type="submit">Đăng nhập</button>
+          </div>
+
+          <div id="l_error" class="error" role="alert" style="display:none"></div>
+          <div id="l_success" class="success" role="status" style="display:none;margin-top:6px"></div>
+        </form>
+      </div>
+    </section>
   </div>
-  <script src="js/login.js"></script>
+
+  <!-- Lightweight JS (inline) -->
+  <script>
+  (function(){
+    // helpers
+    const $ = s => document.querySelector(s);
+    const $$ = s => document.querySelectorAll(s);
+    const show = el => el && (el.style.display = '');
+    const hide = el => el && (el.style.display = 'none');
+
+    // tabs & forms
+    const tabReg = $('#tab-register');
+    const tabLog = $('#tab-login');
+    const regForm = $('#registerForm');
+    const logForm = $('#loginForm');
+    const gotoLogin = $('#gotoLogin');
+    const gotoRegister = $('#gotoRegister');
+
+    function switchToRegister(){
+      tabReg.classList.add('active'); tabLog.classList.remove('active');
+      regForm.classList.remove('hidden'); logForm.classList.add('hidden');
+      document.getElementById('authSubtitle').textContent = 'Tạo tài khoản mới chỉ trong vài bước';
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+    function switchToLogin(){
+      tabLog.classList.add('active'); tabReg.classList.remove('active');
+      logForm.classList.remove('hidden'); regForm.classList.add('hidden');
+      document.getElementById('authSubtitle').textContent = 'Đăng nhập để tiếp tục mua sắm';
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+    tabReg.addEventListener('click', switchToRegister);
+    tabLog.addEventListener('click', switchToLogin);
+    gotoLogin && gotoLogin.addEventListener('click', switchToLogin);
+    gotoRegister && gotoRegister.addEventListener('click', switchToRegister);
+
+    // password toggle
+    function bindToggle(toggleSel, inputSel){
+      const t = $(toggleSel), inp = $(inputSel);
+      if (!t || !inp) return;
+      t.addEventListener('click', ()=> {
+        if (inp.type === 'password') { inp.type = 'text'; t.classList.remove('fa-eye'); t.classList.add('fa-eye-slash'); }
+        else { inp.type = 'password'; t.classList.remove('fa-eye-slash'); t.classList.add('fa-eye'); }
+      });
+    }
+    bindToggle('#r_toggle','#r_password');
+    bindToggle('#l_toggle','#l_password');
+
+    // pw strength
+    const pwfield = $('#r_password'), pwbar = $('#r_pwbar'), pwmsg = $('#r_pwmsg');
+    if (pwfield) pwfield.addEventListener('input', ()=> {
+      const v = pwfield.value || ''; let score=0;
+      if (v.length>=8) score++;
+      if (/[A-Z]/.test(v)) score++;
+      if (/[0-9]/.test(v)) score++;
+      if (/[^A-Za-z0-9]/.test(v)) score++;
+      const pct = Math.min(100, (score/4)*100);
+      if (pwbar) pwbar.style.width = pct + '%';
+      if (score <=1){ pwmsg.textContent='Yếu — dùng 8+ ký tự, chữ hoa và số.'; pwbar.style.background='linear-gradient(90deg,#ff3b30,#ff8a2d)'; }
+      else if (score===2){ pwmsg.textContent='Trung bình — thêm ký tự đặc biệt.'; pwbar.style.background='linear-gradient(90deg,#ff8a2d,#ffd166)'; }
+      else { pwmsg.textContent='Mạnh — tốt rồi!'; pwbar.style.background='linear-gradient(90deg,#10b981,#06b6d4)'; }
+    });
+
+    // simple captcha
+    function genCaptcha(){ return Math.random().toString(36).slice(2,8).toUpperCase(); }
+    const rCaptchaText = $('#r_captchaText'), rRefresh = $('#r_refresh');
+    function refreshCaptcha(){ if(rCaptchaText) rCaptchaText.textContent = genCaptcha(); }
+    rRefresh && rRefresh.addEventListener('click', refreshCaptcha);
+    refreshCaptcha();
+
+    // localStorage users (demo only)
+    function loadUsers(){ try{ return JSON.parse(localStorage.getItem('users')||'{}'); }catch(e){ return {}; } }
+    function saveUsers(u){ localStorage.setItem('users', JSON.stringify(u)); }
+
+    // register submit
+    regForm && regForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      $('#r_error').style.display='none'; $('#r_success').style.display='none';
+      const fullname = $('#r_fullname').value.trim();
+      const username = $('#r_username').value.trim();
+      const email = $('#r_email').value.trim().toLowerCase();
+      const pwd = $('#r_password').value;
+      const confirm = $('#r_confirm').value;
+      const cap = $('#r_captcha').value.trim().toUpperCase();
+      const expected = (rCaptchaText && rCaptchaText.textContent.trim())||'';
+
+      if (!fullname||!username||!email||!pwd||!confirm){ $('#r_error').textContent='Vui lòng điền đầy đủ thông tin.'; show($('#r_error')); return; }
+      if (pwd.length<8){ $('#r_error').textContent='Mật khẩu tối thiểu 8 ký tự.'; show($('#r_error')); return; }
+      if (pwd!==confirm){ $('#r_error').textContent='Mật khẩu và xác nhận không khớp.'; show($('#r_error')); return; }
+      if (cap!==expected){ $('#r_error').textContent='Captcha không đúng.'; show($('#r_error')); refreshCaptcha(); return; }
+
+      const users = loadUsers();
+      if (users[email] || Object.values(users).some(u => u.username===username)){ $('#r_error').textContent='Email hoặc tên đăng nhập đã tồn tại.'; show($('#r_error')); return; }
+
+      users[email] = { fullname, username, email, password: pwd, created: Date.now() };
+      saveUsers(users);
+
+      $('#r_success').textContent='Đăng ký thành công. Bạn sẽ được chuyển đến trang chính...'; show($('#r_success'));
+      try { localStorage.setItem('user', JSON.stringify({ fullname, username, email })); }catch(e){}
+      if (window.updateUserSection) try{ window.updateUserSection(); }catch(e){}
+      setTimeout(()=> window.location.href='index.html', 900);
+    });
+
+    // login submit
+    logForm && logForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      $('#l_error').style.display='none'; $('#l_success').style.display='none';
+      const id = $('#l_email').value.trim().toLowerCase();
+      const pwd = $('#l_password').value;
+      if (!id||!pwd){ $('#l_error').textContent='Vui lòng nhập đầy đủ thông tin.'; show($('#l_error')); return; }
+      const users = loadUsers();
+      const byEmail = users[id];
+      let user = null;
+      if (byEmail && byEmail.password===pwd) user = byEmail;
+      else { user = Object.values(users).find(u => u.username && u.username.toLowerCase()===id && u.password===pwd); }
+      if (!user){ $('#l_error').textContent='Email/Tên đăng nhập hoặc mật khẩu không chính xác.'; show($('#l_error')); return; }
+      $('#l_success').textContent='Đăng nhập thành công. Chuyển hướng...'; show($('#l_success'));
+      try { localStorage.setItem('user', JSON.stringify({ fullname:user.fullname, username:user.username, email:user.email })); }catch(e){}
+      if (window.updateUserSection) try{ window.updateUserSection(); }catch(e){}
+      setTimeout(()=> window.location.href='index.html', 700);
+    });
+
+    // init: default show register
+    switchToRegister();
+  })();
+  </script>
 </body>
 </html>
