@@ -8,7 +8,11 @@ const productDetails = {
   gender: "unisex",
   price: "245.000 VNĐ",
   images: [
-    "/Hình/MYPM/cetaphil-cleanser.webp"
+    "Hình/CUAHANG/centaphil.webp",
+    "Hình/CUAHANG/centaphil2.webp",
+    "Hình/CUAHANG/centaphil3.webp",
+    "Hình/CUAHANG/centaphil4.webp",
+    "Hình/CUAHANG/centaphil5.webp"
   ],
   colors: [
     { name: "Trắng", value: "white" },
@@ -38,7 +42,11 @@ const productDetails = {
   gender: "unisex",
   price: "159.000 VNĐ",
   images: [
-    "/Hình/MYPM/simple-moisturiser.webp"
+    "Hình/CUAHANG/simple2.webp",
+    "Hình/CUAHANG/simple3.webp",
+    "Hình/CUAHANG/simple4.webp",
+    "Hình/CUAHANG/simple5.webp",
+    "Hình/CUAHANG/simple6.webp"
   ],
   colors: [
     { name: "Trắng", value: "white" },
@@ -68,7 +76,9 @@ const productDetails = {
   gender: "unisex",
   price: "249.000 VNĐ",
   images: [
-    "/Hình/THOITRANG/uniqlo-tee.webp"
+    "Hình/CUAHANG/uniqlo1.webp",
+    "Hình/CUAHANG/uniqlo2.webp",
+    "Hình/CUAHANG/uniqlo3.webp"
   ],
   colors: [
     { name: "Đen", value: "black" },
@@ -100,7 +110,9 @@ const productDetails = {
   gender: "nam",
   price: "359.000 VNĐ",
   images: [
-    "/Hình/THOITRANG/owen-shirt.webp"
+    "Hình/CUAHANG/owen1.webp",
+    "Hình/CUAHANG/owen2.webp",
+    "Hình/CUAHANG/owen3.webp"
   ],
   colors: [
     { name: "Trắng", value: "white" },
