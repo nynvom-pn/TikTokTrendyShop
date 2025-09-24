@@ -226,7 +226,7 @@
 
 
    // Data for products (based on previous conversations)
-   const products = [
+ const products = [
   // Mỹ phẩm Skincare
   { 
     id: 1, 
@@ -235,7 +235,7 @@
     category: "skincare", 
     gender: "unisex", 
     price: "245.000 VNĐ", 
-    image: "/Hình/MYPM/cetaphil-cleanser.webp",
+    image: "Hình/CUAHANG/centaphil.webp",
     colors: ["white", "blue", "green"]
   },
   { 
@@ -245,7 +245,7 @@
     category: "skincare", 
     gender: "unisex", 
     price: "159.000 VNĐ", 
-    image: "/Hình/MYPM/simple-moisturiser.webp",
+    image: "Hình/CUAHANG/simple2.webp",
     colors: ["white", "lightgreen"]
   },
 
@@ -256,7 +256,7 @@
     category: "ao", 
     gender: "unisex", 
     price: "249.000 VNĐ", 
-    image: "/Hình/THOITRANG/uniqlo-tee.webp",
+    image: "Hình/CUAHANG/uniqlo1.webp",
     colors: ["black", "white", "blue", "gray"]
   },
   { 
@@ -266,8 +266,18 @@
     category: "ao", 
     gender: "nam", 
     price: "359.000 VNĐ", 
-    image: "/Hình/THOITRANG/owen-shirt.webp",
+    image: "Hình/CUAHANG/owen1.webp",
     colors: ["white", "lightblue"]
+  },
+  { 
+    id: 7, 
+    name: "Phấn nước Merzy Cushion SPF50+ PA++", 
+    brand: "Merzy", 
+    category: "makeup", 
+    gender: "nu", 
+    price: "185.000 VNĐ", 
+    image: "Hình/CUAHANG/merzy.webp",
+    colors: ["beige", "ivory"]
   },
   { 
     id: 3, 
@@ -276,8 +286,18 @@
     category: "skincare", 
     gender: "nu", 
     price: "169.000 VNĐ", 
-    image: "/Hình/MYPM/loreal-micellar.webp",
+    image: "Hình/CUAHANG/loreal.webp",
     colors: ["blue", "pink"]
+  },
+  { 
+    id: 21, 
+    name: "Váy Đầm Body Hai Dây Dáng Dài 4LOVA ", 
+    brand: "LOVA", 
+    category: "vay", 
+    gender: "nu", 
+    price: "154.600 VNĐ", 
+    image: "Hình/CUAHANG/4lova.webp",
+    colors: ["black", "red", "green"]
   },
   { 
     id: 4, 
@@ -286,7 +306,7 @@
     category: "skincare", 
     gender: "nu", 
     price: "289.000 VNĐ", 
-    image: "/Hình/MYPM/anessa-sunscreen.webp",
+    image: "Hình/CUAHANG/anessa.webp",
     colors: ["gold", "white"]
   },
   { 
@@ -296,11 +316,22 @@
     category: "skincare", 
     gender: "nu", 
     price: "199.000 VNĐ", 
-    image: "/Hình/MYPM/mediheal-mask.webp",
+    image: "Hình/CUAHANG/mediheal.webp",
     colors: ["green", "white"]
   },
 
   // Mỹ phẩm Makeup
+  { 
+    id: 13, 
+    name: "Áo hoodie nữ Canifa Basic", 
+    brand: "Canifa", 
+    category: "ao", 
+    gender: "nu", 
+    price: "399.000 VNĐ", 
+    image: "Hình/CUAHANG/cafia-hoddie.webp",
+    colors: ["pink", "black", "gray"]
+  },
+  
   { 
     id: 6, 
     name: "Son kem lì Black Rouge Air Fit Velvet Tint Ver 6", 
@@ -308,18 +339,29 @@
     category: "makeup", 
     gender: "nu", 
     price: "129.000 VNĐ", 
-    image: "/Hình/MYPM/blackrouge-lip.webp",
+    image: "Hình/CUAHANG/blackrouge.webp",
     colors: ["red", "pink", "nude"]
   },
   { 
-    id: 7, 
-    name: "Phấn nước Merzy Cushion SPF50+ PA++", 
-    brand: "Merzy", 
-    category: "makeup", 
+    id: 20, 
+    name: "Đầm maxi hoa nhí ZOMI Z071", 
+    brand: "ZOMI", 
+    category: "vay", 
     gender: "nu", 
-    price: "185.000 VNĐ", 
-    image: "/Hình/MYPM/merzy-cushion.webp",
-    colors: ["beige", "ivory"]
+    price: "459.000 VNĐ", 
+    image: "Hình/CUAHANG/HOANHI.webp",
+    colors: ["blue", "white", "pink"]
+  },
+  
+  { 
+    id: 17, 
+    name: "Quần short nữ Lovito Basic", 
+    brand: "H&M", 
+    category: "quan", 
+    gender: "nu", 
+    price: "149.000 VNĐ", 
+    image: "Hình/CUAHANG/lovito.webp",
+    colors: ["white", "pink", "blue"]
   },
   { 
     id: 8, 
@@ -328,9 +370,20 @@
     category: "makeup", 
     gender: "nu", 
     price: "155.000 VNĐ", 
-    image: "/Hình/MYPM/maybelline-mascara.webp",
+    image: "Hình/CUAHANG/maybeline-mass.webp",
     colors: ["black"]
   },
+  { 
+    id: 14, 
+    name: "Áo polo nam Routine Cotton", 
+    brand: "Routine", 
+    category: "ao", 
+    gender: "nam", 
+    price: "299.000 VNĐ", 
+    image: "Hình/CUAHANG/polo.webp",
+    colors: ["blue", "navy", "white"]
+  },
+  
   { 
     id: 9, 
     name: "Phấn phủ Innisfree No Sebum Mineral Powder 5g", 
@@ -338,7 +391,7 @@
     category: "makeup", 
     gender: "nu", 
     price: "95.000 VNĐ", 
-    image: "/Hình/MYPM/innisfree-powder.webp",
+    image: "Hình/CUAHANG/innisfree.webp",
     colors: ["white", "mint"]
   },
   { 
@@ -348,34 +401,9 @@
     category: "makeup", 
     gender: "nu", 
     price: "75.000 VNĐ", 
-    image: "/Hình/MYPM/etude-brow.webp",
+    image: "Hình/CUAHANG/etude-brow.webp",
     colors: ["brown", "darkbrown", "black"]
   },
-
-  // Thời trang - Áo
-  
-  { 
-    id: 13, 
-    name: "Áo hoodie nữ Canifa Basic", 
-    brand: "Canifa", 
-    category: "ao", 
-    gender: "nu", 
-    price: "399.000 VNĐ", 
-    image: "/Hình/THOITRANG/canifa-hoodie.webp",
-    colors: ["pink", "black", "gray"]
-  },
-  { 
-    id: 14, 
-    name: "Áo polo nam Routine Cotton", 
-    brand: "Routine", 
-    category: "ao", 
-    gender: "nam", 
-    price: "299.000 VNĐ", 
-    image: "/Hình/THOITRANG/routine-polo.webp",
-    colors: ["blue", "navy", "white"]
-  },
-
-  // Thời trang - Quần
   { 
     id: 15, 
     name: "Quần jeans nữ Yody Slim Fit", 
@@ -383,7 +411,7 @@
     category: "quan", 
     gender: "nu", 
     price: "399.000 VNĐ", 
-    image: "/Hình/THOITRANG/yody-jeans.webp",
+    image: "Hình/CUAHANG/YODY.webp",
     colors: ["blue", "black"]
   },
   { 
@@ -393,72 +421,43 @@
     category: "quan", 
     gender: "nam", 
     price: "499.000 VNĐ", 
-    image: "/Hình/THOITRANG/aristino-pants.webp",
+    image: "Hình/CUAHANG/ARISTINO.webp",
     colors: ["black", "gray", "navy"]
   },
-  { 
-    id: 17, 
-    name: "Quần short nữ H&M Basic", 
-    brand: "H&M", 
-    category: "quan", 
-    gender: "nu", 
-    price: "249.000 VNĐ", 
-    image: "/Hình/THOITRANG/hm-shorts.webp",
-    colors: ["white", "pink", "blue"]
-  },
+  
   { 
     id: 18, 
     name: "Quần jogger nam Coolmate Active", 
     brand: "Coolmate", 
     category: "quan", 
     gender: "nam", 
-    price: "279.000 VNĐ", 
-    image: "/Hình/THOITRANG/coolmate-jogger.webp",
+    price: "154.000 VNĐ", 
+    image: "Hình/CUAHANG/coolmate.webp",
     colors: ["black", "gray"]
   },
-
-  // Thời trang - Váy
   { 
     id: 19, 
     name: "Đầm suông Yame Basic Dress", 
     brand: "Yame", 
     category: "vay", 
     gender: "nu", 
-    price: "320.000 VNĐ", 
-    image: "/Hình/THOITRANG/yame-dress.webp",
+    price: "173.000 VNĐ", 
+    image: "Hình/CUAHANG/yame.webp",
     colors: ["black", "red", "beige"]
   },
-  { 
-    id: 20, 
-    name: "Đầm maxi hoa nhí Dottie", 
-    brand: "Dottie", 
-    category: "vay", 
-    gender: "nu", 
-    price: "459.000 VNĐ", 
-    image: "/Hình/THOITRANG/dottie-maxi.webp",
-    colors: ["blue", "white", "pink"]
-  },
-  { 
-    id: 21, 
-    name: "Đầm bodycon Shein Mini Dress", 
-    brand: "Shein", 
-    category: "vay", 
-    gender: "nu", 
-    price: "279.000 VNĐ", 
-    image: "/Hình/THOITRANG/shein-dress.webp",
-    colors: ["black", "red", "green"]
-  },
+  
   { 
     id: 22, 
-    name: "Đầm công sở Elise Office Dress", 
-    brand: "Elise", 
+    name: "Đầm công sở nữ MY WAY", 
+    brand: "MY WAY", 
     category: "vay", 
     gender: "nu", 
-    price: "650.000 VNĐ", 
-    image: "/Hình/THOITRANG/elise-dress.webp",
+    price: "224.000 VNĐ", 
+    image: "Hình/CUAHANG/myway.webp",
     colors: ["navy", "white", "gray"]
   }
 ];
+
 
 
    document.addEventListener("DOMContentLoaded", () => {
