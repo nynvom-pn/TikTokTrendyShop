@@ -6,86 +6,98 @@
  <title>TikTok Trendy Shop | Trang chủ</title>
  <link rel="stylesheet" href="css/index.css">
  <style>
-   .header-right {
-     display: flex;
-     align-items: center;
-     gap: 10px;
-   }
-   .user-name {
-     color: #333;
-     font-weight: bold;
-     padding: 5px 10px;
-     background-color: #f0f0f0;
-     border-radius: 5px;
-     margin-left: 20px;
-   }
-   .logout-btn {
-     background-color: lab(96.48% 4.36 1.55);
-     color: rgb(0, 0, 0);
-     border: none;
-     padding: 5px 10px;
-     border-radius: 5px;
-     cursor: pointer;
-     font-size: 0.9rem;
-     margin-top: 20px;
-     margin-left: 20px;
-   }
-   .logout-btn:hover {
-     background-color: #fe2c55;
-   }
-   .login-btn {
-     background-color: #ff8001;
-     color: white;
-     border: none;
-     padding: 5px 10px;
-     border-radius: 5px;
-     cursor: pointer;
-     font-size: 0.9rem;
-   }
-   .login-btn:hover {
-     background-color: #187bcd;
-   }
-   .main-menu ul {
-     list-style: none;
-     display: flex;
-     margin: 0;
-     padding: 0;
-   }
-   .main-menu ul li {
-     position: relative;
-     margin-right: 20px;
-   }
-   .main-menu ul li a {
-     text-decoration: none;
-     color: #ffffff;
-     font-weight: bold;
-   }
-   main {
+   .header-container {
   display: flex;
-  flex-direction: column; /* sắp xếp các section theo chiều dọc */
-  gap: 40px; /* khoảng cách giữa các section */
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 60px; /* header cao hơn & to hơn */
+  background: #fff;
+  border-bottom: 1px solid #eee;
 }
 
-   .brand-menu .submenu {
-     display: none;
-     position: absolute;
-     background: white;
-     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-     min-width: 150px;
-     z-index: 1;
-   }
-   .brand-menu:hover .submenu {
-     display: block;
-   }
-   .submenu li a {
-     display: block;
-     padding: 10px;
-     color: #000;
-     text-decoration: none;
-   }
-   .submenu li a:hover {
-     background: #f1f1f1;
-   }
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo img {
+  height: 50px; /* logo to thêm */
+}
+.logo-text {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+/* Search box */
+.search-box {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start; /* đẩy sát về phía logo */
+  max-width: 550px; /* nhỏ lại cho gọn */
+  position: relative;
+  margin: 0 20px; /* khoảng cách logo - search */
+}
+.search-box input {
+  width: 100%;
+  padding: 12px 45px 12px 10px;
+  border: 1.5px solid #d9304f;
+  border-radius: 20px;
+  font-size: 15px;
+}
+.search-box .search-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  font-size: 16px;
+}
+
+/* Right section */
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 50px; /* menu gần search hơn */
+}
+
+/* Menu */
+.main-menu {
+  list-style: none;
+  display: flex;
+  gap: 30px; /* khoảng cách các chữ */
+  margin: 0;
+  padding: 0;
+}
+.main-menu li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 20px; /* chữ to hơn */
+}
+.main-menu li a:hover {
+  color: #d9304f;
+}
+
+/* Icons */
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.header-icons a {
+  color: #555;
+  font-size: 20px;
+  text-decoration: none;
+}
+.header-icons a:hover {
+  color: #d9304f;
+}
+
    .banner {
      position: relative;
      width: 100%;
@@ -296,52 +308,57 @@
 <body>
 <!-- Header -->
 <header>
- <div class="header-container">
-   <div class="logo">
-     <img src="Hình/LOGO/LOGO.png" alt="HD Logo">
-   </div>
-   <input type="text" placeholder="  Nhập từ cần tìm  " class="search-input" style="width:800px; height:50px; margin-right: 20px; margin-left:30px;">
-   <nav class="main-menu">
-     <ul>
-       <li><a href="index.html">TRANG CHỦ</a></li>
-       <li><a href="Introduce.html">GIỚI THIỆU</a></li>
-       <li class="brand-menu">
-         <a href="store.html">CỬA HÀNG</a>
-         <ul class="submenu">
-          <li><a href="mypham.html">Mỹ phẩm</a></li>
-           <li><a href="thoitrang.html">Thời trang</a></li>
-         </ul>
-       </li>
-       <li class="brand-menu"><a href="livestream.html">TRANG LIVESTREAM</a></li>
-       <li class="brand-menu"><a href="hopthoai.html">HỘP THOẠI</a></li>
-       <li class="brand-menu"><a href="thongbao.html">THÔNG BÁO</a></li>
-     </ul>
-   </nav>
-   <div class="header-right">
-     <a href="cart.html">
-       <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Cart">
-     </a>
+  <div class="header-container">
+    <!-- Logo -->
+    <div class="logo">
+      <img src="Hình/LOGO/logo.webp" alt="Logo">
+      <span class="logo-text">TikTok Trendy<br>Shop</span>
+    </div>
+
+    <!-- Search -->
+    <div class="search-box">
+      <input type="text" placeholder="Search...">
+      <button class="search-btn"><i class="fas fa-search"></i></button>
+    </div>
+
+    <!-- Menu + Icons -->
+    <div class="right-section">
+      <ul class="main-menu">
+        <li><a href="index.html">Trang Chủ</a></li>
+        <li><a href="store.html">Cửa Hàng</a></li>
+        <li><a href="livestream.html">Livestream</a></li>
+        <li><a href="thongbao.html">Thông Báo</a></li>
+        <li><a href="hopthu.html">Hộp Thư</a></li>
+      </ul>
+      <div class="header-icons">
+        <a href="#"><i class="fas fa-heart"></i></a>
+        <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+        <a href="login.html"><i class="fas fa-user"></i></a>
+      </div>
+    </div>
      <script>
-   function updateUserSection() {
-     const userSection = document.getElementById("user-section");
-     const user = JSON.parse(localStorage.getItem("user")) || null;
-     if (user && user.fullname) {
-       userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span><button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
-     } else {
-       userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
-     }
-   }
-   function logout() {
-     localStorage.removeItem("user");
-     updateUserSection();
-     alert("Đã đăng xuất thành công!");
-   }
-   document.addEventListener("DOMContentLoaded", updateUserSection);
- </script>
+  function updateUserSection() {
+    const userSection = document.getElementById("user-section");
+    const user = JSON.parse(localStorage.getItem("user")) || null;
+    if (user && user.fullname) {
+      userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span>
+                               <button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
+    } else {
+      userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
+    }
+  }
+  function logout() {
+    localStorage.removeItem("user");
+    updateUserSection();
+    alert("Đã đăng xuất thành công!");
+  }
+  document.addEventListener("DOMContentLoaded", updateUserSection);
+</script>
      <div id="user-section"></div>
-   </div>    
- </div>
+  </div>
 </header>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <!-- Banner Section -->
 <section class="banner">
  <div class="slideshow-container">
