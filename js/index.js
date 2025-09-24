@@ -448,7 +448,8 @@ function filterProducts() {
   const selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked')).map(input => input.value);
   const selectedGenders = Array.from(document.querySelectorAll('input[name="gender"]:checked')).map(input => input.value);
   const selectedColors = Array.from(document.querySelectorAll('input[name="color"]:checked')).map(input => input.value);
-  const searchTerm = document.querySelector('.header-right input')?.value.trim().toLowerCase() || '';
+const searchTerm = document.querySelector('.search-input')?.value.trim().toLowerCase() || '';
+
 
   const filteredProducts = products.filter(product => {
     const brandMatch = selectedBrands.length === 0 || selectedBrands.includes(product.brand);
@@ -636,4 +637,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
-}); 
+
+// Add event listener for search input
+const searchInput = document.querySelector('.search-input');
+if (searchInput) {
+  searchInput.addEventListener('input', filterProducts);
+}
+  }); 
