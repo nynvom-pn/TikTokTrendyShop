@@ -26,7 +26,7 @@
 
   /* ========== HEADER ========== */
   header.site-header{
-    background: #fff;
+    background: #000000;
     border-bottom: 1px solid rgba(15,23,36,0.06);
     position: sticky; top:0; z-index:1200;
     box-shadow: 0 6px 18px rgba(15,23,36,0.04);
@@ -63,7 +63,7 @@
   /* main menu row */
   nav.main-menu{width:100%;order:2;margin-top:12px;display:flex;justify-content:center}
   .main-menu ul{display:flex;gap:24px;list-style:none;margin:0;padding:6px 0;align-items:center;flex-wrap:wrap}
-  .main-menu a{color:var(--text);font-weight:700;padding:6px 8px}
+  .main-menu a{color:#fff;font-weight:700;padding:6px 8px}
   .main-menu a:hover{color:var(--accent)}
 
   .brand-menu{position:relative}
@@ -314,6 +314,8 @@
       </div>
     </div>
   </footer>
+  </body>
+  </html>
 
   <!-- ========== JAVASCRIPT (1 script, safe) ========== -->
 <script src="js/index.js"></script>
@@ -648,15 +650,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    render();
-    window.addEventListener('storage', (e) => { 
-      if (e.key === 'user') render(); 
-    });
-  })();
-
-  console.info('tts: static index script initialized');
+    
 });
 </script>
 
-</body>
-</html>
