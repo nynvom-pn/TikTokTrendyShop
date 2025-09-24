@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Trang livestream |TikTok Trendy Shop</title>
+ <link rel="stylesheet" href="css/index.css">
+ <style>
+   .header-right {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+   }
+   .user-name {
+     color: #333;
+     font-weight: bold;
+     padding: 5px 10px;
+     background-color: #f0f0f0;
+     border-radius: 5px;
+     margin-left: 20px;
+   }
+   .logout-btn {
+     background-color: lab(96.48% 4.36 1.55);
+     color: rgb(0, 0, 0);
+     border: none;
+     padding: 5px 10px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 0.9rem;
+     margin-top: 20px;
+     margin-left: 20px;
+   }
+   .logout-btn:hover {
+     background-color: #fe2c55;
+   }
+   .login-btn {
+     background-color: #fa8500;
+     color: white;
+     border: none;
+     padding: 5px 10px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 0.9rem;
+   }
+   .login-btn:hover {
+     background-color: #187bcd;
+   }
+   
+    .cart-icon {
+      width: 24px;
+      height: 24px;
+    }
+    main {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .category-title {
+      text-align: center;
+      font-size: 2rem;
+      color: #333;
+      margin-bottom: 30px;
+    }
+    /* Container của tất cả video */
+    .live-grid {
+      display: flex;               /* Flexbox */
+      gap: 20px;                   /* Khoảng cách giữa video */
+      flex-wrap: wrap;             /* Nếu màn hình nhỏ, video xuống dòng */
+      justify-content: center;     /* Căn giữa hàng video */
+      padding: 20px;
+    }
+
+    /* Mỗi card video */
+    .live-card {
+      flex: 1 1 22%;               /* 4 video gần 25% mỗi cái, để có khoảng cách */
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    /* Video responsive */
+    .live-card video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;          /* bo tròn nhẹ video, tuỳ chọn */
+    }
+
+    /* Link video bỏ gạch chân */
+    .live-card a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Responsive: màn hình nhỏ hơn 768px */
+    @media (max-width: 768px) {
+      .live-card {
+        flex: 1 1 45%;             /* 2 video trên 1 dòng */
+      }
+    }
+
+    /* Responsive: màn hình nhỏ hơn 480px */
+    @media (max-width: 480px) {
+      .live-card {
+        flex: 1 1 100%;            /* 1 video trên 1 dòng */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+<header>
+ <div class="header-container">
+   <div class="logo">
+     <img src="Hình/LOGO/LOGO.png" alt="HD Logo">
+   </div>
+   <input type="text" placeholder="  Nhập từ cần tìm  " class="search-input" style="width:800px; height:50px; margin-right: 20px; margin-left:30px;">
+   <nav class="main-menu">
+     <ul>
+       <li><a href="index.html">TRANG CHỦ</a></li>
+       <li><a href="Introduce.html">GIỚI THIỆU</a></li>
+       <li class="brand-menu">
+         <a href="store.html">CỬA HÀNG</a>
+         <ul class="submenu">
+           <li><a href="mypham.html">Mỹ phẩm</a></li>
+           <li><a href="thoitrang.html">Thời trang</a></li>
+         </ul>
+       </li>
+       <li class="brand-menu"><a href="livestream.html">TRANG LIVESTREAM</a></li>
+       <li class="brand-menu"><a href="hopthoai.html">HỘP THOẠI</a></li>
+       <li class="brand-menu"><a href="thongbao.html">THÔNG BÁO</a></li>
+     </ul>
+   </nav>
+   <div class="header-right">
+     <a href="cart.html">
+       <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Cart">
+     </a>
+     <script>
+   function updateUserSection() {
+     const userSection = document.getElementById("user-section");
+     const user = JSON.parse(localStorage.getItem("user")) || null;
+     if (user && user.fullname) {
+       userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span><button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
+     } else {
+       userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
+     }
+   }
+   function logout() {
+     localStorage.removeItem("user");
+     updateUserSection();
+     alert("Đã đăng xuất thành công!");
+   }
+   document.addEventListener("DOMContentLoaded", updateUserSection);
+ </script>
+     <div id="user-section"></div>
+   </div>    
+ </div>
+</header>
+
+ <main>
+  <section class="live-grid">
+    <div class="live-card">
+      <a href="live-detail.html?id=209">
+        <video controls autoplay muted width="250">
+          <source src="Hình/LIVESTREAM/1.mp4" type="video/mp4">
+          Trình duyệt của bạn không hỗ trợ video.
+        </video>
+      </a>
+    </div>
+    <div class="live-card">
+      <a href="live-detail.html?id=209">
+        <video controls autoplay muted width="250">
+          <source src="Hình/LIVESTREAM/2.mp4" type="video/mp4">
+          Trình duyệt của bạn không hỗ trợ video.
+        </video>
+      </a>
+    </div>
+    <div class="live-card">
+      <a href="live-detail.html?id=209">
+        <video controls autoplay muted width="250">
+          <source src="Hình/LIVESTREAM/3.mp4" type="video/mp4">
+          Trình duyệt của bạn không hỗ trợ video.
+        </video>
+      </a>
+    </div>
+    <div class="live-card">
+      <a href="live-detail.html?id=209">
+        <video controls autoplay muted width="250">
+          <source src="Hình/LIVESTREAM/4.mp4" type="video/mp4">
+          Trình duyệt của bạn không hỗ trợ video.
+        </video>
+      </a>
+    </div>
+  </section>
+</main>
+
+
+  <footer>
+    <div class="footer-container" style="background-color: #000000; color: #ffffff; padding: 20px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; text-align: center;">
+      <div class="footer-logo">
+        <img src="Hình/LOGO/LOGO.png" alt="TikTok Trendy Shop" style="height: 100px; margin-bottom: 10px;">
+      </div>
+      <div class="footer-info">
+        <h3 style="margin: 0 0 10px;">THÔNG TIN LIÊN HỆ</h3>
+        <p>TikTok Trendy Shop</p>
+        <p>Địa chỉ: Khu phố 6, phường Linh Trung, TP Thủ Đức, TP Hồ Chí Minh</p>
+        <p>Email: tiktoktrendyshop@gmail.com</p>
+      </div>
+      <div class="footer-license">
+        <h3 style="margin: 0 0 10px;">HỒ TRỢ KHÁCH HÀNG</h3>
+        <p>Chăm sóc khách hàng</p>
+        <p>Hướng dẫn mua hàng</p>
+        <p>Hỗ trợ đổi trả hàng</p>
+      </div>
+      <div class="footer-payment">
+        <h3 style="margin: 0 0 10px;">CHÍNH SÁCH</h3>
+        <p>Chính sách đổi hàng</p>
+        <p>Bảo mật thông tin</p>
+        <p>Chính sách giao hàng</p>
+      </div>
+    </div>
+  </footer>

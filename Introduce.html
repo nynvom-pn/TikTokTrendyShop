@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Giới thiệu | TikTok Trendy Shop</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="css/index.css">
+  <style>
+    body {
+  background-color: black;
+  color: white; /* để chữ sáng dễ đọc */
+}
+
+   .header-right {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+   }
+   .user-name {
+     color: #333;
+     font-weight: bold;
+     padding: 5px 10px;
+     background-color: #f0f0f0;
+     border-radius: 5px;
+     margin-left: 20px;
+   }
+   .logout-btn {
+     background-color: lab(96.48% 4.36 1.55);
+     color: rgb(0, 0, 0);
+     border: none;
+     padding: 5px 10px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 0.9rem;
+     margin-top: 20px;
+     margin-left: 20px;
+     display:flex;
+   }
+   .logout-btn:hover {
+     background-color: #fe2c55;
+   }
+   .login-btn {
+     background-color: #f87e04;
+     color: white;
+     border: none;
+     padding: 5px 10px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 0.9rem;
+   }
+   .login-btn:hover {
+     background-color: #187bcd;
+   }
+    main {
+      display: block !important;
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .about-section {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .about-text {
+      flex: 2;
+    }
+
+    .about-text h2 {
+      color: #fe2c55;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      line-height: 1.6;
+      color: #ffffff;
+    }
+
+    .about-image {
+      flex: 1;
+      text-align: center;
+    }
+
+    .about-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .footer-container {
+      background-color: #ffffff;
+      color: #000000;
+      padding: 20px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .footer-logo img {
+      height: 100px;
+      margin-bottom: 10px;
+    }
+
+    .footer-info h3,
+    .footer-license h3,
+    .footer-payment h3 {
+      margin: 0 0 10px;
+    }
+
+    .image-popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-popup-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .image-popup img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      border: 5px solid #fff;
+      border-radius: 10px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 30px;
+      height: 30px;
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 30px;
+      text-align: center;
+    }
+
+    .close-btn:hover {
+      background-color: #cc0000;
+    }
+
+    .avatar_nhom15[src=""] {
+      background-color: #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+<header>
+ <div class="header-container">
+   <div class="logo">
+     <img src="Hình/LOGO/LOGO.png" alt="HD Logo">
+   </div>
+   <nav class="main-menu">
+     <ul>
+       <li><a href="index.html">TRANG CHỦ</a></li>
+       <li><a href="Introduce.html">GIỚI THIỆU</a></li>
+       <li class="brand-menu">
+         <a href="store.html">CỬA HÀNG</a>
+         <ul class="submenu">
+           <li><a href="mypham.html">Mỹ phẩm</a></li>
+           <li><a href="thoitrang.html">Thời trang</a></li>
+         </ul>
+       </li>
+       <li class="brand-menu"><a href="livestream.html">TRANG LIVESTREAM</a></li>
+       <li class="brand-menu"><a href="hopthoai.html">HỘP THOẠI</a></li>
+       <li class="brand-menu"><a href="thongbao.html">THÔNG BÁO</a></li>
+     </ul>
+   </nav>
+   <div class="header-right">
+     <a href="cart.html">
+       <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Cart">
+     </a>
+
+     <script>
+   function updateUserSection() {
+     const userSection = document.getElementById("user-section");
+     const user = JSON.parse(localStorage.getItem("user")) || null;
+     if (user && user.fullname) {
+       userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span><button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
+     } else {
+       userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
+     }
+   }
+   function logout() {
+     localStorage.removeItem("user");
+     updateUserSection();
+     alert("Đã đăng xuất thành công!");
+   }
+   document.addEventListener("DOMContentLoaded", updateUserSection);
+ </script>
+     <div id="user-section"></div>
+   </div>    
+ </div>
+</header>
+
+  <main>
+    <section class="about-section">
+      <div class="about-text">
+        <h2>VỀ TIKTOK TRENDY SHOP</h2>
+        <p>TikTok Trendy Shop ra đời với mục tiêu mang đến cho bạn một không gian mua sắm online trẻ trung, bắt kịp xu hướng và gần gũi như chính những gì bạn thường thấy trên TikTok mỗi ngày. Chúng tôi tập trung vào hai dòng sản phẩm chính: thời trang và mỹ phẩm – những món đồ không chỉ giúp bạn thể hiện cá tính mà còn nâng tầm phong cách sống hiện đại.</p>
+        <p>Điểm đặc biệt của TikTok Trendy Shop chính là cách chúng tôi kết nối trải nghiệm mua sắm với livestream và video short-form. Thay vì chỉ xem ảnh hay mô tả sản phẩm khô khan, bạn có thể vừa xem livestream, vừa tương tác, vừa mua ngay với vài cú click. Điều này giúp bạn cảm nhận rõ chất liệu, kiểu dáng, công dụng của sản phẩm trước khi quyết định đặt hàng – giống như đi shopping trực tiếp nhưng lại tiện lợi ngay tại nhà.</p>
+        <p>TikTok Trendy Shop không chỉ là một cửa hàng online, mà còn là nơi bạn có thể tìm thấy nguồn cảm hứng về phong cách sống, cái đẹp và những xu hướng mới nhất. Chúng tôi tin rằng mỗi món đồ đều có câu chuyện riêng, và nhiệm vụ của chúng tôi là đưa câu chuyện đó đến với bạn một cách chân thật nhất.</p>
+      </div>
+      <div class="about-image">
+        <img src="Hình/BANNER" alt="Hình banner Lanh des">
+      </div>
+    </section>
+
+    <section class="about-section">
+      <div class="about-text">
+        <h2>CAM KẾT</h2>
+        <p>1.Sản phẩm chính hãng, chất lượng – được chọn lọc kỹ càng để mang đến trải nghiệm đáng tin cậy.</p>
+        <p>2.Giá cả hợp lý, nhiều ưu đãi – để bạn vừa bắt trend nhanh vừa tiết kiệm.</p>
+        <p>3.Giao hàng nhanh chóng toàn quốc – giúp bạn nhận sản phẩm đúng hẹn, an tâm mua sắm.</p>
+        <p>4.Dịch vụ tận tâm – đội ngũ hỗ trợ luôn sẵn sàng giải đáp thắc mắc và lắng nghe phản hồi từ bạn.</p>
+      </div>
+      <div class="about-image">
+        <img src="Hình/BANNER" alt="Hình banner Lanh des">
+      </div>
+    </section>
+
+   
+  </main>
+
+  <footer>
+    <div class="footer-container" style="background-color: #000000; color: #ffffff; padding: 20px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; text-align: center;">
+      <div class="footer-logo">
+        <img src="Hình/LOGO/LOGO.png" alt="TikTok Trendy Shop" style="height: 100px; margin-bottom: 10px;">
+      </div>
+      <div class="footer-info">
+        <h3 style="margin: 0 0 10px;">THÔNG TIN LIÊN HỆ</h3>
+        <p>TikTok Trendy Shop</p>
+        <p>Địa chỉ: Khu phố 6, phường Linh Trung, TP Thủ Đức, TP Hồ Chí Minh</p>
+        <p>Email: tiktoktrendyshop@gmail.com</p>
+      </div>
+      <div class="footer-license">
+        <h3 style="margin: 0 0 10px;">HỒ TRỢ KHÁCH HÀNG</h3>
+        <p>Chăm sóc khách hàng</p>
+        <p>Hướng dẫn mua hàng</p>
+        <p>Hỗ trợ đổi trả hàng</p>
+      </div>
+      <div class="footer-payment">
+        <h3 style="margin: 0 0 10px;">CHÍNH SÁCH</h3>
+        <p>Chính sách đổi hàng</p>
+        <p>Bảo mật thông tin</p>
+        <p>Chính sách giao hàng</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="image-popup" id="imagePopup">
+    <div class="image-popup-content">
+      <button class="close-btn" onclick="closeImage()">×</button>
+      <img id="popupImage" src="" alt="Popup Image">
+    </div>
+  </div>
+
+  <script>
+    function showImage(card) {
+      console.log("showImage called for card:", card);
+      const avatar = card.querySelector('.avatar_nhom15');
+      const src = avatar ? avatar.src : '';
+      console.log("Image src:", src);
+
+      if (!src) {
+        console.error("No avatar image found!");
+        alert("Không tìm thấy hình ảnh để hiển thị.");
+        return;
+      }
+
+      const popup = document.getElementById('imagePopup');
+      const popupImage = document.getElementById('popupImage');
+
+      if (!popup || !popupImage) {
+        console.error("Popup elements not found!");
+        return;
+      }
+
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        console.log("Image loaded successfully:", src);
+        popupImage.src = src;
+        popup.style.display = 'flex';
+      };
+      img.onerror = () => {
+        console.error("Failed to load image:", src);
+        alert("Không thể tải hình ảnh. Vui lòng kiểm tra đường dẫn: " + src);
+      };
+    }
+
+    function closeImage() {
+      console.log("closeImage called");
+      const popup = document.getElementById('imagePopup');
+      if (popup) {
+        popup.style.display = 'none';
+      }
+    }
+
+    document.getElementById('imagePopup').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeImage();
+      }
+    });
+
+    function contactMe_nhom15(name, button) {
+  console.log("contactMe called for:", name);
+  let email = "";
+  
+  if (name === "Nguyễn Thanh Hảo") {
+    email = "23126076@student.hcmute.edu.vn";
+  } else if (name === "Đoàn Thị Mỹ Dung") {
+    email = "23126068@student.hcmute.edu.vn";
+  }
+  
+  alert(`Liên hệ với ${name} qua email: ${email}`);
+  button.classList.add('clicked');
+}
+
+    function updateUserSection() {
+      const userSection = document.getElementById("user-section");
+      if (!userSection) {
+        console.error("Element with id 'user-section' not found!");
+        return;
+      }
+      const user = JSON.parse(localStorage.getItem("user")) || null;
+      userSection.innerHTML = ''; // Xóa nội dung cũ trước khi cập nhật
+      if (user && user.fullname) {
+        userSection.innerHTML = `
+          <span class="user-name">Xin chào, ${user.fullname}</span>
+          <button class="logout-btn" onclick="logout()">Đăng xuất</button>
+        `;
+      } else {
+        userSection.innerHTML = `
+          <button class="login-btn" onclick="window.location.href='/login.html'">
+            Đăng nhập / Đăng ký
+          </button>
+        `;
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem("user");
+      updateUserSection();
+      alert("Đã đăng xuất thành công!");
+    }
+
+    document.addEventListener("DOMContentLoaded", updateUserSection);
+  </script>
+</body>
+</html>

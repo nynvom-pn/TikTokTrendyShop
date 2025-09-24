@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thông báo | TikTok Trendy Shop</title>
+  <link rel="stylesheet" href="css/index.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #fff;
+    }
+
+    .header-right {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+   }
+   .user-name {
+     color: #333;
+     font-weight: bold;
+     padding: 5px 10px;
+     background-color: #f0f0f0;
+     border-radius: 5px;
+     margin-left: 20px;
+   }
+   .logout-btn {
+     background-color: lab(96.48% 4.36 1.55);
+     color: rgb(0, 0, 0);
+     border: none;
+     padding: 5px 10px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 0.9rem;
+     margin-top: 20px;
+     margin-left: 20px;
+   }
+   .logout-btn:hover {
+     background-color: #fe2c55;
+   }
+   .login-btn {
+     background-color: #fe9900;
+     color: white;
+     border: none;
+     padding: 5px 10px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 0.9rem;
+   }
+   .login-btn:hover {
+     background-color: #187bcd;
+   }
+   
+    .cart-icon {
+      width: 24px;
+      height: 24px;
+    }
+    /* Main content */
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 10px;
+    }
+    h1 { text-align: center; margin-bottom: 20px; }
+
+    /* Notification list */
+    .notification-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .notification-item {
+      background-color: #ffffff;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      transition: background 0.2s;
+      cursor: pointer;
+      color:#121212;
+    }
+    .notification-item:hover { background-color: #bb9999; }
+    .notification-title { font-weight: bold; margin-bottom: 5px; }
+    .notification-time { font-size: 0.8rem; color: #aaa; }
+
+    /* Footer */
+    footer {
+      background-color: #000000;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    footer h3 { margin-bottom: 10px; }
+
+    @media(max-width: 768px){
+      main { width: 95%; }
+      nav.main-menu ul { flex-wrap: wrap; gap: 10px; }
+    }
+    .notification-list-container {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .notification-list {
+    width: 600px; /* rộng container */
+    max-height: 700px; /* container dài ra */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto; /* scroll nếu quá dài */
+  }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+ <div class="header-container">
+   <div class="logo">
+     <img src="Hình/LOGO/LOGO.png" alt="HD Logo">
+   </div>
+   <input type="text" placeholder="  Nhập từ cần tìm  " class="search-input" style="width:800px; height:50px; margin-right: 20px; margin-left:30px;">
+   <nav class="main-menu">
+     <ul>
+       <li><a href="index.html">TRANG CHỦ</a></li>
+       <li><a href="Introduce.html">GIỚI THIỆU</a></li>
+       <li class="brand-menu">
+         <a href="store.html">CỬA HÀNG</a>
+         <ul class="submenu">
+          <li><a href="mypham.html">Mỹ phẩm</a></li>
+           <li><a href="thoitrang.html">Thời trang</a></li>
+         </ul>
+       </li>
+       <li class="brand-menu"><a href="livestream.html">TRANG LIVESTREAM</a></li>
+       <li class="brand-menu"><a href="hopthoai.html">HỘP THOẠI</a></li>
+       <li class="brand-menu"><a href="thongbao.html">THÔNG BÁO</a></li>
+     </ul>
+   </nav>
+   <div class="header-right">
+     <a href="cart.html">
+       <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Cart">
+     </a>
+     <script>
+   function updateUserSection() {
+     const userSection = document.getElementById("user-section");
+     const user = JSON.parse(localStorage.getItem("user")) || null;
+     if (user && user.fullname) {
+       userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span><button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
+     } else {
+       userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
+     }
+   }
+   function logout() {
+     localStorage.removeItem("user");
+     updateUserSection();
+     alert("Đã đăng xuất thành công!");
+   }
+   document.addEventListener("DOMContentLoaded", updateUserSection);
+ </script>
+     <div id="user-section"></div>
+   </div>    
+ </div>
+</header>
+<!-- Main content -->
+<main>
+    <h1 style="text-align:right; color:#fff; margin-bottom:30px; margin-right:50px;">THÔNG BÁO CỦA TIKTOK TRENDY SHOP</h1>
+  <div class="notification-list-container">
+    <div class="notification-list" id="notification-list">
+      <div class="notification-item">
+        <div class="notification-title">Giảm giá 20% cho đơn hàng đầu tiên</div>
+        <div class="notification-time">1 giờ trước</div>
+      </div>
+      <div class="notification-item">
+        <div class="notification-title">Shop A vừa trả lời tin nhắn của bạn</div>
+        <div class="notification-time">3 giờ trước</div>
+      </div>
+      <div class="notification-item">
+        <div class="notification-title">Livestream mới từ Shop C đang diễn ra</div>
+        <div class="notification-time">Hôm nay, 10:00</div>
+      </div>
+      <div class="notification-item">
+        <div class="notification-title">Chương trình hoàn tiền 5% cho các đơn hàng từ 500k</div>
+        <div class="notification-time">Hôm qua, 20:15</div>
+      </div>
+      <div class="notification-item">
+        <div class="notification-title">Đơn hàng #1234 đã được vận chuyển</div>
+        <div class="notification-time">Hôm qua, 18:00</div>
+      </div>
+      <div class="notification-item">
+        <div class="notification-title">Shop B vừa thêm sản phẩm mới</div>
+        <div class="notification-time">Hôm qua, 16:30</div>
+      </div>
+      <div class="notification-item">
+        <div class="notification-title">Khuyến mãi cuối tuần: Freeship toàn quốc</div>
+        <div class="notification-time">2 ngày trước</div>
+      </div>
+      <div class="notification-item">
+        <div class="notification-title">Shop C trả lời đánh giá của bạn</div>
+        <div class="notification-time">2 ngày trước</div>
+      </div>
+      <div class="notification-item">
+        <div class="notification-title">Đơn hàng #1230 đã được hủy</div>
+        <div class="notification-time">3 ngày trước</div>
+      </div>
+      <div class="notification-item">
+        <div class="notification-title">Chương trình quà tặng đặc biệt tháng 9</div>
+        <div class="notification-time">3 ngày trước</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">
+    <img src="Hình/LOGO/LOGO.png" alt="TikTok Trendy Shop" style="height:100px; margin-bottom:10px;">
+  </div>
+  <div class="footer-info">
+    <h3>THÔNG TIN LIÊN HỆ</h3>
+    <p>TikTok Trendy Shop</p>
+    <p>Địa chỉ: Khu phố 6, phường Linh Trung, TP Thủ Đức, TP Hồ Chí Minh</p>
+    <p>Email: tiktoktrendyshop@gmail.com</p>
+  </div>
+  <div class="footer-license">
+    <h3>HỖ TRỢ KHÁCH HÀNG</h3>
+    <p>Chăm sóc khách hàng</p>
+    <p>Hướng dẫn mua hàng</p>
+    <p>Hỗ trợ đổi trả hàng</p>
+  </div>
+  <div class="footer-payment">
+    <h3>CHÍNH SÁCH</h3>
+    <p>Chính sách đổi hàng</p>
+    <p>Bảo mật thông tin</p>
+    <p>Chính sách giao hàng</p>
+  </div>
+</footer>
+
+<script>
+  // Click vào thông báo sẽ alert
+  const notifications = document.querySelectorAll('.notification-item');
+  notifications.forEach(item => {
+    item.addEventListener('click', () => {
+      alert(item.querySelector('.notification-title').textContent);
+    });
+  });
+</script>
+
+</body>
+</html>

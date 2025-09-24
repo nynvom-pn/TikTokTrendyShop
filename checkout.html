@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title> Thanh toán | TikTok Trendy Shop</title>
+ <link rel="stylesheet" href="css/index.css">
+ <style>
+   .header-right {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+   }
+   .user-name {
+     color: #333;
+     font-weight: bold;
+     padding: 5px 10px;
+     background-color: #f0f0f0;
+     border-radius: 5px;
+     margin-left: 20px;
+   }
+   .logout-btn {
+     background-color: lab(96.48% 4.36 1.55);
+     color: rgb(0, 0, 0);
+     border: none;
+     padding: 5px 10px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 0.9rem;
+     margin-top: 20px;
+     margin-left: 20px;
+   }
+   .logout-btn:hover {
+     background-color: #fe2c55;
+   }
+   .login-btn {
+     background-color: #fb8a01;
+     color: white;
+     border: none;
+     padding: 5px 10px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 0.9rem;
+   }
+   .login-btn:hover {
+     background-color: #187bcd;
+   }
+   
+    .cart-icon {
+      width: 24px;
+      height: 24px;
+    }
+    main {
+  display: flex;
+  justify-content: center; /* Căn giữa container */
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.container {
+  width: 900px; /* Rộng hơn trước, tùy ý */
+  max-width: 100%;
+  height: 600px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(1, 1, 1, 0.5);
+}
+    .cart-icon {
+      width: 24px;
+      height: 24px;
+    }
+    .login-btn, .logout-btn {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .login-btn { background-color: #ff9a02; color: #fff; }
+    .logout-btn { background-color: #ff9a02; color: #fff; }
+    .login-btn:hover { background-color: #0086bf; }
+    .logout-btn:hover { background-color: #777; }
+
+    /* Main container */
+    main {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 0 10px;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 30px auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .checkout-wrapper {
+      display: flex;
+      width: 100%;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .checkout-form {
+      flex: 2;
+      background: #f9e9d2;
+      padding: 30px;
+    }
+
+    .checkout-form h2 {
+      margin-bottom: 20px;
+    }
+
+    .checkout-form form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .checkout-form input,
+    .checkout-form textarea {
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .checkout-form textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .checkout-form label {
+      margin: 5px 0;
+      font-size: 0.95rem;
+    }
+
+    .checkout-form button {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #fa7000;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .checkout-form button:hover {
+      background-color: #187bcd;
+    }
+
+    .checkout-summary {
+      flex: 1;
+      padding: 30px;
+      background: #fff;
+      border-left: 1px solid #ddd;
+    }
+
+    .checkout-summary h2 {
+      margin-bottom: 15px;
+    }
+
+    .checkout-summary .item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .checkout-summary .item span {
+      font-size: 0.95rem;
+    }
+
+    .checkout-summary .total {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <<header>
+ <div class="header-container">
+   <div class="logo">
+     <img src="Hình/LOGO/LOGO.png" alt="HD Logo">
+   </div>
+   <input type="text" placeholder="  Nhập từ cần tìm  " class="search-input" style="width:800px; height:50px; margin-right: 20px; margin-left:30px;">
+   <nav class="main-menu">
+     <ul>
+       <li><a href="index.html">TRANG CHỦ</a></li>
+       <li><a href="Introduce.html">GIỚI THIỆU</a></li>
+       <li class="brand-menu">
+         <a href="store.html">CỬA HÀNG</a>
+         <ul class="submenu">
+           <li><a href="mypham.html">Mỹ phẩm</a></li>
+           <li><a href="thoitrang.html">Thời trang</a></li>
+         </ul>
+       </li>
+       <li class="brand-menu"><a href="livestream.html">TRANG LIVESTREAM</a></li>
+       <li class="brand-menu"><a href="hopthoai.html">HỘP THOẠI</a></li>
+       <li class="brand-menu"><a href="thongbao.html">THÔNG BÁO</a></li>
+     </ul>
+   </nav>
+   <div class="header-right">
+     <a href="cart.html">
+       <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Cart">
+     </a>
+     <script>
+   function updateUserSection() {
+     const userSection = document.getElementById("user-section");
+     const user = JSON.parse(localStorage.getItem("user")) || null;
+     if (user && user.fullname) {
+       userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span><button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
+     } else {
+       userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
+     }
+   }
+   function logout() {
+     localStorage.removeItem("user");
+     updateUserSection();
+     alert("Đã đăng xuất thành công!");
+   }
+   document.addEventListener("DOMContentLoaded", updateUserSection);
+ </script>
+     <div id="user-section"></div>
+   </div>    
+ </div>
+</header>
+
+
+  <main>
+    <div class="checkout-wrapper">
+      <!-- Cột trái -->
+      <section class="checkout-form">
+        <h2>Thông tin giao hàng</h2>
+        <form id="checkout-form">
+          <input type="text" id="fullname" placeholder="Họ và tên" required>
+          <input type="tel" id="phone" placeholder="Số điện thoại" required>
+          <input type="email" id="email" placeholder="Email" required>
+          <input type="text" id="address" placeholder="Địa chỉ" required>
+          <textarea id="note" placeholder="Nội dung ghi chú (tuỳ chọn)"></textarea>
+
+          <h3>Phương thức thanh toán</h3>
+          <label><input type="radio" name="payment" value="cod" checked> Thanh toán khi nhận hàng (COD)</label><br>
+          <label><input type="radio" name="payment" value="bank"> Chuyển khoản ngân hàng</label><br>
+          <label><input type="radio" name="payment" value="momo"> Ví MoMo</label><br>
+
+          <button type="submit">Xác nhận đặt hàng</button>
+        </form>
+      </section>
+
+      <!-- Cột phải -->
+      <section class="checkout-summary">
+        <h2>Đơn hàng của bạn</h2>
+        <div id="order-items"></div>
+        <p class="total">Tổng cộng: <span id="order-total">0</span>đ</p>
+      </section>
+    </div>
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-container" style="background-color: #000000; color: #ffffff; padding: 20px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; text-align: center;">
+      <div class="footer-logo">
+        <img src="Hình/LOGO/LOGO.png" alt="TikTok Trendy Shop" style="height: 100px; margin-bottom: 10px;">
+      </div>
+      <div class="footer-info">
+        <h3 style="margin: 0 0 10px;">THÔNG TIN LIÊN HỆ</h3>
+        <p>TikTok Trendy Shop</p>
+        <p>Địa chỉ: Khu phố 6, phường Linh Trung, TP Thủ Đức, TP Hồ Chí Minh</p>
+        <p>Email: tiktoktrendyshop@gmail.com</p>
+      </div>
+      <div class="footer-license">
+        <h3 style="margin: 0 0 10px;">HỒ TRỢ KHÁCH HÀNG</h3>
+        <p>Chăm sóc khách hàng</p>
+        <p>Hướng dẫn mua hàng</p>
+        <p>Hỗ trợ đổi trả hàng</p>
+      </div>
+      <div class="footer-payment">
+        <h3 style="margin: 0 0 10px;">CHÍNH SÁCH</h3>
+        <p>Chính sách đổi hàng</p>
+        <p>Bảo mật thông tin</p>
+        <p>Chính sách giao hàng</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+  const orderItemsEl = document.getElementById("order-items");
+  const orderTotalEl = document.getElementById("order-total");
+
+  function loadOrder() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];  // Đọc giỏ hàng từ 'cart'
+    orderItemsEl.innerHTML = "";
+    let total = 0;
+
+    if (cart.length === 0) {
+      orderItemsEl.innerHTML = "<p>Giỏ hàng trống</p>";
+      orderTotalEl.textContent = "0";
+      return;
+    }
+
+    cart.forEach(item => {
+      const quantity = parseInt(item.quantity) || 1;
+      const itemTotal = item.price * quantity;  // Tính giá trị sản phẩm
+      total += itemTotal;
+
+      const itemEl = document.createElement("div");
+      itemEl.className = "item";
+      itemEl.innerHTML = `
+        <span>${item.name} x${quantity}</span>
+        <span>${itemTotal.toLocaleString()}đ</span>
+      `;
+      orderItemsEl.appendChild(itemEl);
+    });
+
+    // Cập nhật tổng tiền
+    orderTotalEl.textContent = total.toLocaleString();
+  }
+
+  loadOrder();  // Gọi hàm này để tải giỏ hàng khi trang thanh toán được load
+});
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const orderItemsEl = document.getElementById("order-items");
+      const orderTotalEl = document.getElementById("order-total");
+      const checkoutForm = document.getElementById("checkout-form");
+
+      function loadOrder() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        orderItemsEl.innerHTML = "";
+        let total = 0;
+
+        if (cart.length === 0) {
+          orderItemsEl.innerHTML = "<p>Giỏ hàng trống</p>";
+          orderTotalEl.textContent = "0";
+          return;
+        }
+
+        cart.forEach(item => {
+          // Use 'quantity' instead of 'qty' to match the cart page
+          const quantity = parseInt(item.quantity) || 1;
+          const itemTotal = item.price * quantity;
+          total += itemTotal;
+
+          const itemEl = document.createElement("div");
+          itemEl.className = "item";
+          itemEl.innerHTML = `
+            <span>${item.name} x${quantity}</span>
+            <span>${itemTotal.toLocaleString()}đ</span>
+          `;
+          orderItemsEl.appendChild(itemEl);
+        });
+
+        orderTotalEl.textContent = total.toLocaleString();
+      }
+
+      checkoutForm.addEventListener("submit", function (e) {
+  e.preventDefault(); // Ngăn trang reload lại mặc định
+
+  const fullname = document.getElementById("fullname").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const address = document.getElementById("address").value.trim();
+  const note = document.getElementById("note").value.trim();
+  const payment = document.querySelector('input[name="payment"]:checked').value;
+
+  // Kiểm tra xem người dùng đã nhập đầy đủ chưa
+  if (!fullname || !phone || !email || !address) {
+    alert("Vui lòng điền đầy đủ thông tin.");
+    return;
+  }
+
+  // Lấy sản phẩm từ localStorage
+  const buyNowItem = JSON.parse(localStorage.getItem("buyNow"));
+  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // Ưu tiên dùng sản phẩm mua ngay nếu có
+  const items = buyNowItem ? [buyNowItem] : cartItems;
+
+  // Tạo đối tượng đơn hàng
+  const order = {
+    fullname,
+    phone,
+    email,
+    address,
+    note,
+    payment,
+    cart: items,
+    total: document.getElementById("order-total").textContent,
+    date: new Date().toLocaleString()
+  };
+
+  console.log("Đơn hàng:", order);
+  alert("Đặt hàng thành công! Cảm ơn bạn đã mua hàng.");
+
+  // Xóa dữ liệu sau khi đặt hàng thành công
+  if (buyNowItem) {
+    localStorage.removeItem("buyNow");
+  } else {
+    localStorage.removeItem("cart");
+  }
+
+  // Chuyển về trang chủ
+  window.location.href = "index.html";
+});
+
+
+      loadOrder();
+    });
+    document.addEventListener("DOMContentLoaded", () => {
+  const orderItemsEl = document.getElementById("order-items");
+  const orderTotalEl = document.getElementById("order-total");
+
+  function loadOrder() {
+  const buyNowItem = JSON.parse(localStorage.getItem("buyNow"));
+  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const items = buyNowItem ? [buyNowItem] : cartItems;
+
+  orderItemsEl.innerHTML = "";
+  let total = 0;
+
+  if (items.length === 0 || (buyNowItem === null && cartItems.length === 0)) {
+    orderItemsEl.innerHTML = "<p>Giỏ hàng trống</p>";
+    orderTotalEl.textContent = "0";
+    return;
+  }
+
+  items.forEach(item => {
+    const quantity = parseInt(item.quantity) || 1;
+    const itemTotal = item.price * quantity;
+    total += itemTotal;
+
+    const itemEl = document.createElement("div");
+    itemEl.className = "item";
+    itemEl.innerHTML = `
+      <div style="display: flex; align-items: center;">
+        <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; margin-right: 10px;">
+        <div>
+          <span>${item.name} x${quantity}</span>
+          <div>${itemTotal.toLocaleString()}đ</div>
+        </div>
+      </div>
+    `;
+    orderItemsEl.appendChild(itemEl);
+  });
+
+  orderTotalEl.textContent = total.toLocaleString();
+}
+
+
+  loadOrder(); // Gọi hàm này để tải giỏ hàng khi trang thanh toán được load
+});
+
+  </script>
+</body>
+</html>

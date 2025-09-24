@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>TikTok Trendy Shop | Trang chủ</title>
+ <link rel="stylesheet" href="css/index.css">
+ <style>
+   .header-right {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+   }
+   .user-name {
+     color: #333;
+     font-weight: bold;
+     padding: 5px 10px;
+     background-color: #f0f0f0;
+     border-radius: 5px;
+     margin-left: 20px;
+   }
+   .logout-btn {
+     background-color: lab(96.48% 4.36 1.55);
+     color: rgb(0, 0, 0);
+     border: none;
+     padding: 5px 10px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 0.9rem;
+     margin-top: 20px;
+     margin-left: 20px;
+   }
+   .logout-btn:hover {
+     background-color: #fe2c55;
+   }
+   .login-btn {
+     background-color: #ff8001;
+     color: white;
+     border: none;
+     padding: 5px 10px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 0.9rem;
+   }
+   .login-btn:hover {
+     background-color: #187bcd;
+   }
+   .main-menu ul {
+     list-style: none;
+     display: flex;
+     margin: 0;
+     padding: 0;
+   }
+   .main-menu ul li {
+     position: relative;
+     margin-right: 20px;
+   }
+   .main-menu ul li a {
+     text-decoration: none;
+     color: #ffffff;
+     font-weight: bold;
+   }
+   main {
+  display: flex;
+  flex-direction: column; /* sắp xếp các section theo chiều dọc */
+  gap: 40px; /* khoảng cách giữa các section */
+}
+
+   .brand-menu .submenu {
+     display: none;
+     position: absolute;
+     background: white;
+     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+     min-width: 150px;
+     z-index: 1;
+   }
+   .brand-menu:hover .submenu {
+     display: block;
+   }
+   .submenu li a {
+     display: block;
+     padding: 10px;
+     color: #000;
+     text-decoration: none;
+   }
+   .submenu li a:hover {
+     background: #f1f1f1;
+   }
+   .banner {
+     position: relative;
+     width: 100%;
+     overflow: hidden;
+     margin-top: 10px;
+   }
+   .slideshow-container {
+     max-width: 100%;
+     position: relative;
+   }
+   .slide {
+     display: none;
+   }
+   .fade {
+     animation-name: fade;
+     animation-duration: 1.5s;
+   }
+   @keyframes fade {
+     from {opacity: .4}
+     to {opacity: 1}
+   }
+   .slide img {
+     width: 100%;
+     height: auto;
+   }
+   .prev, .next {
+     cursor: pointer;
+     position: absolute;
+     top: 50%;
+     width: auto;
+     padding: 16px;
+     margin-top: -22px;
+     color: white;
+     font-weight: bold;
+     font-size: 18px;
+     transition: 0.6s ease;
+     border-radius: 0 3px 3px 0;
+     user-select: none;
+   }
+   .next {
+     right: 0;
+     border-radius: 3px 0 0 3px;
+   }
+   .prev:hover, .next:hover {
+     background-color: rgba(0,0,0,0.8);
+   }
+   .dots {
+     text-align: center;
+   }
+   .dot {
+     cursor: pointer;
+     height: 15px;
+     width: 15px;
+     margin: 0 2px;
+     background-color: #bbb;
+     border-radius: 50%;
+     display: inline-block;
+     transition: background-color 0.6s ease;
+   }
+   .active, .dot:hover {
+     background-color: #717171;
+   }
+   .products {
+ display: flex;
+ max-width: 1200px;
+ margin: 30px auto;
+ padding: 0 20px;
+}
+
+
+.filters {
+ width: 200px;
+ margin-right: 20px;
+}
+
+
+.products-grid {
+ flex-grow: 1;
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+ gap: 20px;
+}
+
+
+.product-card {
+ background: white;
+ border: 1px solid #ddd;
+ border-radius: 10px;
+ padding: 10px;
+ text-align: center;
+ display: flex;
+ flex-direction: column;
+ height: 300px; /* Chiều cao cố định để đảm bảo đồng đều */
+ justify-content: space-between;
+}
+
+
+.product-card img {
+ max-width: 100%;
+ height: 150px;
+ object-fit: cover;
+ border-radius: 5px;
+}
+
+
+.product-card h4 {
+ font-size: 0.9rem;
+ margin: 8px 0;
+ color: #333;
+ white-space: nowrap;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ height: 20px;
+ line-height: 20px;
+}
+
+
+.product-card .price {
+ font-size: 1.2rem;
+ color: #e60000;
+ font-weight: bold;
+ margin: 10px 0 5px;
+ height: 20px;
+ line-height: 20px;
+}
+
+
+.product-card .color-dot {
+ width: 12px;
+ height: 12px;
+ border-radius: 50%;
+ display: inline-block;
+ margin: 0 2px;
+ border: 1px solid #ddd;
+}
+
+
+.product-card a {
+ text-decoration: none;
+ color: inherit;
+ flex-grow: 1;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+}
+
+/* Tiêu đề flash sale */
+.flashsale-title {
+  color: #fe2c55;
+  font-style: italic;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: left;
+  font-size: 1.5rem;
+}
+
+/* Container giống products-grid nhưng ngang để trượt */
+.flashsale-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Wrapper cho item, trượt ngang */
+.flashsale-wrapper {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
+}
+
+/* Item flash sale tái sử dụng product-card */
+.flashsale-item {
+  flex: 0 0 180px; /* giống min width của product-card */
+  max-width: 180px;
+}
+
+/* Nút điều hướng */
+.flashsale-btn {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 2;
+  transition: background 0.3s;
+}
+
+.flashsale-btn:hover {
+  background: #fe2c55;
+  color: #fff;
+}
+
+.flashsale-btn.prev {
+  left: 5px;
+}
+
+.flashsale-btn.next {
+  right: 5px;
+}
+
+
+ </style>
+</head>
+<body>
+<!-- Header -->
+<header>
+ <div class="header-container">
+   <div class="logo">
+     <img src="Hình/LOGO/LOGO.png" alt="HD Logo">
+   </div>
+   <input type="text" placeholder="  Nhập từ cần tìm  " class="search-input" style="width:800px; height:50px; margin-right: 20px; margin-left:30px;">
+   <nav class="main-menu">
+     <ul>
+       <li><a href="index.html">TRANG CHỦ</a></li>
+       <li><a href="Introduce.html">GIỚI THIỆU</a></li>
+       <li class="brand-menu">
+         <a href="store.html">CỬA HÀNG</a>
+         <ul class="submenu">
+          <li><a href="mypham.html">Mỹ phẩm</a></li>
+           <li><a href="thoitrang.html">Thời trang</a></li>
+         </ul>
+       </li>
+       <li class="brand-menu"><a href="livestream.html">TRANG LIVESTREAM</a></li>
+       <li class="brand-menu"><a href="hopthoai.html">HỘP THOẠI</a></li>
+       <li class="brand-menu"><a href="thongbao.html">THÔNG BÁO</a></li>
+     </ul>
+   </nav>
+   <div class="header-right">
+     <a href="cart.html">
+       <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Cart">
+     </a>
+     <script>
+   function updateUserSection() {
+     const userSection = document.getElementById("user-section");
+     const user = JSON.parse(localStorage.getItem("user")) || null;
+     if (user && user.fullname) {
+       userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span><button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
+     } else {
+       userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
+     }
+   }
+   function logout() {
+     localStorage.removeItem("user");
+     updateUserSection();
+     alert("Đã đăng xuất thành công!");
+   }
+   document.addEventListener("DOMContentLoaded", updateUserSection);
+ </script>
+     <div id="user-section"></div>
+   </div>    
+ </div>
+</header>
+<!-- Banner Section -->
+<section class="banner">
+ <div class="slideshow-container">
+   <div class="slide fade">
+     <img src="Hình/BANNER/BANNER 1.png" alt="Banner 1">
+   </div>
+   <div class="slide fade">
+     <img src="Hình/BANNER/BANNER 2.png" alt="Banner 2">
+   </div>
+   <div class="slide fade">
+     <img src="Hình/BANNER/BANNER 3.png" alt="Banner 3">
+   </div>
+   <!-- Navigation buttons -->
+   <a class="prev" onclick="plusSlides(-1)">❮</a>
+   <a class="next" onclick="plusSlides(1)">❯</a>
+ </div>
+ <!-- Dots for navigation -->
+ <div class="dots" style="text-align:center">
+   <span class="dot" onclick="currentSlide(1)"></span>
+   <span class="dot" onclick="currentSlide(2)"></span>
+   <span class="dot" onclick="currentSlide(3)"></span>
+ </div>
+</section>
+
+
+<!-- Main Content -->
+<main>
+ <section class="flashsale">
+  <h2 class="flashsale-title">FLASH SALE</h2>
+  <div class="flashsale-container">
+    <button class="flashsale-btn prev">&#10094;</button>
+    <div class="flashsale-wrapper" id="flashsaleWrapper">
+      <!-- 10 sản phẩm mẫu -->
+      <div class="product-card flashsale-item">
+        <a href="#">
+          <img src="images/product1.jpg" alt="Product 1">
+          <h4>Sản phẩm 1 siêu hot siêu rẻ</h4>
+          <div class="price">₫199,000</div>
+        </a>
+      </div>
+      <div class="product-card flashsale-item">
+        <a href="#">
+          <img src="images/product2.jpg" alt="Product 2">
+          <h4>Sản phẩm 2 giá hời</h4>
+          <div class="price">₫299,000</div>
+        </a>
+      </div>
+      <div class="product-card flashsale-item">
+        <a href="#">
+          <img src="images/product2.jpg" alt="Product 2">
+          <h4>Sản phẩm 2 giá hời</h4>
+          <div class="price">₫299,000</div>
+        </a>
+      </div>
+      <div class="product-card flashsale-item">
+        <a href="#">
+          <img src="images/product2.jpg" alt="Product 2">
+          <h4>Sản phẩm 2 giá hời</h4>
+          <div class="price">₫299,000</div>
+        </a>
+      </div>
+      <div class="product-card flashsale-item">
+        <a href="#">
+          <img src="images/product2.jpg" alt="Product 2">
+          <h4>Sản phẩm 2 giá hời</h4>
+          <div class="price">₫299,000</div>
+        </a>
+      </div>
+      <div class="product-card flashsale-item">
+        <a href="#">
+          <img src="images/product2.jpg" alt="Product 2">
+          <h4>Sản phẩm 2 giá hời</h4>
+          <div class="price">₫299,000</div>
+        </a>
+      </div>
+      <div class="product-card flashsale-item">
+        <a href="#">
+          <img src="images/product2.jpg" alt="Product 2">
+          <h4>Sản phẩm 2 giá hời</h4>
+          <div class="price">₫299,000</div>
+        </a>
+      </div>
+      <div class="product-card flashsale-item">
+        <a href="#">
+          <img src="images/product2.jpg" alt="Product 2">
+          <h4>Sản phẩm 2 giá hời</h4>
+          <div class="price">₫299,000</div>
+        </a>
+      </div>
+      <div class="product-card flashsale-item">
+        <a href="#">
+          <img src="images/product2.jpg" alt="Product 2">
+          <h4>Sản phẩm 2 giá hời</h4>
+          <div class="price">₫299,000</div>
+        </a>
+      </div>
+      <!-- thêm 8 sản phẩm nữa ... -->
+    </div>
+    <button class="flashsale-btn next">&#10095;</button>
+  </div>
+</section>
+
+<br>
+ <section class="products">
+  <aside class="filters">
+    <h2>Bộ lọc</h2>
+    <div class="filter-group">
+      <h3>Loại sản phẩm</h3>
+      <div class="filter-options">
+        <label><input type="checkbox" value="skincare" class="category-filter"> Skincare</label>
+        <label><input type="checkbox" value="makeup" class="category-filter"> Makeup</label>
+        <label><input type="checkbox" value="ao" class="category-filter"> Áo</label>
+        <label><input type="checkbox" value="quan" class="category-filter"> Quần</label>
+        <label><input type="checkbox" value="vay" class="category-filter"> Váy</label>
+      </div>
+    </div>
+  </aside>
+
+  <div class="products-grid" id="products-container"></div>
+</section>
+
+</main>
+
+
+<footer>
+    <div class="footer-container" style="background-color: #000000; color: #ffffff; padding: 20px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; text-align: center;">
+      <div class="footer-logo">
+        <img src="Hình/LOGO/LOGO.png" alt="TikTok Trendy Shop" style="height: 100px; margin-bottom: 10px;">
+      </div>
+      <div class="footer-info">
+        <h3 style="margin: 0 0 10px;">THÔNG TIN LIÊN HỆ</h3>
+        <p>TikTok Trendy Shop</p>
+        <p>Địa chỉ: Khu phố 6, phường Linh Trung, TP Thủ Đức, TP Hồ Chí Minh</p>
+        <p>Email: tiktoktrendyshop@gmail.com</p>
+      </div>
+      <div class="footer-license">
+        <h3 style="margin: 0 0 10px;">HỒ TRỢ KHÁCH HÀNG</h3>
+        <p>Chăm sóc khách hàng</p>
+        <p>Hướng dẫn mua hàng</p>
+        <p>Hỗ trợ đổi trả hàng</p>
+      </div>
+      <div class="footer-payment">
+        <h3 style="margin: 0 0 10px;">CHÍNH SÁCH</h3>
+        <p>Chính sách đổi hàng</p>
+        <p>Bảo mật thông tin</p>
+        <p>Chính sách giao hàng</p>
+      </div>
+    </div>
+  </footer>
+
+
+<script src="js/index.js"></script>
+<script>
+/* ---------- Unified JS for index page ----------
+   - Banner slideshow (dots + prev/next + autoplay + reset)
+   - Flashsale slider (6 visible on desktop, responsive, prev/next, autoplay)
+   - User section (login/logout UI using localStorage)
+   - Search input hook (calls filterProducts if defined)
+--------------------------------------------------*/
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* =======================
+     1) BANNER SLIDESHOW
+     ======================= */
+  (function bannerSlideshow(){
+    const slides = Array.from(document.getElementsByClassName("slide"));
+    const dots = Array.from(document.getElementsByClassName("dot"));
+    if (!slides.length) return; // nếu không có slide thì thôi
+
+    let slideIndex = 1;
+    let slideAuto;
+
+    function showSlide(n) {
+      // vòng chỉ mục
+      if (n > slides.length) slideIndex = 1;
+      if (n < 1) slideIndex = slides.length;
+
+      // ẩn tất cả slide, xóa active của dot
+      slides.forEach(s => s.style.display = "none");
+      dots.forEach(d => d.classList.remove("active"));
+
+      // hiển thị slide hiện tại
+      slides[slideIndex - 1].style.display = "block";
+      if (dots[slideIndex - 1]) dots[slideIndex - 1].classList.add("active");
+    }
+
+    // hàm dùng cho onclick trong HTML (❮ ❯)
+    window.plusSlides = function(n) {
+      slideIndex += n;
+      showSlide(slideIndex);
+      resetSlideAuto();
+    };
+
+    // hàm dùng cho dot click
+    window.currentSlide = function(n) {
+      slideIndex = n;
+      showSlide(slideIndex);
+      resetSlideAuto();
+    };
+
+    // nếu muốn click dot bằng event (nếu HTML dots không có onclick)
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        window.currentSlide(idx + 1);
+      });
+    });
+
+    function startSlideAuto() {
+      slideAuto = setInterval(() => { window.plusSlides(1); }, 5000);
+    }
+    function resetSlideAuto() {
+      clearInterval(slideAuto);
+      startSlideAuto();
+    }
+
+    // khởi tạo
+    showSlide(slideIndex);
+    startSlideAuto();
+
+    // optional: pause on hover of slideshow container
+    const slideContainer = document.querySelector('.slideshow-container');
+    if (slideContainer) {
+      slideContainer.addEventListener('mouseenter', () => clearInterval(slideAuto));
+      slideContainer.addEventListener('mouseleave', () => { resetSlideAuto(); });
+    }
+  })();
+
+  /* =======================
+     2) USER SECTION (login/logout)
+     ======================= */
+  (function userSectionInit(){
+    const userSection = document.getElementById("user-section");
+    if (!userSection) {
+      console.warn("user-section element not found.");
+      return;
+    }
+
+    function renderUserSection() {
+      const user = JSON.parse(localStorage.getItem("user")) || null;
+      if (user && user.fullname) {
+        userSection.innerHTML = `
+          <span class="user-name">Xin chào, ${escapeHtml(user.fullname)}</span>
+          <button class="logout-btn" id="logoutBtn">Đăng xuất</button>
+        `;
+        const btn = document.getElementById('logoutBtn');
+        if (btn) btn.addEventListener('click', () => {
+          localStorage.removeItem('user');
+          renderUserSection();
+          alert('Đã đăng xuất thành công!');
+        });
+      } else {
+        userSection.innerHTML = `
+          <button class="login-btn" id="loginBtn">Đăng nhập / Đăng ký</button>
+        `;
+        const btn = document.getElementById('loginBtn');
+        if (btn) btn.addEventListener('click', () => {
+          // sử dụng đường dẫn tương đối để chạy trên file://
+          window.location.href = 'login.html';
+        });
+      }
+    }
+
+    renderUserSection();
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]); });
+    }
+  })();
+
+  /* =======================
+     3) SEARCH HOOK
+     ======================= */
+  (function searchHook(){
+    const searchInput = document.querySelector('.search-input');
+    if (!searchInput) return;
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      if (typeof filterProducts === 'function') {
+        filterProducts(q);
+      } else {
+        // nếu filterProducts chưa được định nghĩa thì log, không gây lỗi
+        //console.warn("filterProducts function not found.");
+      }
+    });
+  })();
+
+  /* =======================
+     4) FLASHSALE SLIDER
+     - show 6 items by default (responsive)
+     - prev/next buttons, autoplay, reset on manual
+     ======================= */
+  (function flashSaleSlider(){
+    const wrapper = document.getElementById("flashsaleWrapper");
+    if (!wrapper) {
+      console.warn("flashsaleWrapper not found.");
+      return;
+    }
+    const items = Array.from(wrapper.querySelectorAll(".flashsale-item"));
+    const prevBtn = document.querySelector(".flashsale-btn.prev");
+    const nextBtn = document.querySelector(".flashsale-btn.next");
+    if (!items.length) {
+      console.warn("No flashsale items found.");
+      return;
+    }
+
+    let totalItems = items.length;
+    let currentIndex = 0; // 0-based
+    let visibleItems = 6; // default
+    let fsAuto = null;
+
+    // compute gap between items (supports gap on flex)
+    function getGap() {
+      const st = getComputedStyle(wrapper);
+      const gap = parseFloat(st.gap);
+      if (!isNaN(gap)) return gap;
+      // fallback: try margin-right of item
+      const m = getComputedStyle(items[0]).marginRight;
+      return m ? parseFloat(m) : 15;
+    }
+
+    // compute how many items fit in visible area (responsive)
+    function computeVisibleItems() {
+      const parentW = wrapper.parentElement.clientWidth; // flashsale-container width
+      const itemW = items[0].getBoundingClientRect().width;
+      const gap = getGap();
+      const fit = Math.floor((parentW + gap) / (itemW + gap));
+      return Math.max(1, fit);
+    }
+
+    function clampIndex() {
+      const maxStart = Math.max(0, totalItems - visibleItems);
+      if (currentIndex > maxStart) currentIndex = maxStart;
+      if (currentIndex < 0) currentIndex = 0;
+    }
+
+    function updateTransform() {
+      const itemW = items[0].getBoundingClientRect().width;
+      const gap = getGap();
+      const offset = -(currentIndex * (itemW + gap));
+      wrapper.style.transform = `translateX(${offset}px)`;
+      wrapper.style.transition = 'transform 0.45s cubic-bezier(.2,.8,.2,1)';
+    }
+
+    function recalcAndShow() {
+      visibleItems = computeVisibleItems();
+      clampIndex();
+      updateTransform();
+    }
+
+    function nextSlide() {
+      const maxStart = Math.max(0, totalItems - visibleItems);
+      if (currentIndex < maxStart) currentIndex++;
+      else currentIndex = 0;
+      updateTransform();
+    }
+    function prevSlide() {
+      const maxStart = Math.max(0, totalItems - visibleItems);
+      if (currentIndex > 0) currentIndex--;
+      else currentIndex = maxStart;
+      updateTransform();
+    }
+
+    // expose for debugging (optional)
+    window.flashNext = () => { nextSlide(); resetAuto(); };
+    window.flashPrev = () => { prevSlide(); resetAuto(); };
+
+    if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAuto(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAuto(); });
+
+    function startAuto() {
+      stopAuto();
+      fsAuto = setInterval(() => { nextSlide(); }, 4000);
+    }
+    function stopAuto() {
+      if (fsAuto) { clearInterval(fsAuto); fsAuto = null; }
+    }
+    function resetAuto() { stopAuto(); startAuto(); }
+
+    // initialize after images/CSS computed (use a small timeout to ensure layout)
+    setTimeout(() => {
+      recalcAndShow();
+      startAuto();
+    }, 50);
+
+    // recalc on resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        recalcAndShow();
+      }, 120);
+    });
+
+    // pause auto on hover
+    const container = wrapper.parentElement;
+    if (container) {
+      container.addEventListener('mouseenter', stopAuto);
+      container.addEventListener('mouseleave', startAuto);
+    }
+  })();
+
+}); // end DOMContentLoaded
+</script>
+</body>
+</html>
+
+

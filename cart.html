@@ -1,0 +1,423 @@
+<<!DOCTYPE html>
+<html lang="vi">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Giỏ hàng | TikTok Trendy Shop</title>
+ <link rel="stylesheet" href="css/index.css">
+ <style>
+   .header-right {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+   }
+   .user-name {
+     color: #333;
+     font-weight: bold;
+     padding: 5px 10px;
+     background-color: #f0f0f0;
+     border-radius: 5px;
+     margin-left: 20px;
+   }
+   .logout-btn {
+     background-color: lab(96.48% 4.36 1.55);
+     color: rgb(0, 0, 0);
+     border: none;
+     padding: 5px 10px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 0.9rem;
+     margin-top: 20px;
+     margin-left: 20px;
+   }
+   .logout-btn:hover {
+     background-color: #fe2c55;
+   }
+   .login-btn {
+     background-color: #fe8300;
+     color: white;
+     border: none;
+     padding: 5px 10px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 0.9rem;
+   }
+   .login-btn:hover {
+     background-color: #187bcd;
+   }
+   
+    .cart-icon {
+      width: 24px;
+      height: 24px;
+    }
+    h1 {
+    text-align: center;
+    margin: 20px 0 30px; /* tạo khoảng cách trên dưới */
+    color: #333;
+    font-size: 2rem;
+    font-weight: bold;
+    border-bottom: 3px solid #ff9800; /* gạch cam phía dưới */
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+    main {
+      max-width: 1000px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .cart-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid #ccc;
+    }
+    .cart-item img {
+      width: 140px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .cart-info {
+      flex: 1;
+    }
+    .cart-info h2 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    .cart-info .sku {
+      color: #666;
+      font-size: 0.9rem;
+    }
+    .cart-info .brand {
+      color: #666;
+      font-size: 0.9rem;
+    }
+    .cart-info .size {
+      background: #fdd835;
+      color: #111;
+      padding: 3px 8px;
+      display: inline-block;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+    .cart-info .price {
+      font-weight: bold;
+      color: #e60000;
+      font-size: 1rem;
+    }
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .quantity-controls button {
+      background: #ddd;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    .quantity-controls input {
+      width: 40px;
+      text-align: center;
+    }
+    .remove-btn {
+      background: #000000;
+      color: #fff;
+      border: none;
+      font-size: 18px;
+      padding: 6px 12px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    #cart-summary {
+      padding-top: 20px;
+      border-top: 1px solid #ccc;
+      font-size: 1.2rem;
+    }
+    #cart-summary p {
+      margin: 0 0 10px;
+    }
+    #cart-summary span {
+      color: #e60000;
+      font-weight: bold;
+    }
+    .summary-buttons {
+      margin-top: 20px;
+      text-align: right;
+    }
+    .summary-buttons button {
+      background-color: #fdd835;
+      color: black;
+      border: none;
+      font-weight: bold;
+      padding: 10px 20px;
+      margin-left: 10px;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    /* Added styles for user section */
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .user-name {
+      color: #333;
+      font-weight: bold;
+      font-size: 0.9rem;
+      padding: 5px 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+    }
+    .logout-btn {
+      background-color: #ff4d4f;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .logout-btn:hover {
+      background-color: #c7b5b5;
+    }
+    .login-btn {
+      background-color: #ff8c00;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .login-btn:hover {
+      background-color: #fd8700;
+    }
+    .cart-icon {
+      width: 24px;
+      height: 24px;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    footer {
+     margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <img src="Hình/LOGO/LOGO.png" alt="Shoe Store Logo">
+      </div>
+      <div class="header-right">
+        <input type="text" id="cart-search" placeholder="Nhập từ cần tìm">
+        <a href="cart.html">
+          <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Cart">
+        </a>
+        <div id="user-section">
+          <!-- User info or login button will be dynamically inserted here -->
+        </div>
+      </div>     
+    </div>
+  </header>
+
+
+  <main>
+    <h1>GIỎ HÀNG</h1>
+    <div class="cart-content">
+      <div id="cart-container"></div>
+      <div id="cart-summary">
+        <p>Tổng tiền: <span id="total-price">0</span>đ</p>
+        <div class="summary-buttons">
+          <a href="index.html"><button>Mua tiếp</button></a>
+          <button id="checkout-from-cart">Đặt hàng</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+ <footer>
+    <div class="footer-container" style="background-color: #000000; color: #ffffff; padding: 20px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; text-align: center;">
+      <div class="footer-logo">
+        <img src="Hình/LOGO/LOGO.png" alt="TikTok Trendy Shop" style="height: 100px; margin-bottom: 10px;">
+      </div>
+      <div class="footer-info">
+        <h3 style="margin: 0 0 10px;">THÔNG TIN LIÊN HỆ</h3>
+        <p>TikTok Trendy Shop</p>
+        <p>Địa chỉ: Khu phố 6, phường Linh Trung, TP Thủ Đức, TP Hồ Chí Minh</p>
+        <p>Email: tiktoktrendyshop@gmail.com</p>
+      </div>
+      <div class="footer-license">
+        <h3 style="margin: 0 0 10px;">HỒ TRỢ KHÁCH HÀNG</h3>
+        <p>Chăm sóc khách hàng</p>
+        <p>Hướng dẫn mua hàng</p>
+        <p>Hỗ trợ đổi trả hàng</p>
+      </div>
+      <div class="footer-payment">
+        <h3 style="margin: 0 0 10px;">CHÍNH SÁCH</h3>
+        <p>Chính sách đổi hàng</p>
+        <p>Bảo mật thông tin</p>
+        <p>Chính sách giao hàng</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const cartContainer = document.getElementById("cart-container");
+    const totalPriceEl = document.getElementById("total-price");
+    const searchInput = document.getElementById("cart-search");
+
+    // User section logic (same as index.html)
+    function updateUserSection() {
+      const userSection = document.getElementById("user-section");
+      const user = JSON.parse(localStorage.getItem("user")) || null;
+
+      if (user && user.fullname) {
+        // User is logged in, display their name and a logout button
+        userSection.innerHTML = `
+          <span class="user-name">Xin chào, ${user.fullname}</span>
+          <button class="logout-btn" onclick="logout()">Đăng xuất</button>
+        `;
+      } else {
+        // User is not logged in, display the login/register button
+        userSection.innerHTML = `
+          <button class="login-btn" onclick="window.location.href='/login.html'">
+            Đăng nhập / Đăng ký
+          </button>
+        `;
+      }
+    }
+
+    function logout() {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user && user.fullname) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart = cart.filter(item => item.username !== user.fullname); // Remove items for this user
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
+      localStorage.removeItem("user");
+      updateUserSection();
+      alert("Đã đăng xuất thành công!");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      updateUserSection(); // Initialize user section on page load
+    });
+
+    // Existing cart logic
+    function loadCart(searchTerm = "") {
+      const user = JSON.parse(localStorage.getItem("user")) || null;
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cartContainer.innerHTML = "";
+      let total = 0;
+
+      // Filter cart items for the current user
+      const filteredCart = cart.filter(item => 
+        (user && user.fullname && item.username === user.fullname) &&
+        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+      if (filteredCart.length === 0) {
+        cartContainer.innerHTML = searchTerm ? "<p>Không tìm thấy sản phẩm nào</p>" : "<p>Giỏ hàng trống</p>";
+        totalPriceEl.textContent = "0";
+        return;
+      }
+
+      filteredCart.forEach((item, index) => {
+        // Ensure price and quantity are numbers
+        const price = parseFloat(item.price) || 0;
+        const quantity = parseInt(item.quantity) || 1;
+        const itemTotal = price * quantity;
+
+        total += itemTotal;
+
+        const itemEl = document.createElement("div");
+        itemEl.className = "cart-item";
+        itemEl.innerHTML = `
+          <img src="${item.image || '/images/default.png'}" alt="${item.name}">
+          <div class="cart-info">
+            <h2>${item.name}</h2>
+            <div class="brand">Thương hiệu: ${item.brand || "N/A"}</div>
+            <div class="size">Size(nếu có): ${item.size || " "}</div>
+            <div class="sku">Mã SP: ${item.id}</div>
+            <div class="price">${price.toLocaleString()}đ</div>
+            <div class="quantity-controls">
+              <button onclick="decreaseQty(${index})">-</button>
+              <input type="number" min="1" value="${quantity}" readonly>
+              <button onclick="increaseQty(${index})">+</button>
+            </div>
+            <div>Thành tiền: <span class="price">${itemTotal.toLocaleString()}đ</span></div>
+          </div>
+          <button class="remove-btn" onclick="removeItem(${index})">×</button>
+        `;
+        cartContainer.appendChild(itemEl);
+      });
+
+      totalPriceEl.textContent = total.toLocaleString();
+    }
+
+    function removeItem(index) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      loadCart(searchInput.value.trim());
+    }
+
+    function increaseQty(index) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart[index].quantity = (parseInt(cart[index].quantity) || 1) + 1;
+      localStorage.setItem("cart", JSON.stringify(cart));
+      loadCart(searchInput.value.trim());
+    }
+
+    function decreaseQty(index) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      if ((parseInt(cart[index].quantity) || 1) > 1) {
+        cart[index].quantity--;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCart(searchInput.value.trim());
+      }
+    }
+
+    // Add search functionality
+    searchInput.addEventListener('input', () => {
+      const searchTerm = searchInput.value.trim();
+      loadCart(searchTerm);
+    });
+
+    // Initial load of cart
+    loadCart();
+    document.getElementById("checkout-from-cart").addEventListener("click", () => {
+  localStorage.removeItem("buyNow"); // Xóa dữ liệu mua ngay nếu có
+  window.location.href = "checkout.html"; // Điều hướng tới trang thanh toán
+});
+
+  </script>
+</body>
+</html>

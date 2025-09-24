@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Chi tiết sản phẩm | TikTok Trendy Shop</title>
+ <link rel="stylesheet" href="css/index.css">
+ <style>
+   .header-right {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+   }
+   .user-name {
+     color: #333;
+     font-weight: bold;
+     padding: 5px 10px;
+     background-color: #f0f0f0;
+     border-radius: 5px;
+     margin-left: 20px;
+   }
+   .logout-btn {
+     background-color: lab(96.48% 4.36 1.55);
+     color: rgb(0, 0, 0);
+     border: none;
+     padding: 5px 10px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 0.9rem;
+     margin-top: 20px;
+     margin-left: 20px;
+   }
+   .logout-btn:hover {
+     background-color: #fe2c55;
+   }
+   .login-btn {
+     background-color: #fe8300;
+     color: white;
+     border: none;
+     padding: 5px 10px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 0.9rem;
+   }
+   .login-btn:hover {
+     background-color: #187bcd;
+   }
+   
+    .cart-icon {
+      width: 24px;
+      height: 24px;
+    }
+    main {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+   
+ </style>
+</head>
+<body>
+ <header>
+ <div class="header-container">
+   <div class="logo">
+     <img src="Hình/LOGO/LOGO.png" alt="HD Logo">
+   </div>
+   <input type="text" placeholder="  Nhập từ cần tìm  " class="search-input" style="width:800px; height:50px; margin-right: 20px; margin-left:30px;">
+   <nav class="main-menu">
+     <ul>
+       <li><a href="index.html">TRANG CHỦ</a></li>
+       <li><a href="Introduce.html">GIỚI THIỆU</a></li>
+       <li class="brand-menu">
+         <a href="store.html">CỬA HÀNG</a>
+         <ul class="submenu">
+           <li><a href="mypham.html">Mỹ phẩm</a></li>
+           <li><a href="thoitrang.html">Thời trang</a></li>
+         </ul>
+       </li>
+       <li class="brand-menu"><a href="livestream.html">TRANG LIVESTREAM</a></li>
+       <li class="brand-menu"><a href="hopthoai.html">HỘP THOẠI</a></li>
+       <li class="brand-menu"><a href="thongbao.html">THÔNG BÁO</a></li>
+     </ul>
+   </nav>
+   <div class="header-right">
+     <a href="cart.html">
+       <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Cart">
+     </a>
+     <script>
+   function updateUserSection() {
+     const userSection = document.getElementById("user-section");
+     const user = JSON.parse(localStorage.getItem("user")) || null;
+     if (user && user.fullname) {
+       userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span><button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
+     } else {
+       userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
+     }
+   }
+   function logout() {
+     localStorage.removeItem("user");
+     updateUserSection();
+     alert("Đã đăng xuất thành công!");
+   }
+   document.addEventListener("DOMContentLoaded", updateUserSection);
+ </script>
+     <div id="user-section"></div>
+   </div>    
+ </div>
+</header>
+
+ <!-- Product Detail Section -->
+ <section class="product-detail">
+   <div class="product-container">
+     <div class="product-images">
+       <div class="main-image">
+         <img id="main-image" src="" alt="Main Product Image">
+       </div>
+       <div class="thumbnail-images" id="thumbnail-images">
+         <!-- Thumbnails will be populated by JavaScript -->
+       </div>
+     </div>
+     <div class="product-info">
+       <h1 id="product-name"></h1>
+       <div class="brand">
+         Thương hiệu: <span id="product-brand"></span>
+       </div>
+       <div class="price" id="product-price"></div>
+       <div class="color-options">
+         <h3>MÀU SẮC (nếu có) </h3>
+         <div class="colors" id="color-options">
+           <!-- Colors will be populated by JavaScript -->
+         </div>
+       </div>
+       <div class="size-options">
+         <h3>CHỌN SIZE (nếu có) </h3>
+         <div class="sizes" id="size-options">
+           <!-- Sizes will be populated by JavaScript -->
+         </div>
+       </div>
+       <div class="quantity">
+         <h3>SỐ LƯỢNG</h3>
+         <div class="quantity-selector">
+           <button id="decrease-quantity">-</button>
+           <span id="quantity">1</span>
+           <button id="increase-quantity">+</button>
+         </div>
+       </div>
+       <div class="action-buttons">
+         <button class="add-to-cart">Thêm vào giỏ hàng</button>
+         <button class="buy-now">Mua ngay</button>
+       </div>
+
+
+
+       </div>
+     </div>
+   </div>
+   <div class="product-description" id="product-description">
+     <!-- Description will be populated by JavaScript -->
+   </div>
+ </section>
+
+
+ <footer>
+    <div class="footer-container" style="background-color: #000000; color: #ffffff; padding: 20px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; text-align: center;">
+      <div class="footer-logo">
+        <img src="Hình/LOGO/LOGO.png" alt="TikTok Trendy Shop" style="height: 100px; margin-bottom: 10px;">
+      </div>
+      <div class="footer-info">
+        <h3 style="margin: 0 0 10px;">THÔNG TIN LIÊN HỆ</h3>
+        <p>TikTok Trendy Shop</p>
+        <p>Địa chỉ: Khu phố 6, phường Linh Trung, TP Thủ Đức, TP Hồ Chí Minh</p>
+        <p>Email: tiktoktrendyshop@gmail.com</p>
+      </div>
+      <div class="footer-license">
+        <h3 style="margin: 0 0 10px;">HỒ TRỢ KHÁCH HÀNG</h3>
+        <p>Chăm sóc khách hàng</p>
+        <p>Hướng dẫn mua hàng</p>
+        <p>Hỗ trợ đổi trả hàng</p>
+      </div>
+      <div class="footer-payment">
+        <h3 style="margin: 0 0 10px;">CHÍNH SÁCH</h3>
+        <p>Chính sách đổi hàng</p>
+        <p>Bảo mật thông tin</p>
+        <p>Chính sách giao hàng</p>
+      </div>
+    </div>
+  </footer>
+
+
+ <script src="js/product-detail.js"></script>
+ <script>
+   // User section logic
+   function updateUserSection() {
+     const userSection = document.getElementById("user-section");
+     const user = JSON.parse(localStorage.getItem("user")) || null;
+
+
+     if (user && user.fullname) {
+       userSection.innerHTML = `
+         <span class="user-name">Xin chào, ${user.fullname}</span>
+         <button class="logout-btn" onclick="logout()">Đăng xuất</button>
+       `;
+     } else {
+       userSection.innerHTML = `
+         <button class="login-btn" onclick="window.location.href='/login.html'">
+           Đăng nhập / Đăng ký
+         </button>
+       `;
+     }
+   }
+
+
+   function logout() {
+     localStorage.removeItem("user");
+     updateUserSection();
+     alert("Đã đăng xuất thành công!");
+   }
+
+
+   loadCart();
+    document.getElementById("buy-now").addEventListener("click", () => {
+  localStorage.removeItem("buyNow"); // Xóa dữ liệu mua ngay nếu có
+  window.location.href = "checkout.html"; // Điều hướng tới trang thanh toán
+});
+
+
+
+   // Data for products (based on previous conversations)
+   const products = [
+  // Mỹ phẩm Skincare
+  { 
+    id: 1, 
+    name: "Sữa rửa mặt Cetaphil Gentle Skin Cleanser 500ml", 
+    brand: "Cetaphil", 
+    category: "skincare", 
+    gender: "unisex", 
+    price: "245.000 VNĐ", 
+    image: "/Hình/MYPM/cetaphil-cleanser.webp",
+    colors: ["white", "blue", "green"]
+  },
+  { 
+    id: 2, 
+    name: "Kem dưỡng ẩm Simple Hydrating Light Moisturiser 125ml", 
+    brand: "Simple", 
+    category: "skincare", 
+    gender: "unisex", 
+    price: "159.000 VNĐ", 
+    image: "/Hình/MYPM/simple-moisturiser.webp",
+    colors: ["white", "lightgreen"]
+  },
+
+  { 
+    id: 11, 
+    name: "Áo thun Uniqlo U Crew Neck T-Shirt", 
+    brand: "Uniqlo", 
+    category: "ao", 
+    gender: "unisex", 
+    price: "249.000 VNĐ", 
+    image: "/Hình/THOITRANG/uniqlo-tee.webp",
+    colors: ["black", "white", "blue", "gray"]
+  },
+  { 
+    id: 12, 
+    name: "Áo sơ mi tay dài Owen Slim Fit", 
+    brand: "Owen", 
+    category: "ao", 
+    gender: "nam", 
+    price: "359.000 VNĐ", 
+    image: "/Hình/THOITRANG/owen-shirt.webp",
+    colors: ["white", "lightblue"]
+  },
+  { 
+    id: 3, 
+    name: "Nước tẩy trang L'Oreal Micellar Water 400ml", 
+    brand: "L'Oreal", 
+    category: "skincare", 
+    gender: "nu", 
+    price: "169.000 VNĐ", 
+    image: "/Hình/MYPM/loreal-micellar.webp",
+    colors: ["blue", "pink"]
+  },
+  { 
+    id: 4, 
+    name: "Kem chống nắng Anessa Perfect UV Milk SPF50+ 60ml", 
+    brand: "Anessa", 
+    category: "skincare", 
+    gender: "nu", 
+    price: "289.000 VNĐ", 
+    image: "/Hình/MYPM/anessa-sunscreen.webp",
+    colors: ["gold", "white"]
+  },
+  { 
+    id: 5, 
+    name: "Mặt nạ Mediheal Tea Tree 10 miếng", 
+    brand: "Mediheal", 
+    category: "skincare", 
+    gender: "nu", 
+    price: "199.000 VNĐ", 
+    image: "/Hình/MYPM/mediheal-mask.webp",
+    colors: ["green", "white"]
+  },
+
+  // Mỹ phẩm Makeup
+  { 
+    id: 6, 
+    name: "Son kem lì Black Rouge Air Fit Velvet Tint Ver 6", 
+    brand: "Black Rouge", 
+    category: "makeup", 
+    gender: "nu", 
+    price: "129.000 VNĐ", 
+    image: "/Hình/MYPM/blackrouge-lip.webp",
+    colors: ["red", "pink", "nude"]
+  },
+  { 
+    id: 7, 
+    name: "Phấn nước Merzy Cushion SPF50+ PA++", 
+    brand: "Merzy", 
+    category: "makeup", 
+    gender: "nu", 
+    price: "185.000 VNĐ", 
+    image: "/Hình/MYPM/merzy-cushion.webp",
+    colors: ["beige", "ivory"]
+  },
+  { 
+    id: 8, 
+    name: "Mascara Maybelline Sky High Waterproof", 
+    brand: "Maybelline", 
+    category: "makeup", 
+    gender: "nu", 
+    price: "155.000 VNĐ", 
+    image: "/Hình/MYPM/maybelline-mascara.webp",
+    colors: ["black"]
+  },
+  { 
+    id: 9, 
+    name: "Phấn phủ Innisfree No Sebum Mineral Powder 5g", 
+    brand: "Innisfree", 
+    category: "makeup", 
+    gender: "nu", 
+    price: "95.000 VNĐ", 
+    image: "/Hình/MYPM/innisfree-powder.webp",
+    colors: ["white", "mint"]
+  },
+  { 
+    id: 10, 
+    name: "Kẻ mày Etude House Drawing Eyebrow", 
+    brand: "Etude House", 
+    category: "makeup", 
+    gender: "nu", 
+    price: "75.000 VNĐ", 
+    image: "/Hình/MYPM/etude-brow.webp",
+    colors: ["brown", "darkbrown", "black"]
+  },
+
+  // Thời trang - Áo
+  
+  { 
+    id: 13, 
+    name: "Áo hoodie nữ Canifa Basic", 
+    brand: "Canifa", 
+    category: "ao", 
+    gender: "nu", 
+    price: "399.000 VNĐ", 
+    image: "/Hình/THOITRANG/canifa-hoodie.webp",
+    colors: ["pink", "black", "gray"]
+  },
+  { 
+    id: 14, 
+    name: "Áo polo nam Routine Cotton", 
+    brand: "Routine", 
+    category: "ao", 
+    gender: "nam", 
+    price: "299.000 VNĐ", 
+    image: "/Hình/THOITRANG/routine-polo.webp",
+    colors: ["blue", "navy", "white"]
+  },
+
+  // Thời trang - Quần
+  { 
+    id: 15, 
+    name: "Quần jeans nữ Yody Slim Fit", 
+    brand: "Yody", 
+    category: "quan", 
+    gender: "nu", 
+    price: "399.000 VNĐ", 
+    image: "/Hình/THOITRANG/yody-jeans.webp",
+    colors: ["blue", "black"]
+  },
+  { 
+    id: 16, 
+    name: "Quần tây nam Aristino Smart Fit", 
+    brand: "Aristino", 
+    category: "quan", 
+    gender: "nam", 
+    price: "499.000 VNĐ", 
+    image: "/Hình/THOITRANG/aristino-pants.webp",
+    colors: ["black", "gray", "navy"]
+  },
+  { 
+    id: 17, 
+    name: "Quần short nữ H&M Basic", 
+    brand: "H&M", 
+    category: "quan", 
+    gender: "nu", 
+    price: "249.000 VNĐ", 
+    image: "/Hình/THOITRANG/hm-shorts.webp",
+    colors: ["white", "pink", "blue"]
+  },
+  { 
+    id: 18, 
+    name: "Quần jogger nam Coolmate Active", 
+    brand: "Coolmate", 
+    category: "quan", 
+    gender: "nam", 
+    price: "279.000 VNĐ", 
+    image: "/Hình/THOITRANG/coolmate-jogger.webp",
+    colors: ["black", "gray"]
+  },
+
+  // Thời trang - Váy
+  { 
+    id: 19, 
+    name: "Đầm suông Yame Basic Dress", 
+    brand: "Yame", 
+    category: "vay", 
+    gender: "nu", 
+    price: "320.000 VNĐ", 
+    image: "/Hình/THOITRANG/yame-dress.webp",
+    colors: ["black", "red", "beige"]
+  },
+  { 
+    id: 20, 
+    name: "Đầm maxi hoa nhí Dottie", 
+    brand: "Dottie", 
+    category: "vay", 
+    gender: "nu", 
+    price: "459.000 VNĐ", 
+    image: "/Hình/THOITRANG/dottie-maxi.webp",
+    colors: ["blue", "white", "pink"]
+  },
+  { 
+    id: 21, 
+    name: "Đầm bodycon Shein Mini Dress", 
+    brand: "Shein", 
+    category: "vay", 
+    gender: "nu", 
+    price: "279.000 VNĐ", 
+    image: "/Hình/THOITRANG/shein-dress.webp",
+    colors: ["black", "red", "green"]
+  },
+  { 
+    id: 22, 
+    name: "Đầm công sở Elise Office Dress", 
+    brand: "Elise", 
+    category: "vay", 
+    gender: "nu", 
+    price: "650.000 VNĐ", 
+    image: "/Hình/THOITRANG/elise-dress.webp",
+    colors: ["navy", "white", "gray"]
+  }
+];
+
+
+   document.addEventListener("DOMContentLoaded", () => {
+     updateUserSection();
+
+
+     // Get product ID from URL parameter
+     const urlParams = new URLSearchParams(window.location.search);
+     const productId = parseInt(urlParams.get('id'));
+     const product = products.find(p => p.id === productId);
+
+
+     if (product) {
+       document.getElementById('product-name').textContent = product.name;
+       document.getElementById('product-brand').textContent = product.brand;
+       document.getElementById('product-price').textContent = product.price;
+       document.getElementById('main-image').src = product.image;
+
+     }
+   });
+ </script>
+</body>
+</html>
+
+
