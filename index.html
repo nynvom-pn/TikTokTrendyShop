@@ -1,509 +1,273 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>TikTok Trendy Shop | Trang chủ</title>
- <link rel="stylesheet" href="css/index.css">
- <style>
-   /* Top Header */
-.header-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 60px; /* header cao hơn & to hơn */
-  background: #fff;
-  border-bottom: 1px solid #eee;
-}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TikTok Trendy Shop</title>
 
-/* Logo */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.logo img {
-  height: 40px; /* logo to thêm */
-}
-.logo-text {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 1.2;
-}
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-/* Search box */
-.search-box {
-  flex: 1;
-  display: flex;
-  justify-content: flex-start; /* đẩy sát về phía logo */
-  max-width: 650px; /* nhỏ lại cho gọn */
-  position: relative;
-  margin: 0 20px; /* khoảng cách logo - search */
-}
-.search-box input {
-  width: 100%;
-  padding: 12px 45px 12px 10px;
-  border: 1.5px solid #d9304f;
-  border-radius: 20px;
-  font-size: 15px;
-}
-.search-box .search-btn {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #888;
-  font-size: 16px;
-}
+  <style>
+  /* ========== VARIABLES & RESET ========== */
+  :root{
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --muted:#6b7280;
+    --text:#0f1724;
+    --accent:#e00707;      /* primary accent (you can change) */
+    --accent-2:#FF8A2D;
+    --shadow: rgba(15,23,36,0.08);
+    --max-w:1200px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
 
-/* Right section */
-.right-section {
-  display: flex;
-  align-items: center;
-  gap: 30px; /* menu gần search hơn */
-}
+  /* ========== HEADER ========== */
+  header.site-header{
+    background: #fff;
+    border-bottom: 1px solid rgba(15,23,36,0.06);
+    position: sticky; top:0; z-index:1200;
+    box-shadow: 0 6px 18px rgba(15,23,36,0.04);
+  }
+  .header-container{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:14px 18px;
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  }
+  .logo img{height:56px; display:block}
 
-/* Menu */
-.main-menu {
-  list-style: none;
-  display: flex;
-  gap: 30px; /* khoảng cách các chữ */
-  margin: 0;
-  padding: 0;
-}
-.main-menu li a {
-  text-decoration: none;
-  color: #000;
-  font-weight: bold;
-  font-size: 16px; /* chữ to hơn */
-}
-.main-menu li a:hover {
-  color: #d9304f;
-}
+  /* search */
+  .search-box{position:relative; flex:1 1 520px; max-width:60vw; min-width:160px}
+  .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:1.05rem;pointer-events:none}
+  .search-input{
+    width:100%; height:48px; padding:10px 16px 10px 44px; border-radius:28px;
+    border:1px solid rgba(15,23,36,0.08); background:#fff; color:var(--text); font-size:0.96rem;
+    box-shadow: 0 4px 18px rgba(15,23,36,0.04); outline:none; transition:box-shadow .12s, transform .08s, border-color .12s;
+  }
+  .search-input:focus{ box-shadow:0 10px 30px rgba(15,23,36,0.06); border-color: rgba(255,107,107,0.18); transform:translateY(-1px) }
 
-/* Icons */
-.header-icons {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-.header-icons a {
-  color: #555;
-  font-size: 20px;
-  text-decoration: none;
-}
-.header-icons a:hover {
-  color: #d9304f;
-}
+  /* header right */
+  .header-right{display:flex;align-items:center;gap:12px;margin-left:auto}
+  .cart-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:8px;border-radius:10px;border:1px solid rgba(15,23,36,0.04);background:#fff;cursor:pointer}
+  .cart-icon{width:28px;height:28px;object-fit:contain}
+  .cart-badge{position:absolute;top:-6px;right:-6px;background:#ff3b30;color:#fff;min-width:20px;height:20px;padding:0 6px;border-radius:999px;font-size:0.75rem;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(15,23,36,0.12)}
 
+  #user-section{display:flex;align-items:center;gap:8px;font-family:inherit}
+  .user-name{background:#f3f4f6;color:var(--text);padding:6px 12px;border-radius:20px;font-weight:600;max-width:260px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word}
+  .logout-btn{background:transparent;border:1px solid var(--accent);color:var(--accent);padding:6px 12px;border-radius:20px;font-weight:600;cursor:pointer}
+  .logout-btn:hover{background:var(--accent);color:#fff;transform:translateY(-1px)}
 
-   .banner {
-     position: relative;
-     width: 100%;
-     overflow: hidden;
-     margin-top: 10px;
-   }
-   .slideshow-container {
-     max-width: 100%;
-     position: relative;
-   }
-   .slide {
-     display: none;
-   }
-   .fade {
-     animation-name: fade;
-     animation-duration: 1.5s;
-   }
-   @keyframes fade {
-     from {opacity: .4}
-     to {opacity: 1}
-   }
-   .slide img {
-     width: 100%;
-     height: auto;
-   }
-   .prev, .next {
-     cursor: pointer;
-     position: absolute;
-     top: 50%;
-     width: auto;
-     padding: 16px;
-     margin-top: -22px;
-     color: white;
-     font-weight: bold;
-     font-size: 18px;
-     transition: 0.6s ease;
-     border-radius: 0 3px 3px 0;
-     user-select: none;
-   }
-   .next {
-     right: 0;
-     border-radius: 3px 0 0 3px;
-   }
-   .prev:hover, .next:hover {
-     background-color: rgba(0,0,0,0.8);
-   }
-   .dots {
-     text-align: center;
-   }
-   .dot {
-     cursor: pointer;
-     height: 15px;
-     width: 15px;
-     margin: 0 2px;
-     background-color: #bbb;
-     border-radius: 50%;
-     display: inline-block;
-     transition: background-color 0.6s ease;
-   }
-   .active, .dot:hover {
-     background-color: #717171;
-   }
-   .products {
- display: flex;
- max-width: 1200px;
- margin: 30px auto;
- padding: 0 20px;
-}
+  /* main menu row */
+  nav.main-menu{width:100%;order:2;margin-top:12px;display:flex;justify-content:center}
+  .main-menu ul{display:flex;gap:24px;list-style:none;margin:0;padding:6px 0;align-items:center;flex-wrap:wrap}
+  .main-menu a{color:var(--text);font-weight:700;padding:6px 8px}
+  .main-menu a:hover{color:var(--accent)}
 
+  .brand-menu{position:relative}
+  .brand-menu .submenu{
+    display:none;position:absolute;left:0;top:calc(100% + 8px);min-width:180px;background:#fff;color:var(--text);border-radius:10px;box-shadow:0 12px 36px rgba(15,23,36,0.08);overflow:hidden;z-index:400;transform:translateY(-6px);opacity:0;transition:opacity .12s,transform .12s;pointer-events:none
+  }
+  .brand-menu:hover .submenu,.brand-menu:focus-within .submenu{display:block;transform:translateY(0);opacity:1;pointer-events:auto}
+  .submenu li a{display:block;padding:10px 14px;font-weight:700;color:var(--text) !important}
+  .submenu li a:hover{background:#f8fafc;color:var(--accent)!important}
 
-.filters {
- width: 200px;
- margin-right: 20px;
-}
+  /* ========== BANNER (LỚN hơn, ít cắt) ========== */
+  .banner { width:100%; padding:18px 0 8px; background:transparent }
+  .slideshow-container {
+    max-width:var(--max-w);
+    margin:0 auto;
+    position:relative;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 18px 60px rgba(15,23,36,0.06);
+    background:#fff;
+  }
 
+  /* To hơn để ít cắt: lớn chiều cao, object-fit:cover nhưng cao -> ít bị crop nhiều */
+  .slide{display:none}
+  .slide img{
+    width:100%;
+    height:550px;                /* >>> desktop banner cao hơn */
+    object-fit:cover;
+    object-position:center center;
+    display:block;
+    transition:transform .6s ease;
+    background:#e6eef8;
+  }
+  .slide img:hover{transform:scale(1.02)}
+  .prev,.next{
+    cursor:pointer; position:absolute; top:50%; transform:translateY(-50%); padding:12px 16px; border-radius:10px;
+    background:rgba(255,255,255,0.9); color:var(--text); font-size:20px; box-shadow:0 6px 18px rgba(15,23,36,0.06);
+  }
+  .prev:hover,.next:hover{transform:translateY(-50%) scale(1.02)}
+  .prev{left:12px} .next{right:12px}
 
-.products-grid {
- flex-grow: 1;
- display: grid;
- grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
- gap: 20px;
-}
+  .dots{ text-align:center; margin-top:10px }
+  .dot{width:12px;height:12px;border-radius:999px;display:inline-block;margin:0 6px;background:rgba(15,23,36,0.12);cursor:pointer}
+  .dot.active{background:var(--accent);box-shadow:0 8px 24px rgba(255,107,107,0.12)}
 
+  /* ========== FLASHSALE ========== */
+  .flashsale{padding:18px 0}
+  .flashsale-container{max-width:var(--max-w);margin:0 auto;padding:8px 18px;box-sizing:border-box;position:relative}
+  .flashsale-title{color:var(--accent);font-weight:800;margin:0 0 12px;font-size:1.4rem}
+  .flashsale-wrapper{display:flex;gap:16px;transition:transform .45s cubic-bezier(.2,.8,.2,1);align-items:stretch}
+  .flashsale-item{flex:0 0 180px;max-width:180px}
+  .flashsale-btn{position:absolute;top:50%;transform:translateY(-50%);background:#fff;border:1px solid rgba(15,23,36,0.06);border-radius:999px;padding:8px;cursor:pointer;box-shadow:0 6px 18px rgba(15,23,36,0.06)}
+  .flashsale-btn.prev{left:8px} .flashsale-btn.next{right:8px}
+  .flashsale-btn:hover{background:var(--accent);color:#fff}
 
-.product-card {
- background: white;
- border: 1px solid #ddd;
- border-radius: 10px;
- padding: 10px;
- text-align: center;
- display: flex;
- flex-direction: column;
- height: 300px; /* Chiều cao cố định để đảm bảo đồng đều */
- justify-content: space-between;
-}
+  /* ========== PRODUCTS ========== */
+  main{padding:22px 0 60px}
+  .products{max-width:var(--max-w);margin:30px auto;padding:0 18px;box-sizing:border-box;display:flex;gap:20px;align-items:flex-start}
+  .filters{width:220px;min-width:160px;color:var(--muted)}
+  .products-grid{flex:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+  .product-card{background:var(--card);border:1px solid rgba(15,23,36,0.04);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;min-height:360px;transition:transform .16s ease,box-shadow .16s ease}
+  .product-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(15,23,36,0.06)}
+  .product-card img{width:100%;height:220px;object-fit:cover;border-radius:8px}
+  .product-card h4{margin:0;font-size:1rem;line-height:1.25;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .product-card .price{margin-top:auto;font-weight:800;color:var(--accent-2);font-size:1.05rem}
 
+ 
 
-.product-card img {
- max-width: 100%;
- height: 150px;
- object-fit: cover;
- border-radius: 5px;
-}
+  /* ========== RESPONSIVE ========== */
+  @media (max-width:1000px){ .slide img{height:420px} .products-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))} }
+  @media (max-width:900px){
+    .slide img{height:340px}
+    .products{flex-direction:column}
+    .filters{width:100%;order:2}
+    .products-grid{order:1}
+    .main-menu ul{gap:12px}
+  }
+  @media (max-width:600px){
+    .slide img{height:260px}
+    .products-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+    .flashsale-item{flex:0 0 140px;max-width:140px}
+    .header-container{padding:10px}
+    .prev,.next{padding:8px 10px;font-size:18px}
+  }
 
-
-.product-card h4 {
- font-size: 0.9rem;
- margin: 8px 0;
- color: #333;
- white-space: nowrap;
- overflow: hidden;
- text-overflow: ellipsis;
- height: 20px;
- line-height: 20px;
-}
-
-
-.product-card .price {
- font-size: 1.2rem;
- color: #e60000;
- font-weight: bold;
- margin: 10px 0 5px;
- height: 20px;
- line-height: 20px;
-}
-
-
-.product-card .color-dot {
- width: 12px;
- height: 12px;
- border-radius: 50%;
- display: inline-block;
- margin: 0 2px;
- border: 1px solid #ddd;
-}
-
-
-.product-card a {
- text-decoration: none;
- color: inherit;
- flex-grow: 1;
- display: flex;
- flex-direction: column;
- justify-content: space-between;
-}
-
-/* Tiêu đề flash sale */
-.flashsale-title {
-  color: #fe2c55;
-  font-style: italic;
-  font-weight: bold;
-  margin-bottom: 15px;
-  text-align: left;
-  font-size: 1.5rem;
-}
-
-/* Container giống products-grid nhưng ngang để trượt */
-.flashsale-container {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-
-/* Wrapper cho item, trượt ngang */
-.flashsale-wrapper {
-  display: flex;
-  gap: 20px;
-  transition: transform 0.5s ease;
-}
-
-/* Item flash sale tái sử dụng product-card */
-.flashsale-item {
-  flex: 0 0 180px; /* giống min width của product-card */
-  max-width: 180px;
-}
-
-/* Nút điều hướng */
-.flashsale-btn {
-  position: absolute;
-  top: 40%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.9);
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 1.2rem;
-  z-index: 2;
-  transition: background 0.3s;
-}
-
-.flashsale-btn:hover {
-  background: #fe2c55;
-  color: #fff;
-}
-
-.flashsale-btn.prev {
-  left: 5px;
-}
-
-.flashsale-btn.next {
-  right: 5px;
-}
-
-
- </style>
+  /* small helpers (buttons padding per request) */
+  .btn { padding:10px 17px; border-radius:8px; font-weight:700; cursor:pointer; border:0 }
+  .btn-primary { background:var(--accent); color:#fff }
+  .btn-ghost { background:transparent; border:1px solid rgba(15,23,36,0.06) }
+  </style>
 </head>
 <body>
-<!-- Header -->
-<header>
-  <div class="header-container">
-    <!-- Logo -->
-    <div class="logo">
-      <img src="Hình/LOGO/logo.webp" alt="Logo">
-      <span class="logo-text">TikTok Trendy<br>Shop</span>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo"><a href="index.html"><img src="Hình/LOGO/logo trang.png" alt="Logo"></a></div>
+
+      <div class="search-box" role="search" aria-label="Tìm kiếm">
+        <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+        <input class="search-input" type="search" placeholder="Nhập từ cần tìm..." aria-label="Tìm kiếm">
+      </div>
+
+      <div class="header-right">
+        <a href="cart.html" class="cart-btn" aria-label="Giỏ hàng">
+          <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Giỏ hàng">
+          <span class="cart-badge" id="cartCount" style="display:none">0</span>
+        </a>
+        <div id="user-section"></div>
+      </div>
+
+      <nav class="main-menu" aria-label="Main menu">
+        <ul>
+          <li><a href="index.html">TRANG CHỦ</a></li>
+          <li><a href="Introduce.html">GIỚI THIỆU</a></li>
+          <li class="brand-menu"><a href="store.html">CỬA HÀNG</a>
+            <ul class="submenu" aria-label="Danh mục">
+              <li><a href="mypham.html">Mỹ phẩm</a></li>
+              <li><a href="thoitrang.html">Thời trang</a></li>
+            </ul>
+          </li>
+          <li><a href="livestream.html">TRANG LIVESTREAM</a></li>
+          <li><a href="hopthoai.html">HỘP THOẠI</a></li>
+          <li><a href="thongbao.html">THÔNG BÁO</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- BANNER -->
+  <section class="banner" aria-label="Banner chính">
+    <div class="slideshow-container">
+      <div class="slide fade">
+        <img src="Hình/BANNER/Banner1.png" alt="Banner 1" onerror="this.src='https://via.placeholder.com/1600x900?text=Banner+1'">
+      </div>
+      <div class="slide fade">
+        <img src="Hình/BANNER/BANNER 2.png" alt="Banner 2" onerror="this.src='https://via.placeholder.com/1600x900?text=Banner+2'">
+      </div>
+      <div class="slide fade">
+        <img src="Hình/BANNER/BANNER 3.png" alt="Banner 3" onerror="this.src='https://via.placeholder.com/1600x900?text=Banner+3'">
+      </div>
+
+      <a class="prev" onclick="plusSlides(-1)" aria-hidden="true">❮</a>
+      <a class="next" onclick="plusSlides(1)" aria-hidden="true">❯</a>
     </div>
 
-    <!-- Search -->
-    <div class="search-box">
-      <input type="text" placeholder="Search...">
-      <button class="search-btn"><i class="fas fa-search"></i></button>
+    <div class="dots" style="max-width:var(--max-w); margin:10px auto 0; text-align:center;">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
     </div>
+  </section>
 
-    <!-- Menu + Icons -->
-    <div class="right-section">
-      <ul class="main-menu">
-        <li><a href="index.html">Trang Chủ</a></li>
-        <li><a href="store.html">Cửa Hàng</a></li>
-        <li><a href="livestream.html">Livestream</a></li>
-        <li><a href="thongbao.html">Thông Báo</a></li>
-        <li><a href="hopthu.html">Hộp Thư</a></li>
-      </ul>
-      <div class="header-icons">
-        <a href="#"><i class="fas fa-heart"></i></a>
-        <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-        <a href="login.html"><i class="fas fa-user"></i></a>
+  <!-- FLASHSALE -->
+  <section class="flashsale" aria-label="Flash sale">
+    <div class="flashsale-container">
+      <h2 class="flashsale-title">FLASH SALE</h2>
+      <button class="flashsale-btn prev" aria-label="Prev flashsale">&#10094;</button>
+      <div class="flashsale-wrapper" id="flashsaleWrapper">
+        <!-- sample items -->
+        <div class="product-card flashsale-item">
+          <a href="#"><img src="images/product1.jpg" alt="P1" onerror="this.src='https://via.placeholder.com/400x300?text=P1'"><h4>Sản phẩm 1 siêu hot siêu rẻ</h4><div class="price">₫199,000</div></a>
+        </div>
+        <div class="product-card flashsale-item">
+          <a href="#"><img src="images/product2.jpg" alt="P2" onerror="this.src='https://via.placeholder.com/400x300?text=P2'"><h4>Sản phẩm 2 giá hời</h4><div class="price">₫299,000</div></a>
+        </div>
+        <div class="product-card flashsale-item">
+          <a href="#"><img src="images/product3.jpg" alt="P3" onerror="this.src='https://via.placeholder.com/400x300?text=P3'"><h4>Sản phẩm 3 trendy</h4><div class="price">₫149,000</div></a>
+        </div>
+        <div class="product-card flashsale-item">
+          <a href="#"><img src="images/product4.jpg" alt="P4" onerror="this.src='https://via.placeholder.com/400x300?text=P4'"><h4>Sản phẩm 4 hot</h4><div class="price">₫259,000</div></a>
+        </div>
+        <div class="product-card flashsale-item">
+          <a href="#"><img src="images/product5.jpg" alt="P5" onerror="this.src='https://via.placeholder.com/400x300?text=P5'"><h4>Sản phẩm 5</h4><div class="price">₫99,000</div></a>
+        </div>
+        <div class="product-card flashsale-item">
+          <a href="#"><img src="images/product6.jpg" alt="P6" onerror="this.src='https://via.placeholder.com/400x300?text=P6'"><h4>Sản phẩm 6</h4><div class="price">₫349,000</div></a>
+        </div>
       </div>
+      <button class="flashsale-btn next" aria-label="Next flashsale">&#10095;</button>
     </div>
-     <script>
-  function updateUserSection() {
-    const userSection = document.getElementById("user-section");
-    const user = JSON.parse(localStorage.getItem("user")) || null;
-    if (user && user.fullname) {
-      userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span>
-                               <button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
-    } else {
-      userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
-    }
-  }
-  function logout() {
-    localStorage.removeItem("user");
-    updateUserSection();
-    alert("Đã đăng xuất thành công!");
-  }
-  document.addEventListener("DOMContentLoaded", updateUserSection);
-</script>
-     <div id="user-section"></div>
-  </div>
-</header>
+  </section>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script>
-  function updateUserSection() {
-    const userSection = document.getElementById("user-section");
-    const user = JSON.parse(localStorage.getItem("user")) || null;
-    if (user && user.fullname) {
-      userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span>
-                               <button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
-    } else {
-      userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
-    }
-  }
-  function logout() {
-    localStorage.removeItem("user");
-    updateUserSection();
-    alert("Đã đăng xuất thành công!");
-  }
-  document.addEventListener("DOMContentLoaded", updateUserSection);
-</script>
-<!-- Banner Section -->
-<section class="banner">
- <div class="slideshow-container">
-   <div class="slide fade">
-     <img src="Hình/BANNER/Banner1.png" alt="Banner 1">
-   </div>
-   <div class="slide fade">
-     <img src="Hình/BANNER/Banner2.png" alt="Banner 2">
-   </div>
-   <div class="slide fade">
-     <img src="Hình/BANNER/Banner3.png" alt="Banner 3">
-   </div>
-   <!-- Navigation buttons -->
-   <a class="prev" onclick="plusSlides(-1)">❮</a>
-   <a class="next" onclick="plusSlides(1)">❯</a>
- </div>
- <!-- Dots for navigation -->
- <div class="dots" style="text-align:center">
-   <span class="dot" onclick="currentSlide(1)"></span>
-   <span class="dot" onclick="currentSlide(2)"></span>
-   <span class="dot" onclick="currentSlide(3)"></span>
- </div>
-</section>
+  <!-- MAIN CONTENT: products -->
+  <main>
+    <div class="products">
+      <aside class="filters">
+        <h3 style="margin-top:0;color:var(--muted)">Bộ lọc</h3>
+        <div style="margin-top:8px;color:var(--muted)">
+          <label><input type="checkbox" class="category-filter" value="skincare"> Skincare</label><br>
+          <label><input type="checkbox" class="category-filter" value="makeup"> Makeup</label><br>
+          <label><input type="checkbox" class="category-filter" value="ao"> Áo</label><br>
+          <label><input type="checkbox" class="category-filter" value="quan"> Quần</label><br>
+          <label><input type="checkbox" class="category-filter" value="vay"> Váy</label>
+        </div>
+      </aside>
 
-
-<!-- Main Content -->
-<main>
- <section class="flashsale">
-  <h2 class="flashsale-title">FLASH SALE</h2>
-  <div class="flashsale-container">
-    <button class="flashsale-btn prev">&#10094;</button>
-    <div class="flashsale-wrapper" id="flashsaleWrapper">
-      <!-- 10 sản phẩm mẫu -->
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product1.jpg" alt="Product 1">
-          <h4>Sản phẩm 1 siêu hot siêu rẻ</h4>
-          <div class="price">₫199,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <!-- thêm 8 sản phẩm nữa ... -->
-    </div>
-    <button class="flashsale-btn next">&#10095;</button>
-  </div>
-</section>
-
-<br>
- <section class="products">
-  <aside class="filters">
-    <h2>Bộ lọc</h2>
-    <div class="filter-group">
-      <h3>Loại sản phẩm</h3>
-      <div class="filter-options">
-        <label><input type="checkbox" value="skincare" class="category-filter"> Skincare</label>
-        <label><input type="checkbox" value="makeup" class="category-filter"> Makeup</label>
-        <label><input type="checkbox" value="ao" class="category-filter"> Áo</label>
-        <label><input type="checkbox" value="quan" class="category-filter"> Quần</label>
-        <label><input type="checkbox" value="vay" class="category-filter"> Váy</label>
+      <div class="products-grid" id="products-container">
+        <!-- rendered by JS -->
       </div>
     </div>
-  </aside>
+  </main>
 
-  <div class="products-grid" id="products-container"></div>
-</section>
-
-</main>
-
-
-<footer>
+  <footer>
     <div class="footer-container" style="background-color: #000000; color: #ffffff; padding: 20px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; text-align: center;">
       <div class="footer-logo">
         <img src="Hình/LOGO/LOGO.png" alt="TikTok Trendy Shop" style="height: 100px; margin-bottom: 10px;">
@@ -529,260 +293,156 @@
     </div>
   </footer>
 
-
-<script src="js/index.js"></script>
-<script>
-/* ---------- Unified JS for index page ----------
-   - Banner slideshow (dots + prev/next + autoplay + reset)
-   - Flashsale slider (6 visible on desktop, responsive, prev/next, autoplay)
-   - User section (login/logout UI using localStorage)
-   - Search input hook (calls filterProducts if defined)
---------------------------------------------------*/
-document.addEventListener("DOMContentLoaded", () => {
-
-  /* =======================
-     1) BANNER SLIDESHOW
-     ======================= */
-  (function bannerSlideshow(){
-    const slides = Array.from(document.getElementsByClassName("slide"));
-    const dots = Array.from(document.getElementsByClassName("dot"));
-    if (!slides.length) return; // nếu không có slide thì thôi
-
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+  (function(){
+    /* ---------- Banner slideshow ---------- */
+    const slides = Array.from(document.getElementsByClassName('slide'));
+    const dots = Array.from(document.getElementsByClassName('dot'));
     let slideIndex = 1;
-    let slideAuto;
+    let slideAuto = null;
 
-    function showSlide(n) {
-      // vòng chỉ mục
+    function showSlide(n){
+      if (!slides.length) return;
       if (n > slides.length) slideIndex = 1;
       if (n < 1) slideIndex = slides.length;
-
-      // ẩn tất cả slide, xóa active của dot
-      slides.forEach(s => s.style.display = "none");
-      dots.forEach(d => d.classList.remove("active"));
-
-      // hiển thị slide hiện tại
-      slides[slideIndex - 1].style.display = "block";
-      if (dots[slideIndex - 1]) dots[slideIndex - 1].classList.add("active");
+      slides.forEach(s => s.style.display = 'none');
+      dots.forEach(d => d.classList.remove('active'));
+      slides[slideIndex-1].style.display = 'block';
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add('active');
     }
+    window.plusSlides = function(n){ slideIndex += n; showSlide(slideIndex); resetSlideAuto(); };
+    window.currentSlide = function(n){ slideIndex = n; showSlide(slideIndex); resetSlideAuto(); };
+    dots.forEach((d, i) => d.addEventListener('click', ()=> currentSlide(i+1)));
 
-    // hàm dùng cho onclick trong HTML (❮ ❯)
-    window.plusSlides = function(n) {
-      slideIndex += n;
-      showSlide(slideIndex);
-      resetSlideAuto();
-    };
+    function startSlideAuto(){ slideAuto = setInterval(()=> plusSlides(1), 5000); }
+    function resetSlideAuto(){ clearInterval(slideAuto); startSlideAuto(); }
+    showSlide(slideIndex); startSlideAuto();
+    const sc = document.querySelector('.slideshow-container');
+    sc && sc.addEventListener('mouseenter', ()=> clearInterval(slideAuto));
+    sc && sc.addEventListener('mouseleave', ()=> resetSlideAuto());
 
-    // hàm dùng cho dot click
-    window.currentSlide = function(n) {
-      slideIndex = n;
-      showSlide(slideIndex);
-      resetSlideAuto();
-    };
+    /* ---------- Flashsale slider ---------- */
+    (function(){
+      const wrapper = document.getElementById('flashsaleWrapper');
+      if (!wrapper) return;
+      const items = Array.from(wrapper.children);
+      const prevBtn = document.querySelector('.flashsale-btn.prev');
+      const nextBtn = document.querySelector('.flashsale-btn.next');
+      let currentIndex = 0;
+      let visible = 6;
+      let fsAuto = null;
 
-    // nếu muốn click dot bằng event (nếu HTML dots không có onclick)
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        window.currentSlide(idx + 1);
-      });
-    });
+      function getGap(){ return parseFloat(getComputedStyle(wrapper).gap) || 16; }
+      function computeVisible(){
+        const parentW = wrapper.parentElement.clientWidth;
+        const itemW = items[0].getBoundingClientRect().width;
+        const gap = getGap();
+        const fit = Math.floor((parentW + gap) / (itemW + gap));
+        return Math.max(1, Math.min(fit, items.length));
+      }
+      function clamp(){ const max = Math.max(0, items.length - visible); if (currentIndex > max) currentIndex = max; if (currentIndex < 0) currentIndex = 0; }
+      function update(){ const itemW = items[0].getBoundingClientRect().width; const gap = getGap(); const offset = -(currentIndex * (itemW + gap)); wrapper.style.transform = 'translateX(' + offset + 'px)'; wrapper.style.transition = 'transform 0.45s cubic-bezier(.2,.8,.2,1)'; }
 
-    function startSlideAuto() {
-      slideAuto = setInterval(() => { window.plusSlides(1); }, 5000);
-    }
-    function resetSlideAuto() {
-      clearInterval(slideAuto);
-      startSlideAuto();
-    }
+      function recalc(){ visible = computeVisible(); clamp(); update(); }
+      function next(){ const max = Math.max(0, items.length - visible); if (currentIndex < max) currentIndex++; else currentIndex = 0; update(); }
+      function prev(){ const max = Math.max(0, items.length - visible); if (currentIndex > 0) currentIndex--; else currentIndex = max; update(); }
+      function start(){ stop(); fsAuto = setInterval(next, 4000); }
+      function stop(){ if (fsAuto) clearInterval(fsAuto); fsAuto = null; }
+      function reset(){ stop(); start(); }
 
-    // khởi tạo
-    showSlide(slideIndex);
-    startSlideAuto();
+      nextBtn && nextBtn.addEventListener('click', ()=>{ next(); reset(); });
+      prevBtn && prevBtn.addEventListener('click', ()=>{ prev(); reset(); });
+      setTimeout(()=>{ recalc(); start(); }, 80);
+      window.addEventListener('resize', ()=> { clearTimeout(window._flashResize); window._flashResize = setTimeout(recalc, 120); });
+      const container = wrapper.parentElement;
+      container && container.addEventListener('mouseenter', stop);
+      container && container.addEventListener('mouseleave', start);
+    })();
 
-    // optional: pause on hover of slideshow container
-    const slideContainer = document.querySelector('.slideshow-container');
-    if (slideContainer) {
-      slideContainer.addEventListener('mouseenter', () => clearInterval(slideAuto));
-      slideContainer.addEventListener('mouseleave', () => { resetSlideAuto(); });
-    }
-  })();
+    /* ---------- User section ---------- */
+    (function(){
+      const userSection = document.getElementById('user-section');
+      function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+      function render(){
+        const user = JSON.parse(localStorage.getItem('user') || 'null');
+        if (user && user.fullname){
+          userSection.innerHTML = `<span class="user-name">Xin chào, ${escapeHtml(user.fullname)}</span><button class="logout-btn" id="logoutBtn">Đăng xuất</button>`;
+          const btn = document.getElementById('logoutBtn');
+          btn && btn.addEventListener('click', ()=>{ localStorage.removeItem('user'); render(); alert('Đã đăng xuất thành công!'); });
+        } else {
+          userSection.innerHTML = `<button class="login-btn" id="loginBtn" style="padding:8px 12px;border-radius:8px;border:1px solid rgba(15,23,36,0.06);background:transparent;color:var(--text);cursor:pointer">Đăng nhập / Đăng ký</button>`;
+          const btn = document.getElementById('loginBtn');
+          btn && btn.addEventListener('click', ()=> window.location.href = 'login.html');
+        }
+      }
+      render();
+    })();
 
-  /* =======================
-     2) USER SECTION (login/logout)
-     ======================= */
-  (function userSectionInit(){
-    const userSection = document.getElementById("user-section");
-    if (!userSection) {
-      console.warn("user-section element not found.");
-      return;
-    }
+    /* ---------- Products render & search & filters ---------- */
+    (function(){
+      const products = [
+        { id:1, title:"Serum dưỡng da A", price:199000, category:"skincare", img:"images/product1.jpg" },
+        { id:2, title:"Son môi B", price:99000, category:"makeup", img:"images/product2.jpg" },
+        { id:3, title:"Áo thun nữ", price:149000, category:"ao", img:"images/product3.jpg" },
+        { id:4, title:"Quần jean xanh", price:299000, category:"quan", img:"images/product4.jpg" },
+        { id:5, title:"Váy dập ly", price:259000, category:"vay", img:"images/product5.jpg" },
+        { id:6, title:"Mặt nạ ngủ", price:89000, category:"skincare", img:"images/product6.jpg" },
+        { id:7, title:"Mascara đen", price:129000, category:"makeup", img:"images/product7.jpg" },
+        { id:8, title:"Áo khoác bomber", price:399000, category:"ao", img:"images/product8.jpg" },
+        { id:9, title:"Đầm dạ hội", price:599000, category:"vay", img:"images/product9.jpg" },
+        { id:10, title:"Túi xách mini", price:219000, category:"phukien", img:"images/product10.jpg" }
+      ];
 
-    function renderUserSection() {
-      const user = JSON.parse(localStorage.getItem("user")) || null;
-      if (user && user.fullname) {
-        userSection.innerHTML = `
-          <span class="user-name">Xin chào, ${escapeHtml(user.fullname)}</span>
-          <button class="logout-btn" id="logoutBtn">Đăng xuất</button>
-        `;
-        const btn = document.getElementById('logoutBtn');
-        if (btn) btn.addEventListener('click', () => {
-          localStorage.removeItem('user');
-          renderUserSection();
-          alert('Đã đăng xuất thành công!');
-        });
-      } else {
-        userSection.innerHTML = `
-          <button class="login-btn" id="loginBtn">Đăng nhập / Đăng ký</button>
-        `;
-        const btn = document.getElementById('loginBtn');
-        if (btn) btn.addEventListener('click', () => {
-          // sử dụng đường dẫn tương đối để chạy trên file://
-          window.location.href = 'login.html';
+      const container = document.getElementById('products-container');
+      function formatPrice(n){ return '₫' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+      function renderList(list){
+        container.innerHTML = '';
+        if (!list.length) {
+          container.innerHTML = '<div style="grid-column:1/-1;color:var(--muted);padding:20px;background:transparent;border-radius:8px">Không tìm thấy sản phẩm.</div>';
+          return;
+        }
+        list.forEach(p=>{
+          const card = document.createElement('div');
+          card.className = 'product-card';
+          card.innerHTML = `
+            <a href="#">
+              <img src="${p.img}" alt="${p.title}" onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'">
+              <h4>${p.title}</h4>
+              <div class="price">${formatPrice(p.price)}</div>
+            </a>
+          `;
+          container.appendChild(card);
         });
       }
-    }
+      renderList(products);
 
-    renderUserSection();
-
-    function escapeHtml(str) {
-      return String(str).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]); });
-    }
-  })();
-
-  /* =======================
-     3) SEARCH HOOK
-     ======================= */
-  (function searchHook(){
-    const searchInput = document.querySelector('.search-input');
-    if (!searchInput) return;
-    searchInput.addEventListener('input', () => {
-      const q = searchInput.value.trim().toLowerCase();
-      if (typeof filterProducts === 'function') {
-        filterProducts(q);
-      } else {
-        // nếu filterProducts chưa được định nghĩa thì log, không gây lỗi
-        //console.warn("filterProducts function not found.");
+      // search
+      const searchInput = document.querySelector('.search-input');
+      if (searchInput){
+        searchInput.addEventListener('input', ()=> {
+          const q = searchInput.value.trim().toLowerCase();
+          filterProducts(q);
+        });
       }
-    });
+
+      window.filterProducts = function(q){
+        const checked = Array.from(document.querySelectorAll('.category-filter:checked')).map(i=>i.value);
+        let list = products.slice();
+        if (q) list = list.filter(p => (p.title||'').toLowerCase().includes(q) || (p.category||'').toLowerCase().includes(q));
+        if (checked.length) list = list.filter(p => checked.includes(p.category));
+        renderList(list);
+      };
+
+      const filters = Array.from(document.querySelectorAll('.category-filter'));
+      filters.forEach(f => f.addEventListener('change', ()=> filterProducts(searchInput ? searchInput.value.trim().toLowerCase() : '')));
+    })();
+
+    // allow Enter in search to go to store page
+    const searchEl = document.querySelector('.search-input');
+    if (searchEl) searchEl.addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); const q = searchEl.value.trim(); window.location.href = 'store.html?q=' + encodeURIComponent(q); }});
   })();
-
-  /* =======================
-     4) FLASHSALE SLIDER
-     - show 6 items by default (responsive)
-     - prev/next buttons, autoplay, reset on manual
-     ======================= */
-  (function flashSaleSlider(){
-    const wrapper = document.getElementById("flashsaleWrapper");
-    if (!wrapper) {
-      console.warn("flashsaleWrapper not found.");
-      return;
-    }
-    const items = Array.from(wrapper.querySelectorAll(".flashsale-item"));
-    const prevBtn = document.querySelector(".flashsale-btn.prev");
-    const nextBtn = document.querySelector(".flashsale-btn.next");
-    if (!items.length) {
-      console.warn("No flashsale items found.");
-      return;
-    }
-
-    let totalItems = items.length;
-    let currentIndex = 0; // 0-based
-    let visibleItems = 6; // default
-    let fsAuto = null;
-
-    // compute gap between items (supports gap on flex)
-    function getGap() {
-      const st = getComputedStyle(wrapper);
-      const gap = parseFloat(st.gap);
-      if (!isNaN(gap)) return gap;
-      // fallback: try margin-right of item
-      const m = getComputedStyle(items[0]).marginRight;
-      return m ? parseFloat(m) : 15;
-    }
-
-    // compute how many items fit in visible area (responsive)
-    function computeVisibleItems() {
-      const parentW = wrapper.parentElement.clientWidth; // flashsale-container width
-      const itemW = items[0].getBoundingClientRect().width;
-      const gap = getGap();
-      const fit = Math.floor((parentW + gap) / (itemW + gap));
-      return Math.max(1, fit);
-    }
-
-    function clampIndex() {
-      const maxStart = Math.max(0, totalItems - visibleItems);
-      if (currentIndex > maxStart) currentIndex = maxStart;
-      if (currentIndex < 0) currentIndex = 0;
-    }
-
-    function updateTransform() {
-      const itemW = items[0].getBoundingClientRect().width;
-      const gap = getGap();
-      const offset = -(currentIndex * (itemW + gap));
-      wrapper.style.transform = `translateX(${offset}px)`;
-      wrapper.style.transition = 'transform 0.45s cubic-bezier(.2,.8,.2,1)';
-    }
-
-    function recalcAndShow() {
-      visibleItems = computeVisibleItems();
-      clampIndex();
-      updateTransform();
-    }
-
-    function nextSlide() {
-      const maxStart = Math.max(0, totalItems - visibleItems);
-      if (currentIndex < maxStart) currentIndex++;
-      else currentIndex = 0;
-      updateTransform();
-    }
-    function prevSlide() {
-      const maxStart = Math.max(0, totalItems - visibleItems);
-      if (currentIndex > 0) currentIndex--;
-      else currentIndex = maxStart;
-      updateTransform();
-    }
-
-    // expose for debugging (optional)
-    window.flashNext = () => { nextSlide(); resetAuto(); };
-    window.flashPrev = () => { prevSlide(); resetAuto(); };
-
-    if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAuto(); });
-    if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAuto(); });
-
-    function startAuto() {
-      stopAuto();
-      fsAuto = setInterval(() => { nextSlide(); }, 4000);
-    }
-    function stopAuto() {
-      if (fsAuto) { clearInterval(fsAuto); fsAuto = null; }
-    }
-    function resetAuto() { stopAuto(); startAuto(); }
-
-    // initialize after images/CSS computed (use a small timeout to ensure layout)
-    setTimeout(() => {
-      recalcAndShow();
-      startAuto();
-    }, 50);
-
-    // recalc on resize
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        recalcAndShow();
-      }, 120);
-    });
-
-    // pause auto on hover
-    const container = wrapper.parentElement;
-    if (container) {
-      container.addEventListener('mouseenter', stopAuto);
-      container.addEventListener('mouseleave', startAuto);
-    }
-  })();
-
-}); // end DOMContentLoaded
-</script>
+  </script>
 </body>
 </html>
-
-
