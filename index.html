@@ -6,7 +6,8 @@
  <title>TikTok Trendy Shop | Trang chủ</title>
  <link rel="stylesheet" href="css/index.css">
  <style>
-   .header-container {
+   /* Top Header */
+.header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -97,6 +98,7 @@
 .header-icons a:hover {
   color: #d9304f;
 }
+
 
    .banner {
      position: relative;
@@ -359,6 +361,24 @@
 </header>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>
+  function updateUserSection() {
+    const userSection = document.getElementById("user-section");
+    const user = JSON.parse(localStorage.getItem("user")) || null;
+    if (user && user.fullname) {
+      userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span>
+                               <button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
+    } else {
+      userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
+    }
+  }
+  function logout() {
+    localStorage.removeItem("user");
+    updateUserSection();
+    alert("Đã đăng xuất thành công!");
+  }
+  document.addEventListener("DOMContentLoaded", updateUserSection);
+</script>
 <!-- Banner Section -->
 <section class="banner">
  <div class="slideshow-container">
