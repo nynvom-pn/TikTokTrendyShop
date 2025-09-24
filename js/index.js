@@ -1,768 +1,671 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>TikTok Trendy Shop | Trang chủ</title>
- <link rel="stylesheet" href="css/index.css">
- <style>
-   .header-right {
-     display: flex;
-     align-items: center;
-     gap: 10px;
-   }
-   .user-name {
-     color: #333;
-     font-weight: bold;
-     padding: 5px 10px;
-     background-color: #f0f0f0;
-     border-radius: 5px;
-     margin-left: 20px;
-   }
-   .logout-btn {
-     background-color: lab(96.48% 4.36 1.55);
-     color: rgb(0, 0, 0);
-     border: none;
-     padding: 5px 10px;
-     border-radius: 5px;
-     cursor: pointer;
-     font-size: 0.9rem;
-     margin-top: 20px;
-     margin-left: 20px;
-   }
-   .logout-btn:hover {
-     background-color: #fe2c55;
-   }
-   .login-btn {
-     background-color: #ff8001;
-     color: white;
-     border: none;
-     padding: 5px 10px;
-     border-radius: 5px;
-     cursor: pointer;
-     font-size: 0.9rem;
-   }
-   .login-btn:hover {
-     background-color: #187bcd;
-   }
-   .main-menu ul {
-     list-style: none;
-     display: flex;
-     margin: 0;
-     padding: 0;
-   }
-   .main-menu ul li {
-     position: relative;
-     margin-right: 20px;
-   }
-   .main-menu ul li a {
-     text-decoration: none;
-     color: #ffffff;
-     font-weight: bold;
-   }
-   main {
-  display: flex;
-  flex-direction: column; /* sắp xếp các section theo chiều dọc */
-  gap: 40px; /* khoảng cách giữa các section */
-}
-
-   .brand-menu .submenu {
-     display: none;
-     position: absolute;
-     background: white;
-     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-     min-width: 150px;
-     z-index: 1;
-   }
-   .brand-menu:hover .submenu {
-     display: block;
-   }
-   .submenu li a {
-     display: block;
-     padding: 10px;
-     color: #000;
-     text-decoration: none;
-   }
-   .submenu li a:hover {
-     background: #f1f1f1;
-   }
-   .banner {
-     position: relative;
-     width: 100%;
-     overflow: hidden;
-     margin-top: 10px;
-   }
-   .slideshow-container {
-     max-width: 100%;
-     position: relative;
-   }
-   .slide {
-     display: none;
-   }
-   .fade {
-     animation-name: fade;
-     animation-duration: 1.5s;
-   }
-   @keyframes fade {
-     from {opacity: .4}
-     to {opacity: 1}
-   }
-   .slide img {
-     width: 100%;
-     height: auto;
-   }
-   .prev, .next {
-     cursor: pointer;
-     position: absolute;
-     top: 50%;
-     width: auto;
-     padding: 16px;
-     margin-top: -22px;
-     color: white;
-     font-weight: bold;
-     font-size: 18px;
-     transition: 0.6s ease;
-     border-radius: 0 3px 3px 0;
-     user-select: none;
-   }
-   .next {
-     right: 0;
-     border-radius: 3px 0 0 3px;
-   }
-   .prev:hover, .next:hover {
-     background-color: rgba(0,0,0,0.8);
-   }
-   .dots {
-     text-align: center;
-   }
-   .dot {
-     cursor: pointer;
-     height: 15px;
-     width: 15px;
-     margin: 0 2px;
-     background-color: #bbb;
-     border-radius: 50%;
-     display: inline-block;
-     transition: background-color 0.6s ease;
-   }
-   .active, .dot:hover {
-     background-color: #717171;
-   }
-   .products {
- display: flex;
- max-width: 1200px;
- margin: 30px auto;
- padding: 0 20px;
-}
-
-
-.filters {
- width: 200px;
- margin-right: 20px;
-}
-
-
-.products-grid {
- flex-grow: 1;
- display: grid;
- grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
- gap: 20px;
-}
-
-
-.product-card {
- background: white;
- border: 1px solid #ddd;
- border-radius: 10px;
- padding: 10px;
- text-align: center;
- display: flex;
- flex-direction: column;
- height: 300px; /* Chiều cao cố định để đảm bảo đồng đều */
- justify-content: space-between;
-}
-
-
-.product-card img {
- max-width: 100%;
- height: 150px;
- object-fit: cover;
- border-radius: 5px;
-}
-
-
-.product-card h4 {
- font-size: 0.9rem;
- margin: 8px 0;
- color: #333;
- white-space: nowrap;
- overflow: hidden;
- text-overflow: ellipsis;
- height: 20px;
- line-height: 20px;
-}
-
-
-.product-card .price {
- font-size: 1.2rem;
- color: #e60000;
- font-weight: bold;
- margin: 10px 0 5px;
- height: 20px;
- line-height: 20px;
-}
-
-
-.product-card .color-dot {
- width: 12px;
- height: 12px;
- border-radius: 50%;
- display: inline-block;
- margin: 0 2px;
- border: 1px solid #ddd;
-}
-
-
-.product-card a {
- text-decoration: none;
- color: inherit;
- flex-grow: 1;
- display: flex;
- flex-direction: column;
- justify-content: space-between;
-}
-
-/* Tiêu đề flash sale */
-.flashsale-title {
-  color: #fe2c55;
-  font-style: italic;
-  font-weight: bold;
-  margin-bottom: 15px;
-  text-align: left;
-  font-size: 1.5rem;
-}
-
-/* Container giống products-grid nhưng ngang để trượt */
-.flashsale-container {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-
-/* Wrapper cho item, trượt ngang */
-.flashsale-wrapper {
-  display: flex;
-  gap: 20px;
-  transition: transform 0.5s ease;
-}
-
-/* Item flash sale tái sử dụng product-card */
-.flashsale-item {
-  flex: 0 0 180px; /* giống min width của product-card */
-  max-width: 180px;
-}
-
-/* Nút điều hướng */
-.flashsale-btn {
-  position: absolute;
-  top: 40%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.9);
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 1.2rem;
-  z-index: 2;
-  transition: background 0.3s;
-}
-
-.flashsale-btn:hover {
-  background: #fe2c55;
-  color: #fff;
-}
-
-.flashsale-btn.prev {
-  left: 5px;
-}
-
-.flashsale-btn.next {
-  right: 5px;
-}
-
-
- </style>
-</head>
-<body>
-<!-- Header -->
-<header>
- <div class="header-container">
-   <div class="logo">
-     <img src="Hình/LOGO/LOGO.png" alt="HD Logo">
-   </div>
-   <input type="text" placeholder="  Nhập từ cần tìm  " class="search-input" style="width:800px; height:50px; margin-right: 20px; margin-left:30px;">
-   <nav class="main-menu">
-     <ul>
-       <li><a href="index.html">TRANG CHỦ</a></li>
-       <li><a href="Introduce.html">GIỚI THIỆU</a></li>
-       <li class="brand-menu">
-         <a href="store.html">CỬA HÀNG</a>
-         <ul class="submenu">
-          <li><a href="mypham.html">Mỹ phẩm</a></li>
-           <li><a href="thoitrang.html">Thời trang</a></li>
-         </ul>
-       </li>
-       <li class="brand-menu"><a href="livestream.html">TRANG LIVESTREAM</a></li>
-       <li class="brand-menu"><a href="hopthoai.html">HỘP THOẠI</a></li>
-       <li class="brand-menu"><a href="thongbao.html">THÔNG BÁO</a></li>
-     </ul>
-   </nav>
-   <div class="header-right">
-     <a href="cart.html">
-       <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Cart">
-     </a>
-     <script>
-   function updateUserSection() {
-     const userSection = document.getElementById("user-section");
-     const user = JSON.parse(localStorage.getItem("user")) || null;
-     if (user && user.fullname) {
-       userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span><button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
-     } else {
-       userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
-     }
-   }
-   function logout() {
-     localStorage.removeItem("user");
-     updateUserSection();
-     alert("Đã đăng xuất thành công!");
-   }
-   document.addEventListener("DOMContentLoaded", updateUserSection);
- </script>
-     <div id="user-section"></div>
-   </div>    
- </div>
-</header>
-<!-- Banner Section -->
-<section class="banner">
- <div class="slideshow-container">
-   <div class="slide fade">
-     <img src="Hình/BANNER/BANNER 1.png" alt="Banner 1">
-   </div>
-   <div class="slide fade">
-     <img src="Hình/BANNER/BANNER 2.png" alt="Banner 2">
-   </div>
-   <div class="slide fade">
-     <img src="Hình/BANNER/BANNER 3.png" alt="Banner 3">
-   </div>
-   <!-- Navigation buttons -->
-   <a class="prev" onclick="plusSlides(-1)">❮</a>
-   <a class="next" onclick="plusSlides(1)">❯</a>
- </div>
- <!-- Dots for navigation -->
- <div class="dots" style="text-align:center">
-   <span class="dot" onclick="currentSlide(1)"></span>
-   <span class="dot" onclick="currentSlide(2)"></span>
-   <span class="dot" onclick="currentSlide(3)"></span>
- </div>
-</section>
-
-
-<!-- Main Content -->
-<main>
- <section class="flashsale">
-  <h2 class="flashsale-title">FLASH SALE</h2>
-  <div class="flashsale-container">
-    <button class="flashsale-btn prev">&#10094;</button>
-    <div class="flashsale-wrapper" id="flashsaleWrapper">
-      <!-- 10 sản phẩm mẫu -->
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product1.jpg" alt="Product 1">
-          <h4>Sản phẩm 1 siêu hot siêu rẻ</h4>
-          <div class="price">₫199,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <div class="product-card flashsale-item">
-        <a href="#">
-          <img src="images/product2.jpg" alt="Product 2">
-          <h4>Sản phẩm 2 giá hời</h4>
-          <div class="price">₫299,000</div>
-        </a>
-      </div>
-      <!-- thêm 8 sản phẩm nữa ... -->
-    </div>
-    <button class="flashsale-btn next">&#10095;</button>
-  </div>
-</section>
-
-<br>
- <section class="products">
-  <aside class="filters">
-    <h2>Bộ lọc</h2>
-    <div class="filter-group">
-      <h3>Loại sản phẩm</h3>
-      <div class="filter-options">
-        <label><input type="checkbox" value="skincare" class="category-filter"> Skincare</label>
-        <label><input type="checkbox" value="makeup" class="category-filter"> Makeup</label>
-        <label><input type="checkbox" value="ao" class="category-filter"> Áo</label>
-        <label><input type="checkbox" value="quan" class="category-filter"> Quần</label>
-        <label><input type="checkbox" value="vay" class="category-filter"> Váy</label>
-      </div>
-    </div>
-  </aside>
-
-  <div class="products-grid" id="products-container"></div>
-</section>
-
-</main>
-
-
-<footer>
-    <div class="footer-container" style="background-color: #000000; color: #ffffff; padding: 20px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; text-align: center;">
-      <div class="footer-logo">
-        <img src="Hình/LOGO/LOGO.png" alt="TikTok Trendy Shop" style="height: 100px; margin-bottom: 10px;">
-      </div>
-      <div class="footer-info">
-        <h3 style="margin: 0 0 10px;">THÔNG TIN LIÊN HỆ</h3>
-        <p>TikTok Trendy Shop</p>
-        <p>Địa chỉ: Khu phố 6, phường Linh Trung, TP Thủ Đức, TP Hồ Chí Minh</p>
-        <p>Email: tiktoktrendyshop@gmail.com</p>
-      </div>
-      <div class="footer-license">
-        <h3 style="margin: 0 0 10px;">HỒ TRỢ KHÁCH HÀNG</h3>
-        <p>Chăm sóc khách hàng</p>
-        <p>Hướng dẫn mua hàng</p>
-        <p>Hỗ trợ đổi trả hàng</p>
-      </div>
-      <div class="footer-payment">
-        <h3 style="margin: 0 0 10px;">CHÍNH SÁCH</h3>
-        <p>Chính sách đổi hàng</p>
-        <p>Bảo mật thông tin</p>
-        <p>Chính sách giao hàng</p>
-      </div>
-    </div>
-  </footer>
-
-
-<script src="js/index.js"></script>
-<script>
-/* ---------- Unified JS for index page ----------
-   - Banner slideshow (dots + prev/next + autoplay + reset)
-   - Flashsale slider (6 visible on desktop, responsive, prev/next, autoplay)
-   - User section (login/logout UI using localStorage)
-   - Search input hook (calls filterProducts if defined)
---------------------------------------------------*/
 document.addEventListener("DOMContentLoaded", () => {
+  function renderProducts(list) {
+    const container = document.getElementById("products-container");
+    container.innerHTML = "";
 
-  /* =======================
-     1) BANNER SLIDESHOW
-     ======================= */
-  (function bannerSlideshow(){
-    const slides = Array.from(document.getElementsByClassName("slide"));
-    const dots = Array.from(document.getElementsByClassName("dot"));
-    if (!slides.length) return; // nếu không có slide thì thôi
-
-    let slideIndex = 1;
-    let slideAuto;
-
-    function showSlide(n) {
-      // vòng chỉ mục
-      if (n > slides.length) slideIndex = 1;
-      if (n < 1) slideIndex = slides.length;
-
-      // ẩn tất cả slide, xóa active của dot
-      slides.forEach(s => s.style.display = "none");
-      dots.forEach(d => d.classList.remove("active"));
-
-      // hiển thị slide hiện tại
-      slides[slideIndex - 1].style.display = "block";
-      if (dots[slideIndex - 1]) dots[slideIndex - 1].classList.add("active");
+    if (list.length === 0) {
+      container.innerHTML = "<p>Không có sản phẩm nào</p>";
+      return;
     }
 
-    // hàm dùng cho onclick trong HTML (❮ ❯)
-    window.plusSlides = function(n) {
-      slideIndex += n;
-      showSlide(slideIndex);
-      resetSlideAuto();
-    };
+    list.forEach(p => {
+      const item = document.createElement("div");
+      item.classList.add("product-card");
 
-    // hàm dùng cho dot click
-    window.currentSlide = function(n) {
-      slideIndex = n;
-      showSlide(slideIndex);
-      resetSlideAuto();
-    };
+      const colorsHTML = p.colors.map(c =>
+        `<span class="color-dot" style="background:${c}"></span>`
+      ).join("");
 
-    // nếu muốn click dot bằng event (nếu HTML dots không có onclick)
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        window.currentSlide(idx + 1);
+      item.innerHTML = `
+        <img src="${p.image}" alt="${p.name}">
+        <h4>${p.name}</h4>
+        <p>${p.brand}</p>
+        <p class="price">${p.price}</p>
+        <div>${colorsHTML}</div>
+      `;
+      container.appendChild(item);
+    });
+  }
+
+  // Render lần đầu
+  renderProducts(products);
+
+  // Bắt sự kiện filter
+  const categoryFilters = document.querySelectorAll(".category-filter");
+
+  categoryFilters.forEach(filter => {
+    filter.addEventListener("change", () => {
+      const selectedCategories = Array.from(categoryFilters)
+        .filter(f => f.checked)
+        .map(f => f.value);
+
+      const filteredProducts = selectedCategories.length > 0
+        ? products.filter(p => selectedCategories.includes(p.category))
+        : products;
+
+      renderProducts(filteredProducts);
+    });
+  });
+});
+
+const products = [
+  // Mỹ phẩm Skincare
+  { 
+    id: 1, 
+    name: "Sữa rửa mặt Cetaphil Gentle Skin Cleanser 500ml", 
+    brand: "Cetaphil", 
+    category: "skincare", 
+    gender: "unisex", 
+    price: "245.000 VNĐ", 
+    image: "Hình/CUAHANG/centaphil.webp",
+    colors: ["white", "blue", "green"]
+  },
+  { 
+    id: 2, 
+    name: "Kem dưỡng ẩm Simple Hydrating Light Moisturiser 125ml", 
+    brand: "Simple", 
+    category: "skincare", 
+    gender: "unisex", 
+    price: "159.000 VNĐ", 
+    image: "Hình/CUAHANG/simple2.webp",
+    colors: ["white", "lightgreen"]
+  },
+
+  { 
+    id: 11, 
+    name: "Áo thun Uniqlo U Crew Neck T-Shirt", 
+    brand: "Uniqlo", 
+    category: "ao", 
+    gender: "unisex", 
+    price: "249.000 VNĐ", 
+    image: "Hình/CUAHANG/uniqlo1.webp",
+    colors: ["black", "white", "blue", "gray"]
+  },
+  { 
+    id: 12, 
+    name: "Áo sơ mi tay dài Owen Slim Fit", 
+    brand: "Owen", 
+    category: "ao", 
+    gender: "nam", 
+    price: "359.000 VNĐ", 
+    image: "Hình/CUAHANG/OWEN1.webp",
+    colors: ["white", "lightblue"]
+  },
+  { 
+    id: 7, 
+    name: "Phấn nước Merzy Cushion SPF50+ PA++", 
+    brand: "Merzy", 
+    category: "makeup", 
+    gender: "nu", 
+    price: "185.000 VNĐ", 
+    image: "Hình/CUAHANG/merzy.webp",
+    colors: ["beige", "ivory"]
+  },
+  { 
+    id: 3, 
+    name: "Nước tẩy trang L'Oreal Micellar Water 400ml", 
+    brand: "L'Oreal", 
+    category: "skincare", 
+    gender: "nu", 
+    price: "169.000 VNĐ", 
+    image: "Hình/CUAHANG/loreal.webp",
+    colors: ["blue", "pink"]
+  },
+  { 
+    id: 21, 
+    name: "Váy Đầm Body Hai Dây Dáng Dài 4LOVA ", 
+    brand: "LOVA", 
+    category: "vay", 
+    gender: "nu", 
+    price: "154.600 VNĐ", 
+    image: "Hình/CUAHANG/4LOVA.webp",
+    colors: ["black", "red", "green"]
+  },
+  { 
+    id: 4, 
+    name: "Kem chống nắng Anessa Perfect UV Milk SPF50+ 60ml", 
+    brand: "Anessa", 
+    category: "skincare", 
+    gender: "nu", 
+    price: "289.000 VNĐ", 
+    image: "Hình/CUAHANG/anessa.webp",
+    colors: ["gold", "white"]
+  },
+  { 
+    id: 5, 
+    name: "Mặt nạ Mediheal Tea Tree 10 miếng", 
+    brand: "Mediheal", 
+    category: "skincare", 
+    gender: "nu", 
+    price: "199.000 VNĐ", 
+    image: "Hình/CUAHANG/mediheal.webp",
+    colors: ["green", "white"]
+  },
+
+  // Mỹ phẩm Makeup
+  { 
+    id: 13, 
+    name: "Áo hoodie nữ Canifa Basic", 
+    brand: "Canifa", 
+    category: "ao", 
+    gender: "nu", 
+    price: "399.000 VNĐ", 
+    image: "Hình/CUAHANG/cafia-hoddie.webp",
+    colors: ["pink", "black", "gray"]
+  },
+  
+  { 
+    id: 6, 
+    name: "Son kem lì Black Rouge Air Fit Velvet Tint Ver 6", 
+    brand: "Black Rouge", 
+    category: "makeup", 
+    gender: "nu", 
+    price: "129.000 VNĐ", 
+    image: "Hình/CUAHANG/blackrouge.webp",
+    colors: ["red", "pink", "nude"]
+  },
+  { 
+    id: 20, 
+    name: "Đầm maxi hoa nhí ZOMI Z071", 
+    brand: "ZOMI", 
+    category: "vay", 
+    gender: "nu", 
+    price: "459.000 VNĐ", 
+    image: "Hình/CUAHANG/HOANHI.webp",
+    colors: ["blue", "white", "pink"]
+  },
+  
+  { 
+    id: 17, 
+    name: "Quần short nữ Lovito Basic", 
+    brand: "H&M", 
+    category: "quan", 
+    gender: "nu", 
+    price: "149.000 VNĐ", 
+    image: "Hình/CUAHANG/lovito.webp",
+    colors: ["white", "pink", "blue"]
+  },
+  { 
+    id: 8, 
+    name: "Mascara Maybelline Sky High Waterproof", 
+    brand: "Maybelline", 
+    category: "makeup", 
+    gender: "nu", 
+    price: "155.000 VNĐ", 
+    image: "Hình/CUAHANG/maybeline-mass.webp",
+    colors: ["black"]
+  },
+  { 
+    id: 14, 
+    name: "Áo polo nam Routine Cotton", 
+    brand: "Routine", 
+    category: "ao", 
+    gender: "nam", 
+    price: "299.000 VNĐ", 
+    image: "Hình/CUAHANG/polo.webp",
+    colors: ["blue", "navy", "white"]
+  },
+  
+  { 
+    id: 9, 
+    name: "Phấn phủ Innisfree No Sebum Mineral Powder 5g", 
+    brand: "Innisfree", 
+    category: "makeup", 
+    gender: "nu", 
+    price: "95.000 VNĐ", 
+    image: "Hình/CUAHANG/innisfree.webp",
+    colors: ["white", "mint"]
+  },
+  { 
+    id: 10, 
+    name: "Kẻ mày Etude House Drawing Eyebrow", 
+    brand: "Etude House", 
+    category: "makeup", 
+    gender: "nu", 
+    price: "75.000 VNĐ", 
+    image: "Hình/CUAHANG/etude-brow.webp",
+    colors: ["brown", "darkbrown", "black"]
+  },
+  { 
+    id: 15, 
+    name: "Quần jeans nữ Yody Slim Fit", 
+    brand: "Yody", 
+    category: "quan", 
+    gender: "nu", 
+    price: "399.000 VNĐ", 
+    image: "Hình/CUAHANG/yody.webp",
+    colors: ["blue", "black"]
+  },
+  { 
+    id: 16, 
+    name: "Quần tây nam Aristino Smart Fit", 
+    brand: "Aristino", 
+    category: "quan", 
+    gender: "nam", 
+    price: "499.000 VNĐ", 
+    image: "Hình/CUAHANG/aristino.webp",
+    colors: ["black", "gray", "navy"]
+  },
+  
+  { 
+    id: 18, 
+    name: "Quần jogger nam Coolmate Active", 
+    brand: "Coolmate", 
+    category: "quan", 
+    gender: "nam", 
+    price: "154.000 VNĐ", 
+    image: "Hình/CUAHANG/coolmate.webp",
+    colors: ["black", "gray"]
+  },
+  { 
+    id: 19, 
+    name: "Đầm suông Yame Basic Dress", 
+    brand: "Yame", 
+    category: "vay", 
+    gender: "nu", 
+    price: "173.000 VNĐ", 
+    image: "Hình/CUAHANG/yame.webp",
+    colors: ["black", "red", "beige"]
+  },
+  
+  { 
+    id: 22, 
+    name: "Đầm công sở nữ MY WAY", 
+    brand: "MY WAY", 
+    category: "vay", 
+    gender: "nu", 
+    price: "224.000 VNĐ", 
+    image: "Hình/CUAHANG/myway.webp",
+    colors: ["navy", "white", "gray"]
+  }
+];
+
+
+// Dữ liệu chi tiết sản phẩm
+const productDetails = {
+  1: {
+  id: 1,
+  name: "Sữa rửa mặt Cetaphil Gentle Skin Cleanser 500ml",
+  brand: "Cetaphil",
+  category: "skincare",
+  gender: "unisex",
+  price: "245.000 VNĐ",
+  images: [
+    "Hình/CUAHANG/centaphil.webp",
+    "Hình/CUAHANG/centaphil2.webp",
+    "Hình/CUAHANG/centaphil3.webp",
+    "Hình/CUAHANG/centaphil4.webp",
+    "Hình/CUAHANG/centaphil5.webp"
+  ],
+  colors: [
+    { name: "Trắng", value: "white" },
+    { name: "Xanh dương", value: "blue" },
+    { name: "Xanh lá", value: "green" }
+  ],
+  sizes: [],
+  description: `
+    <h2>Mô tả sản phẩm</h2>
+    <p>Cetaphil Gentle Skin Cleanser là dòng sữa rửa mặt nổi tiếng toàn cầu, được khuyên dùng bởi nhiều bác sĩ da liễu cho làn da nhạy cảm. Với công thức dịu nhẹ, sản phẩm giúp làm sạch bụi bẩn, dầu thừa và lớp trang điểm nhẹ nhàng mà không làm mất đi độ ẩm tự nhiên của da.</p>
+    <p><strong>Công dụng:</strong> Làm sạch da, cân bằng độ ẩm, giảm kích ứng, phù hợp cho mọi loại da, đặc biệt là da nhạy cảm và da khô.</p>
+    <p><strong>Thành phần chính:</strong> Nước tinh khiết, Cetyl Alcohol, Propylene Glycol, Sodium Lauryl Sulfate, Stearyl Alcohol. Không chứa hương liệu, không gây mụn, an toàn cho da.</p>
+    <p><strong>Hướng dẫn sử dụng:</strong> 
+      <ul>
+        <li>Làm ướt mặt bằng nước sạch.</li>
+        <li>Lấy một lượng nhỏ sản phẩm, xoa đều và mát-xa nhẹ nhàng trên da trong 30 giây.</li>
+        <li>Rửa lại bằng nước hoặc lau khô bằng khăn mềm.</li>
+      </ul>
+    </p>
+    <p><strong>Xuất xứ:</strong> Canada.</p>
+    <p>Sản phẩm được kiểm nghiệm da liễu, an toàn sử dụng hằng ngày và là lựa chọn hàng đầu cho những ai tìm kiếm một loại sữa rửa mặt dịu nhẹ nhưng hiệu quả.</p>`
+  },
+  2: {
+    name: "Kem dưỡng ẩm Simple Hydrating Light Moisturiser 125ml",
+  brand: "Simple",
+  category: "skincare",
+  gender: "unisex",
+  price: "159.000 VNĐ",
+  images: [
+    "Hình/CUAHANG/simple2.webp",
+    "Hình/CUAHANG/simple3.webp",
+    "Hình/CUAHANG/simple4.webp",
+    "Hình/CUAHANG/simple5.webp",
+    "Hình/CUAHANG/simple6.webp"
+  ],
+  colors: [
+    { name: "Trắng", value: "white" },
+    { name: "Xanh nhạt", value: "lightgreen" }
+  ],
+  sizes: [],
+  description: `
+    <h2>Mô tả sản phẩm</h2>
+    <p>Simple Hydrating Light Moisturiser là kem dưỡng ẩm dịu nhẹ, lành tính, phù hợp cho da nhạy cảm và da dầu. Với kết cấu mỏng nhẹ, sản phẩm thấm nhanh mà không gây nhờn rít, giữ ẩm lên đến 12 giờ.</p>
+    <p><strong>Công dụng:</strong> Cấp ẩm tức thì, duy trì độ ẩm tự nhiên, phục hồi hàng rào bảo vệ da và mang lại làn da mềm mịn, tươi sáng.</p>
+    <p><strong>Thành phần chính:</strong> Pro-Vitamin B5, Vitamin E, Glycerin. Không chứa hương liệu nhân tạo, không màu nhân tạo, không gây kích ứng.</p>
+    <p><strong>Hướng dẫn sử dụng:</strong>
+      <ul>
+        <li>Sử dụng sau bước làm sạch và toner.</li>
+        <li>Lấy một lượng kem vừa đủ, thoa đều khắp mặt và cổ.</li>
+        <li>Dùng 2 lần/ngày (sáng và tối) để đạt hiệu quả tối ưu.</li>
+      </ul>
+    </p>
+    <p><strong>Xuất xứ:</strong> Anh Quốc.</p>
+    <p>Kem dưỡng Simple luôn được đánh giá cao bởi sự lành tính, phù hợp cho cả những làn da nhạy cảm nhất. Đây là sản phẩm "must-have" trong chu trình skincare cơ bản.</p>
+  `
+  },
+  11: {
+    name: "Áo thun Uniqlo U Crew Neck T-Shirt",
+  brand: "Uniqlo",
+  category: "ao",
+  gender: "unisex",
+  price: "249.000 VNĐ",
+  images: [
+    "Hình/CUAHANG/uniqlo1.webp",
+    "Hình/CUAHANG/uniqlo2.webp",
+    "Hình/CUAHANG/uniqlo3.webp"
+  ],
+  colors: [
+    { name: "Đen", value: "black" },
+    { name: "Trắng", value: "white" },
+    { name: "Xanh navy", value: "blue" },
+    { name: "Xám", value: "gray" }
+  ],
+  sizes: ["S", "M", "L", "XL"],
+  description: `
+    <h2>Mô tả sản phẩm</h2>
+    <p>Áo thun Uniqlo U Crew Neck T-Shirt là item thời trang cơ bản, được thiết kế tối giản nhưng tinh tế. Sản phẩm nằm trong bộ sưu tập Uniqlo U nổi tiếng, mang tính ứng dụng cao, phù hợp với nhiều phong cách thời trang.</p>
+    <p><strong>Đặc điểm nổi bật:</strong> Chất liệu cotton 100% cao cấp, mềm mại, thoáng khí, thấm hút mồ hôi tốt. Form áo vừa vặn, dễ phối cùng nhiều loại trang phục khác nhau.</p>
+    <p><strong>Chi tiết sản phẩm:</strong>
+      <ul>
+        <li>Chất liệu: 100% cotton</li>
+        <li>Cổ tròn, tay ngắn, thiết kế basic</li>
+        <li>Màu sắc đa dạng, dễ phối</li>
+        <li>Kích thước: S – M – L – XL</li>
+      </ul>
+    </p>
+    <p><strong>Xuất xứ:</strong> Nhật Bản (sản xuất tại nhiều nhà máy ở Châu Á).</p>
+    <p>Sản phẩm phù hợp mặc hàng ngày, từ đi học, đi làm đến dạo phố. Với chất lượng và độ bền cao, áo thun Uniqlo luôn là lựa chọn được nhiều bạn trẻ yêu thích.</p>
+  `
+  },
+  12: {
+    name: "Áo sơ mi tay dài Owen Slim Fit",
+  brand: "Owen",
+  category: "ao",
+  gender: "nam",
+  price: "359.000 VNĐ",
+  images: [
+    "Hình/CUAHANG/owen1.webp",
+    "Hình/CUAHANG/owen2.webp",
+    "Hình/CUAHANG/owen3.webp"
+  ],
+  colors: [
+    { name: "Trắng", value: "white" },
+    { name: "Xanh nhạt", value: "lightblue" }
+  ],
+  sizes: ["M", "L", "XL", "XXL"],
+  description: `
+    <h2>Mô tả sản phẩm</h2>
+    <p>Áo sơ mi Owen Slim Fit là sản phẩm thời trang công sở cao cấp dành cho nam giới. Thiết kế hiện đại, trẻ trung với form dáng slim fit ôm gọn, tôn lên vóc dáng nam tính, lịch lãm.</p>
+    <p><strong>Đặc điểm nổi bật:</strong> Vải cotton pha polyester chất lượng cao, mềm mịn, dễ giặt ủi, ít nhăn. Phù hợp mặc đi làm, dự tiệc hoặc các sự kiện quan trọng.</p>
+    <p><strong>Chi tiết sản phẩm:</strong>
+      <ul>
+        <li>Chất liệu: Cotton + Polyester</li>
+        <li>Kiểu dáng: Slim Fit</li>
+        <li>Cổ áo: Cổ bẻ truyền thống</li>
+        <li>Tay dài, hàng cúc cài trước</li>
+        <li>Kích thước: M – L – XL – XXL</li>
+      </ul>
+    </p>
+    <p><strong>Xuất xứ:</strong> Việt Nam.</p>
+    <p>Áo sơ mi Owen mang đến sự thoải mái, sang trọng nhưng vẫn giữ nét nam tính. Đây là lựa chọn hàng đầu cho những quý ông công sở muốn tạo ấn tượng chuyên nghiệp và lịch lãm.</p>
+  `
+  }
+  
+};
+
+// Function to render products on the homepage
+function renderProducts(filteredProducts) {
+  const container = document.getElementById('products-container');
+  if (!container) {
+    console.error("Products container not found! Check if 'products-container' div exists in index.html.");
+    return;
+  }
+  container.innerHTML = '';
+
+  console.log("Rendering products:", filteredProducts);
+
+  filteredProducts.forEach(product => {
+    const productCard = document.createElement('div');
+    productCard.classList.add('product-card');
+    productCard.innerHTML = `
+      <a href="product-detail.html?id=${product.id}">
+        <img src="${product.image}" alt="${product.name}">
+        <div class="product-info">
+          <h4>${product.name}</h4>
+          <p class="price">${product.price}</p>
+          <div class="colors">
+            ${product.colors.map(color => `<span class="color ${color}"></span>`).join('')}
+          </div>
+        </div>
+      </a>
+    `;
+    container.appendChild(productCard);
+  });
+}
+
+// Combined filter function for both checkboxes and search input
+function filterProducts() {
+  const selectedBrands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(input => input.value);
+  const selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked')).map(input => input.value);
+  const selectedGenders = Array.from(document.querySelectorAll('input[name="gender"]:checked')).map(input => input.value);
+  const selectedColors = Array.from(document.querySelectorAll('input[name="color"]:checked')).map(input => input.value);
+  const searchTerm = document.querySelector('.header-right input')?.value.trim().toLowerCase() || '';
+
+  const filteredProducts = products.filter(product => {
+    const brandMatch = selectedBrands.length === 0 || selectedBrands.includes(product.brand);
+    const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(product.category);
+    const genderMatch = selectedGenders.length === 0 || selectedGenders.includes(product.gender);
+    const colorMatch = selectedColors.length === 0 || selectedColors.some(color => product.colors.includes(color));
+    const searchMatch = searchTerm === '' || product.name.toLowerCase().includes(searchTerm);
+    return brandMatch && categoryMatch && genderMatch && colorMatch && searchMatch;
+  });
+
+  console.log("Filtered products:", filteredProducts);
+  renderProducts(filteredProducts);
+}
+
+// Function to render product details on product-detail.html
+function renderProductDetail() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get('id');
+  console.log("URL Search Params:", window.location.search);
+  console.log("Extracted Product ID:", productId);
+
+  // Ensure productId is a number and exists in productDetails
+  const parsedProductId = parseInt(productId, 10);
+  if (!productId || isNaN(parsedProductId) || !productDetails[parsedProductId]) {
+    console.error(`Product not found for ID: ${productId}`);
+    document.body.innerHTML = '<h2>Sản phẩm không tồn tại!</h2>';
+    return;
+  }
+
+  const product = productDetails[parsedProductId];
+  console.log("Product found:", product);
+
+  // Populate product details
+  document.getElementById('product-name').textContent = product.name;
+  document.getElementById('product-brand').textContent = product.brand;
+  document.getElementById('product-price').textContent = product.price;
+
+  const mainImage = document.getElementById('main-image');
+  mainImage.src = product.images[0];
+  mainImage.alt = product.name;
+
+  const thumbnailContainer = document.getElementById('thumbnail-images');
+  thumbnailContainer.innerHTML = ''; // Clear any existing thumbnails
+  product.images.forEach((image, index) => {
+    const thumbnail = document.createElement('img');
+    thumbnail.src = image;
+    thumbnail.alt = `${product.name} thumbnail ${index + 1}`;
+    thumbnail.addEventListener('click', () => {
+      mainImage.src = image;
+      mainImage.alt = `${product.name} thumbnail ${index + 1}`;
+    });
+    thumbnailContainer.appendChild(thumbnail);
+  });
+
+  const colorContainer = document.getElementById('color-options');
+  colorContainer.innerHTML = ''; // Clear existing colors
+  product.colors.forEach((color, index) => {
+    const colorOption = document.createElement('div');
+    colorOption.classList.add('color-option');
+    if (index === 0) colorOption.classList.add('active');
+    colorOption.innerHTML = `
+      <span class="color ${color.value}"></span>
+      <span>${color.name}</span>
+    `;
+    colorContainer.appendChild(colorOption);
+  });
+
+  const sizeContainer = document.getElementById('size-options');
+  sizeContainer.innerHTML = ''; // Clear existing sizes
+  product.sizes.forEach((size, index) => {
+    const sizeOption = document.createElement('button');
+    sizeOption.classList.add('size');
+    if (index === 0) sizeOption.classList.add('active');
+    sizeOption.textContent = size;
+    sizeContainer.appendChild(sizeOption);
+  });
+
+  document.getElementById('product-description').innerHTML = product.description;
+
+  let quantity = 1;
+  const quantityDisplay = document.getElementById('quantity');
+  quantityDisplay.textContent = quantity;
+
+  document.getElementById('increase-quantity').addEventListener('click', () => {
+    quantity++;
+    quantityDisplay.textContent = quantity;
+  });
+
+  document.getElementById('decrease-quantity').addEventListener('click', () => {
+    if (quantity > 1) {
+      quantity--;
+      quantityDisplay.textContent = quantity;
+    }
+  });
+
+  document.querySelector('.add-to-cart').addEventListener('click', () => {
+    alert(`Đã thêm ${product.name} vào giỏ hàng!`);
+  });
+
+  document.querySelector('.buy-now').addEventListener('click', () => {
+    alert(`Đang chuyển hướng để thanh toán ${product.name}!`);
+  });
+}
+
+// Banner Slideshow Functionality
+let slideIndex = 1;
+let slideInterval;
+
+function showSlides(n) {
+  const slides = document.getElementsByClassName("slide");
+  const dots = document.getElementsByClassName("dot");
+
+  if (n > slides.length) { slideIndex = 1; }
+  if (n < 1) { slideIndex = slides.length; }
+
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].className += " active";
+}
+
+function plusSlides(n) {
+  clearInterval(slideInterval);
+  showSlides(slideIndex += n);
+  startAutoSlide();
+}
+
+function currentSlide(n) {
+  clearInterval(slideInterval);
+  showSlides(slideIndex = n);
+  startAutoSlide();
+}
+
+function startAutoSlide() {
+  slideInterval = setInterval(() => plusSlides(1), 5000); // Auto-slide every 5 seconds
+}
+
+function initSlideshow() {
+  if (document.getElementsByClassName("slide").length > 0) {
+    showSlides(slideIndex); // Show the first slide on load
+    startAutoSlide(); // Start auto-sliding
+  }
+}
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.getElementById('products-container')) {
+    // Homepage logic
+    console.log("Page loaded, rendering all products...");
+    renderProducts(products); // Render all products initially
+
+    // Add event listeners for filter checkboxes
+    const checkboxes = document.querySelectorAll('.filter-options input[type="checkbox"]');
+    if (checkboxes.length === 0) {
+      console.warn("No filter checkboxes found! Check the filter sidebar in index.html.");
+    } else {
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', filterProducts);
       });
-    });
-
-    function startSlideAuto() {
-      slideAuto = setInterval(() => { window.plusSlides(1); }, 5000);
-    }
-    function resetSlideAuto() {
-      clearInterval(slideAuto);
-      startSlideAuto();
     }
 
-    // khởi tạo
-    showSlide(slideIndex);
-    startSlideAuto();
-
-    // optional: pause on hover of slideshow container
-    const slideContainer = document.querySelector('.slideshow-container');
-    if (slideContainer) {
-      slideContainer.addEventListener('mouseenter', () => clearInterval(slideAuto));
-      slideContainer.addEventListener('mouseleave', () => { resetSlideAuto(); });
-    }
-  })();
-
-  /* =======================
-     2) USER SECTION (login/logout)
-     ======================= */
-  (function userSectionInit(){
-    const userSection = document.getElementById("user-section");
-    if (!userSection) {
-      console.warn("user-section element not found.");
-      return;
+    // Add event listener for search input
+    const searchInput = document.querySelector('.header-right input');
+    if (searchInput) {
+      searchInput.addEventListener('input', filterProducts);
+    } else {
+      console.warn("Search input not found! Check the header in index.html.");
     }
 
-    function renderUserSection() {
-      const user = JSON.parse(localStorage.getItem("user")) || null;
-      if (user && user.fullname) {
-        userSection.innerHTML = `
-          <span class="user-name">Xin chào, ${escapeHtml(user.fullname)}</span>
-          <button class="logout-btn" id="logoutBtn">Đăng xuất</button>
-        `;
-        const btn = document.getElementById('logoutBtn');
-        if (btn) btn.addEventListener('click', () => {
-          localStorage.removeItem('user');
-          renderUserSection();
-          alert('Đã đăng xuất thành công!');
-        });
-      } else {
-        userSection.innerHTML = `
-          <button class="login-btn" id="loginBtn">Đăng nhập / Đăng ký</button>
-        `;
-        const btn = document.getElementById('loginBtn');
-        if (btn) btn.addEventListener('click', () => {
-          // sử dụng đường dẫn tương đối để chạy trên file://
-          window.location.href = 'login.html';
-        });
-      }
+    initSlideshow(); // Initialize the slideshow
+  } else if (document.getElementById('product-name')) {
+    // Product detail page logic
+    renderProductDetail();
+
+    // Add event listener for search input on product detail page
+    const searchInput = document.querySelector('.header-right input');
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        window.location.href = `index.html?search=${encodeURIComponent(searchInput.value)}`;
+      });
     }
+  }
 
-    renderUserSection();
-
-    function escapeHtml(str) {
-      return String(str).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]); });
-    }
-  })();
-
-  /* =======================
-     3) SEARCH HOOK
-     ======================= */
-  (function searchHook(){
-    const searchInput = document.querySelector('.search-input');
-    if (!searchInput) return;
-    searchInput.addEventListener('input', () => {
-      const q = searchInput.value.trim().toLowerCase();
-      if (typeof filterProducts === 'function') {
-        filterProducts(q);
-      } else {
-        // nếu filterProducts chưa được định nghĩa thì log, không gây lỗi
-        //console.warn("filterProducts function not found.");
-      }
-    });
-  })();
-
-  /* =======================
-     4) FLASHSALE SLIDER
-     - show 6 items by default (responsive)
-     - prev/next buttons, autoplay, reset on manual
-     ======================= */
-  (function flashSaleSlider(){
-    const wrapper = document.getElementById("flashsaleWrapper");
-    if (!wrapper) {
-      console.warn("flashsaleWrapper not found.");
-      return;
-    }
-    const items = Array.from(wrapper.querySelectorAll(".flashsale-item"));
-    const prevBtn = document.querySelector(".flashsale-btn.prev");
-    const nextBtn = document.querySelector(".flashsale-btn.next");
-    if (!items.length) {
-      console.warn("No flashsale items found.");
-      return;
-    }
-
-    let totalItems = items.length;
-    let currentIndex = 0; // 0-based
-    let visibleItems = 6; // default
-    let fsAuto = null;
-
-    // compute gap between items (supports gap on flex)
-    function getGap() {
-      const st = getComputedStyle(wrapper);
-      const gap = parseFloat(st.gap);
-      if (!isNaN(gap)) return gap;
-      // fallback: try margin-right of item
-      const m = getComputedStyle(items[0]).marginRight;
-      return m ? parseFloat(m) : 15;
-    }
-
-    // compute how many items fit in visible area (responsive)
-    function computeVisibleItems() {
-      const parentW = wrapper.parentElement.clientWidth; // flashsale-container width
-      const itemW = items[0].getBoundingClientRect().width;
-      const gap = getGap();
-      const fit = Math.floor((parentW + gap) / (itemW + gap));
-      return Math.max(1, fit);
-    }
-
-    function clampIndex() {
-      const maxStart = Math.max(0, totalItems - visibleItems);
-      if (currentIndex > maxStart) currentIndex = maxStart;
-      if (currentIndex < 0) currentIndex = 0;
-    }
-
-    function updateTransform() {
-      const itemW = items[0].getBoundingClientRect().width;
-      const gap = getGap();
-      const offset = -(currentIndex * (itemW + gap));
-      wrapper.style.transform = `translateX(${offset}px)`;
-      wrapper.style.transition = 'transform 0.45s cubic-bezier(.2,.8,.2,1)';
-    }
-
-    function recalcAndShow() {
-      visibleItems = computeVisibleItems();
-      clampIndex();
-      updateTransform();
-    }
-
-    function nextSlide() {
-      const maxStart = Math.max(0, totalItems - visibleItems);
-      if (currentIndex < maxStart) currentIndex++;
-      else currentIndex = 0;
-      updateTransform();
-    }
-    function prevSlide() {
-      const maxStart = Math.max(0, totalItems - visibleItems);
-      if (currentIndex > 0) currentIndex--;
-      else currentIndex = maxStart;
-      updateTransform();
-    }
-
-    // expose for debugging (optional)
-    window.flashNext = () => { nextSlide(); resetAuto(); };
-    window.flashPrev = () => { prevSlide(); resetAuto(); };
-
-    if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAuto(); });
-    if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAuto(); });
-
-    function startAuto() {
-      stopAuto();
-      fsAuto = setInterval(() => { nextSlide(); }, 4000);
-    }
-    function stopAuto() {
-      if (fsAuto) { clearInterval(fsAuto); fsAuto = null; }
-    }
-    function resetAuto() { stopAuto(); startAuto(); }
-
-    // initialize after images/CSS computed (use a small timeout to ensure layout)
-    setTimeout(() => {
-      recalcAndShow();
-      startAuto();
-    }, 50);
-
-    // recalc on resize
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        recalcAndShow();
-      }, 120);
-    });
-
-    // pause auto on hover
-    const container = wrapper.parentElement;
-    if (container) {
-      container.addEventListener('mouseenter', stopAuto);
-      container.addEventListener('mouseleave', startAuto);
-    }
-  })();
-
-  // Kết hợp search + filter
+  // Combined filter function (checkbox + search)
 function filterProducts() {
   const selectedCategories = Array.from(document.querySelectorAll(".category-filter:checked")).map(f => f.value);
-  const searchTerm = document.querySelector(".search-input")?.value.trim().toLowerCase() || '';
+  const searchTerm = document.querySelector('.search-input')?.value.trim().toLowerCase() || '';
 
   const filtered = products.filter(p => {
     const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(p.category);
-    const searchMatch = searchTerm === '' 
-      || p.name.toLowerCase().includes(searchTerm) 
-      || p.brand.toLowerCase().includes(searchTerm);
+    const searchMatch = searchTerm === '' || p.name.toLowerCase().includes(searchTerm) || p.brand.toLowerCase().includes(searchTerm);
     return categoryMatch && searchMatch;
   });
 
   renderProducts(filtered);
 }
 
+// Init
 document.addEventListener("DOMContentLoaded", () => {
   renderProducts(products);
 
-  // Checkbox
+  // Checkbox filters
   document.querySelectorAll(".category-filter").forEach(f => {
     f.addEventListener("change", filterProducts);
   });
@@ -774,10 +677,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
-}); // end DOMContentLoaded
-</script>
-</body>
-</html>
-
-
+}); 
