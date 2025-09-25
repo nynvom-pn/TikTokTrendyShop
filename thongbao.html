@@ -99,7 +99,7 @@ header.site-header{
     footer { background-color: #000000; color: #fff; padding: 20px; text-align: center; display: flex; justify-content: space-around; flex-wrap: wrap; }
     footer h3 { margin-bottom: 10px; }
 
-    main { max-width: var(--max-w); margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 280px 1fr; gap: 30px; align-items: start; }
+    main { max-width: var(--max-w); margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 280px 1fr; gap: 30px; align-items: start; background:#000;color:#eef2f7 }
     .sidebar { background-color: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border-color); padding: 15px; }
     .user-profile { display: flex; align-items: center; gap: 12px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
     .user-profile img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
@@ -121,7 +121,13 @@ header.site-header{
     .notification-image { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
     .notification-details { flex-grow: 1; }
     .title { font-weight: 600; margin-bottom: 5px; }
-    .body { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 8px; }
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  background-color: #121212; /* <-- DÒNG NÀY SẼ SỬA LỖI */
+  color: #f1f1f1;
+}
     .time { font-size: 0.85rem; color: #777; }
     .arrow-icon { margin-left: auto; padding: 10px; font-size: 0.8rem; transition: transform 0.3s ease; }
     .notification-item.active .arrow-icon { transform: rotate(180deg); }
@@ -252,7 +258,7 @@ header.site-header{
 
         <div id="vouchers-view" style="display: none;">
             <div class="voucher-header"><input type="text" placeholder="Nhập mã voucher..."><button>Lưu</button></div>
-            <nav class="tabs voucher-tabs"><a href="#" class="active" data-filter="all">Tất cả</a><a href="#" data-filter="platform">TikTok Voucher</a><a href="#" data-filter="shipping">Voucher Vận Chuyển</a></nav>
+            <nav class="tabs voucher-tabs"><a href="#" class="active" data-filter="all">Tất cả</a><a href="#" data-filter="platform">TikTok Trendy Shop Voucher</a><a href="#" data-filter="shipping">Voucher Vận Chuyển</a></nav>
             <div class="voucher-grid"></div>
         </div>
     </div>
@@ -293,11 +299,15 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'DH003', shopName: 'Wipro Việt Nam Chính Hãng', status: 'shipping', statusText: 'ĐANG VẬN CHUYỂN', statusColor: '#f59e0b', lastUpdate: { title: 'Đơn hàng đang được vận chuyển', time: '08:30 Hôm nay' }, total: 131000, products: [{ name: 'Sữa tắm trắng da hương nước hoa Gervenne 1.2l', classification: 'Kiwi 1.2l (+ 600g)', quantity: 1, price: 143000, originalPrice: null, image: 'Hình/CUAHANG/suatam.webp' }], timeline: [{ title: 'Đã đến trung tâm chia hàng', time: '08:30 Hôm nay' }, { title: 'Người bán đã giao cho ĐVVC', time: '17:00 Hôm qua' }] },
         { id: 'DH004', shopName: 'Túi Xách VINICHY STORE', status: 'cancelled', statusText: 'ĐÃ HỦY', statusColor: '#ef4444', lastUpdate: { title: 'Đơn hàng đã bị hủy', time: '09:05 Hôm qua' }, total: 93280, products: [{ name: 'Túi xách nữ đeo chéo, đeo vai VINICHY size 22cm', classification: 'Trắng', quantity: 1, price: 106000, originalPrice: 135000, image: 'Hình/CUAHANG/tui.webp' }], timeline: [{ title: 'Người mua đã yêu cầu hủy đơn', time: '09:05 Hôm qua' }] },
         { id: 'DH005', shopName: 'Obaxua Việt Nam', status: 'delivered', statusText: 'HOÀN THÀNH', statusColor: '#34d399', lastUpdate: { title: 'Đơn hàng đã hoàn tất', time: '14:00 22-09-2025' }, total: 70000, products: [ { name: 'Bột Lá Tía Tô đắp mặt nạ OBAXUA nguyên chất', classification: 'Tía tô 75gr', quantity: 1, price: 35000, originalPrice: 55000, image: 'Hình/CUAHANG/tiato.webp' }, { name: 'Bột Cam Thảo Đậu Đỏ Obaxua', classification: 'Cam thảo đậu đỏ-75G', quantity: 1, price: 35000, originalPrice: 50000, image: 'Hình/CUAHANG/camthao.webp' } ], timeline: [{ title: 'Đơn hàng đã hoàn tất', time: '14:00 22-09-2025' }, { title: 'Giao hàng thành công', time: '11:00 22-09-2025' }] },
-        { id: 'DH006', shopName: 'Yody Official', status: 'pending', statusText: 'CHỜ XÁC NHẬN', statusColor: '#eab308', lastUpdate: { title: 'Đơn hàng đang chờ người bán xác nhận', time: '20:15 24-09-2025' }, total: 399000, products: [{ name: 'Quần jeans nữ Yody Slim Fit', classification: 'Xanh, Size M', quantity: 1, price: 399000, originalPrice: null, image: 'Hình/CUAHANG/yody.webp' }], timeline: [{ title: 'Đơn hàng đang chờ xác nhận', time: '20:15 24-09-2025' }] }
+        { id: 'DH006', shopName: 'Yody Official', status: 'pending', statusText: 'CHỜ XÁC NHẬN', statusColor: '#eab308', lastUpdate: { title: 'Đơn hàng đang chờ người bán xác nhận', time: '20:15 24-09-2025' }, total: 399000, products: [{ name: 'Quần jeans nữ Yody Slim Fit', classification: 'Xanh, Size M', quantity: 1, price: 399000, originalPrice: null, image: 'Hình/CUAHANG/YODY.webp' }], timeline: [{ title: 'Đơn hàng đang chờ xác nhận', time: '20:15 24-09-2025' }] }
     ];
     const allVouchers = [
-        { id: 'VC01', type: 'platform', shopName: 'TikTok Shop', logoUrl: 'https://sf-ecom-webapp-c-sg.tiktokcdn.com/obj/ecom-shop-logo/tiktok-shop-logo-1.png', title: 'Giảm 15% tối đa 200k', minSpend: 'Đơn Tối Thiểu 500k', expiry: 'Sắp hết hạn: Còn 5 giờ' }, { id: 'VC02', type: 'shipping', shopName: 'Vận Chuyển', logoUrl: 'https://cdn-icons-png.flaticon.com/512/3721/3721611.png', title: 'Miễn phí vận chuyển', maxDiscount: 'Giảm tối đa 25k', minSpend: 'Đơn Tối Thiểu 0đ', expiry: 'Hiệu lực: 5 ngày' }, { id: 'VC03', type: 'platform', shopName: 'TikTok Shop', logoUrl: 'https://sf-ecom-webapp-c-sg.tiktokcdn.com/obj/ecom-shop-logo/tiktok-shop-logo-1.png', title: 'Giảm 12% tối đa 150k', minSpend: 'Đơn Tối Thiểu 300k', expiry: 'Sắp hết hạn: Còn 12 giờ' }, { id: 'VC04', type: 'shipping', shopName: 'Vận Chuyển', logoUrl: 'https://cdn-icons-png.flaticon.com/512/3721/3721611.png', title: 'Giảm 50% phí vận chuyển', maxDiscount: 'Giảm tối đa 15k', minSpend: 'Đơn Tối Thiểu 50k', expiry: 'Hiệu lực: 2 ngày' }, { id: 'VC05', type: 'platform', shopName: 'Live', logoUrl: 'https://cdn-icons-png.flaticon.com/512/1169/1169894.png', title: 'Giảm 18% tối đa 150k', minSpend: 'Đơn Tối Thiểu 300k', expiry: 'Hiệu lực sau: 1 ngày' },
-    ];
+    { id: 'VC01', type: 'platform', shopName: 'TikTok Shop', logoUrl: 'Hình/LOGO/LOGO.png', title: 'Giảm 15% tối đa 200k', minSpend: 'Đơn Tối Thiểu 500k', expiry: 'Sắp hết hạn: Còn 5 giờ' }, 
+    { id: 'VC02', type: 'shipping', shopName: 'Vận Chuyển', logoUrl: 'Hình/LOGO/LOGOVC.png', title: 'Miễn phí vận chuyển', maxDiscount: 'Giảm tối đa 25k', minSpend: 'Đơn Tối Thiểu 0đ', expiry: 'Hiệu lực: 5 ngày' }, 
+    { id: 'VC03', type: 'platform', shopName: 'TikTok Shop', logoUrl: 'Hình/LOGO/LOGO.png', title: 'Giảm 12% tối đa 150k', minSpend: 'Đơn Tối Thiểu 300k', expiry: 'Sắp hết hạn: Còn 12 giờ' }, 
+    { id: 'VC04', type: 'shipping', shopName: 'Vận Chuyển', logoUrl: 'Hình/LOGO/LOGOVC.png', title: 'Giảm 50% phí vận chuyển', maxDiscount: 'Giảm tối đa 15k', minSpend: 'Đơn Tối Thiểu 50k', expiry: 'Hiệu lực: 2 ngày' }, 
+    { id: 'VC05', type: 'platform', shopName: 'Live', logoUrl: 'Hình/LOGO/LOGO.png', title: 'Giảm 18% tối đa 150k', minSpend: 'Đơn Tối Thiểu 300k', expiry: 'Hiệu lực sau: 1 ngày' },
+];
 
     const notificationListContainer = document.querySelector('#notifications-view .notification-list');
     const orderListContainer = document.querySelector('#orders-view .order-list');
@@ -493,3 +503,4 @@ document.addEventListener('DOMContentLoaded', function() {
   </script>
 </body>
 </html>
+
