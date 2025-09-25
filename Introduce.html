@@ -65,7 +65,14 @@
   .user-name{background:#f3f4f6;color:#0b0c0f;padding:6px 12px;border-radius:20px;font-weight:600;max-width:260px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word}
   .logout-btn{background:transparent;border:1px solid var(--accent);color:var(--accent);padding:6px 12px;border-radius:20px;font-weight:600;cursor:pointer}
   .logout-btn:hover{background:var(--accent);color:#fff;transform:translateY(-1px)}
-  .login-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:6px 12px;border-radius:999px;color:var(--text);font-weight:700;cursor:pointer}
+  .login-btn{    
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;}
 
   nav.main-menu{width:100%;order:2;margin-top:10px;display:flex;justify-content:center}
   .main-menu ul{display:flex;gap:24px;list-style:none;margin:0;padding:6px 0;align-items:center;flex-wrap:wrap}
@@ -191,7 +198,7 @@
       </div>
 
       <div style="width:360px">
-        <img src="Hình/BANNER/hero.jpg" alt="Hero banner" style="border-radius:10px" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;720&quot; height=&quot;420&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%230f1720&quot;/><text x=&quot;50%25&quot; y=&quot;50%25&quot; fill=&quot;%23fff&quot; font-family=&quot;Arial&quot; font-size=&quot;22&quot; text-anchor=&quot;middle&quot;>TikTok Trendy Shop</text></svg>'">
+        <img src="Hình/BANNER/Banner introduce.png" alt="Hero banner" style="border-radius:10px" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;720&quot; height=&quot;420&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%230f1720&quot;/><text x=&quot;50%25&quot; y=&quot;50%25&quot; fill=&quot;%23fff&quot; font-family=&quot;Arial&quot; font-size=&quot;22&quot; text-anchor=&quot;middle&quot;>TikTok Trendy Shop</text></svg>'">
       </div>
     </section>
 
@@ -331,6 +338,32 @@
     /* ===== lightweight: prevent placeholder flood in console ===== */
     window.addEventListener('error', function(e){ /* ignore noisy external placeholder errors */ }, true);
   })();
+  </script>
+
+  <script>
+  // ✅ Chỉ để 1 hàm updateUserSection, dùng đúng id="user-section"
+  function esc(s){ return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+  function updateUserSection(){
+    const root = document.getElementById("user-section");
+    const user = JSON.parse(localStorage.getItem("user")) || null;
+    if(user && user.username){
+      root.innerHTML = `
+        <span class="user-name">Xin chào, ${esc(user.username)}</span>
+        <button class="logout-btn" id="logoutBtn">Đăng xuất</button>
+      `;
+      document.getElementById("logoutBtn").addEventListener("click", ()=>{
+        localStorage.removeItem("user");
+        updateUserSection();
+        alert("Đã đăng xuất thành công!");
+      });
+    }else{
+      root.innerHTML = `<a href="login.html" class="login-btn">Đăng nhập / Đăng ký</a>`;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", updateUserSection);
+  window.addEventListener("storage", (e)=>{ if(e.key==="user") updateUserSection(); });
   </script>
 </body>
 </html>
