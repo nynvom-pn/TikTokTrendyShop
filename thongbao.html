@@ -3,253 +3,340 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thông báo | TikTok Trendy Shop</title>
+  <title>Tài Khoản Của Tôi | TikTok Trendy Shop</title>
   <link rel="stylesheet" href="css/index.css">
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #fff;
+    :root {
+      --max-w: 1200px; --bg-body: #121212; --bg-card: #242424; --bg-card-hover: #2c2c2c;
+      --text-primary: #f1f1f1; --text-secondary: #a0a0a0; --accent: #fe2c55;
+      --border-color: rgba(255, 255, 255, 0.08); --radius: 12px;
     }
-
-    .header-right {
-     display: flex;
-     align-items: center;
-     gap: 10px;
-   }
-   .user-name {
-     color: #333;
-     font-weight: bold;
-     padding: 5px 10px;
-     background-color: #f0f0f0;
-     border-radius: 5px;
-     margin-left: 20px;
-   }
-   .logout-btn {
-     background-color: lab(96.48% 4.36 1.55);
-     color: rgb(0, 0, 0);
-     border: none;
-     padding: 5px 10px;
-     border-radius: 5px;
-     cursor: pointer;
-     font-size: 0.9rem;
-     margin-top: 20px;
-     margin-left: 20px;
-   }
-   .logout-btn:hover {
-     background-color: #fe2c55;
-   }
-   .login-btn {
-     background-color: #fe9900;
-     color: white;
-     border: none;
-     padding: 5px 10px;
-     border-radius: 5px;
-     cursor: pointer;
-     font-size: 0.9rem;
-   }
-   .login-btn:hover {
-     background-color: #187bcd;
-   }
-   
-    .cart-icon {
-      width: 24px;
-      height: 24px;
-    }
-    /* Main content */
-    main {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 0 10px;
-    }
-    h1 { text-align: center; margin-bottom: 20px; }
-
-    /* Notification list */
-    .notification-list {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    .notification-item {
-      background-color: #ffffff;
-      padding: 15px 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      display: flex;
-      flex-direction: column;
-      transition: background 0.2s;
-      cursor: pointer;
-      color:#121212;
-    }
-    .notification-item:hover { background-color: #bb9999; }
-    .notification-title { font-weight: bold; margin-bottom: 5px; }
-    .notification-time { font-size: 0.8rem; color: #aaa; }
-
-    /* Footer */
-    footer {
-      background-color: #000000;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-    }
+    body { margin: 0; font-family: Inter, system-ui, Arial; background-color: var(--bg-body); color: var(--text-primary); }
+    a { text-decoration: none; color: inherit; }
+    .header-right { display: flex; align-items: center; gap: 10px; }
+    .user-name { color: #333; font-weight: bold; padding: 5px 10px; background-color: #f0f0f0; border-radius: 5px; margin-left: 20px; }
+    .logout-btn { background-color: #f1f1f1; color: #121212; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.9rem; }
+    .logout-btn:hover { background-color: var(--accent); color: #fff; }
+    .login-btn { background-color: #fe9900; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.9rem; }
+    .login-btn:hover { background-color: #e68a00; }
+    .cart-icon { width: 24px; height: 24px; }
+    footer { background-color: #000000; color: #fff; padding: 20px; text-align: center; display: flex; justify-content: space-around; flex-wrap: wrap; }
     footer h3 { margin-bottom: 10px; }
 
-    @media(max-width: 768px){
-      main { width: 95%; }
-      nav.main-menu ul { flex-wrap: wrap; gap: 10px; }
-    }
-    .notification-list-container {
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-  }
-  .notification-list {
-    width: 600px; /* rộng container */
-    max-height: 700px; /* container dài ra */
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    overflow-y: auto; /* scroll nếu quá dài */
-  }
+    main { max-width: var(--max-w); margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 280px 1fr; gap: 30px; align-items: start; }
+    .sidebar { background-color: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border-color); padding: 15px; }
+    .user-profile { display: flex; align-items: center; gap: 12px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
+    .user-profile img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+    .user-profile .username { font-weight: 600; }
+    .user-profile .edit-profile { font-size: 0.9rem; color: var(--text-secondary); }
+    .sidebar-nav { list-style: none; margin: 15px 0 0 0; padding: 0; }
+    .sidebar-nav li a { display: block; padding: 12px 15px; border-radius: 8px; color: var(--text-primary); text-decoration: none; font-weight: 500; transition: background-color 0.2s; }
+    .sidebar-nav li a:hover { background-color: rgba(255, 255, 255, 0.05); }
+    .sidebar-nav li a.active { color: var(--accent); background-color: rgba(254, 44, 85, 0.1); font-weight: 700; }
+    
+    .content-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background-color: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border-color); margin-bottom: 20px; }
+    .content-header h1 { margin: 0; font-size: 1.2rem; }
+    .mark-all-read { background: none; border: none; color: var(--accent); cursor: pointer; font-size: 0.9rem; font-weight: 500;}
+    .notification-group h2, .order-list-title { font-size: 1rem; color: var(--text-secondary); margin: 30px 0 15px 0; text-transform: uppercase; letter-spacing: 1px; }
+    
+    .notification-list { display: flex; flex-direction: column; gap: 15px; }
+    .notification-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius); cursor: pointer; overflow: hidden; }
+    .notification-summary { padding: 16px; display: flex; align-items: center; gap: 16px; }
+    .notification-image { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+    .notification-details { flex-grow: 1; }
+    .title { font-weight: 600; margin-bottom: 5px; }
+    .body { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 8px; }
+    .time { font-size: 0.85rem; color: #777; }
+    .arrow-icon { margin-left: auto; padding: 10px; font-size: 0.8rem; transition: transform 0.3s ease; }
+    .notification-item.active .arrow-icon { transform: rotate(180deg); }
+    .notification-timeline { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; border-top: 1px solid var(--border-color); padding: 0 16px 0 35px; }
+    .notification-item.active .notification-timeline { max-height: 500px; }
+    .timeline-list { list-style: none; padding: 20px 0; margin: 0; position: relative; }
+    .timeline-list::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 2px; background-color: #444; }
+    .timeline-item { position: relative; padding-left: 25px; padding-bottom: 25px; } .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before { content: ''; position: absolute; left: -5px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background-color: #555; border: 2px solid var(--bg-card); }
+    .timeline-item:first-child::before { background-color: var(--accent); }
+
+    .tabs { display: flex; background-color: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border-color); overflow: hidden; }
+    .tabs a { flex: 1; padding: 15px 10px; text-align: center; font-weight: 600; color: var(--text-secondary); border-bottom: 3px solid transparent; transition: color 0.2s, border-color 0.2s; cursor: pointer; }
+    .tabs a:hover { color: var(--text-primary); }
+    .tabs a.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .order-list { margin-top: 30px; display: flex; flex-direction: column; gap: 20px; }
+    .order-card { background-color: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border-color); }
+    .card-header { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); }
+    .shop-info { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+    .shop-info .btn-chat { background-color: var(--accent); color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; }
+    .order-status { font-weight: 600; font-size: 0.9rem; }
+    .product-item { padding: 20px; display: flex; gap: 15px; border-bottom: 1px solid var(--border-color); }
+    .product-item:last-child { border-bottom: none; }
+    .product-item img { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; }
+    .product-details { flex-grow: 1; }
+    .product-details .name { font-weight: 600; margin-bottom: 8px; }
+    .product-details .classification { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 5px; }
+    .product-details .quantity { font-size: 0.9rem; color: var(--text-secondary); }
+    .product-price { text-align: right; }
+    .product-price .original { text-decoration: line-through; color: var(--text-secondary); font-size: 0.9rem; }
+    .product-price .sale { color: var(--accent); font-weight: 600; }
+    .card-footer { padding: 15px 20px; display: flex; flex-direction: column; align-items: flex-end; }
+    .total-amount { margin-bottom: 15px; font-size: 1.1rem; }
+    .total-amount span { font-weight: 700; font-size: 1.3rem; color: var(--accent); }
+    .action-buttons { display: flex; gap: 10px; }
+    .action-buttons .btn { padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-color); transition: transform 0.2s, background-color 0.2s; }
+    .action-buttons .btn:hover { transform: translateY(-2px); }
+    .btn-secondary { background-color: var(--bg-card-hover); color: var(--text-primary); }
+    .btn-primary { background-color: var(--accent); border-color: var(--accent); color: white; }
+    
+    .voucher-header { display: flex; gap: 10px; background-color: var(--bg-card); padding: 20px; border-radius: var(--radius); border: 1px solid var(--border-color); margin-bottom: 20px; }
+    .voucher-header input { flex-grow: 1; background-color: #333; border: 1px solid #444; border-radius: 8px; padding: 12px 15px; color: var(--text-primary); font-size: 1rem; outline: none; }
+    .voucher-header button { background-color: var(--accent); color: white; border: none; border-radius: 8px; padding: 12px 25px; font-weight: 600; cursor: pointer; }
+    .voucher-grid { margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 20px; }
+    .voucher-card { display: flex; background-color: var(--bg-card); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border-color); }
+    .voucher-brand { width: 120px; flex-shrink: 0; background-color: #333; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10px; position: relative; }
+    .voucher-brand img { width: 50px; height: 50px; border-radius: 50%; margin-bottom: 8px; }
+    .voucher-brand .shop-name { font-size: 0.9rem; font-weight: 600; }
+    .voucher-brand::after, .voucher-brand::before { content: ''; position: absolute; right: -10px; width: 20px; height: 20px; border-radius: 50%; background-color: var(--bg-body); }
+    .voucher-brand::after { top: -10px; }
+    .voucher-brand::before { bottom: -10px; }
+    .voucher-details { padding: 15px 20px; display: flex; flex-grow: 1; }
+    .voucher-details .info { display: flex; flex-direction: column; }
+    .voucher-details .title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .voucher-details .expiry { font-size: 0.85rem; color: var(--text-secondary); margin-top: auto; }
+    .voucher-details .min-spend { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 8px; }
+    .voucher-action { margin-left: auto; align-self: center; }
+    .voucher-action .btn-use { background-color: var(--accent); color: white; margin-right:10px; padding: 8px 20px; border-radius: 8px; font-weight: 600; border: none; cursor: pointer; }
   </style>
 </head>
 <body>
 
-<!-- Header -->
-<header>
- <div class="header-container">
-   <div class="logo">
-     <img src="Hình/LOGO/LOGO.png" alt="HD Logo">
-   </div>
-   <input type="text" placeholder="  Nhập từ cần tìm  " class="search-input" style="width:800px; height:50px; margin-right: 20px; margin-left:30px;">
-   <nav class="main-menu">
-     <ul>
-       <li><a href="index.html">TRANG CHỦ</a></li>
-       <li><a href="Introduce.html">GIỚI THIỆU</a></li>
-       <li class="brand-menu">
-         <a href="store.html">CỬA HÀNG</a>
-         <ul class="submenu">
-          <li><a href="mypham.html">Mỹ phẩm</a></li>
-           <li><a href="thoitrang.html">Thời trang</a></li>
-         </ul>
-       </li>
-       <li class="brand-menu"><a href="livestream.html">TRANG LIVESTREAM</a></li>
-       <li class="brand-menu"><a href="hopthoai.html">HỘP THOẠI</a></li>
-       <li class="brand-menu"><a href="thongbao.html">THÔNG BÁO</a></li>
-     </ul>
-   </nav>
-   <div class="header-right">
-     <a href="cart.html">
-       <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Cart">
-     </a>
-     <script>
-   function updateUserSection() {
-     const userSection = document.getElementById("user-section");
-     const user = JSON.parse(localStorage.getItem("user")) || null;
-     if (user && user.fullname) {
-       userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span><button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
-     } else {
-       userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
-     }
-   }
-   function logout() {
-     localStorage.removeItem("user");
-     updateUserSection();
-     alert("Đã đăng xuất thành công!");
-   }
-   document.addEventListener("DOMContentLoaded", updateUserSection);
- </script>
-     <div id="user-section"></div>
-   </div>    
- </div>
-</header>
-<!-- Main content -->
-<main>
-    <h1 style="text-align:right; color:#fff; margin-bottom:30px; margin-right:50px;">THÔNG BÁO CỦA TIKTOK TRENDY SHOP</h1>
-  <div class="notification-list-container">
-    <div class="notification-list" id="notification-list">
-      <div class="notification-item">
-        <div class="notification-title">Giảm giá 20% cho đơn hàng đầu tiên</div>
-        <div class="notification-time">1 giờ trước</div>
+ <header class="site-header">
+    <div class="header-container">
+      <div class="logo">
+        <a href="index.html"><img src="Hình/LOGO/LOGO.png" alt="Logo"></a>
       </div>
-      <div class="notification-item">
-        <div class="notification-title">Shop A vừa trả lời tin nhắn của bạn</div>
-        <div class="notification-time">3 giờ trước</div>
+
+      <div class="search-box" role="search" aria-label="Tìm kiếm">
+        <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+        <input class="search-input" type="search" placeholder="Tìm sản phẩm, thương hiệu..." aria-label="Tìm kiếm">
       </div>
-      <div class="notification-item">
-        <div class="notification-title">Livestream mới từ Shop C đang diễn ra</div>
-        <div class="notification-time">Hôm nay, 10:00</div>
+
+      <div class="header-right" aria-hidden="false">
+        <a href="cart.html" class="cart-btn" aria-label="Giỏ hàng">
+          <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Giỏ hàng">
+          <span class="cart-badge" id="cartCount" style="display:none">0</span>
+        </a>
+        <div id="user-section"></div>
       </div>
-      <div class="notification-item">
-        <div class="notification-title">Chương trình hoàn tiền 5% cho các đơn hàng từ 500k</div>
-        <div class="notification-time">Hôm qua, 20:15</div>
-      </div>
-      <div class="notification-item">
-        <div class="notification-title">Đơn hàng #1234 đã được vận chuyển</div>
-        <div class="notification-time">Hôm qua, 18:00</div>
-      </div>
-      <div class="notification-item">
-        <div class="notification-title">Shop B vừa thêm sản phẩm mới</div>
-        <div class="notification-time">Hôm qua, 16:30</div>
-      </div>
-      <div class="notification-item">
-        <div class="notification-title">Khuyến mãi cuối tuần: Freeship toàn quốc</div>
-        <div class="notification-time">2 ngày trước</div>
-      </div>
-      <div class="notification-item">
-        <div class="notification-title">Shop C trả lời đánh giá của bạn</div>
-        <div class="notification-time">2 ngày trước</div>
-      </div>
-      <div class="notification-item">
-        <div class="notification-title">Đơn hàng #1230 đã được hủy</div>
-        <div class="notification-time">3 ngày trước</div>
-      </div>
-      <div class="notification-item">
-        <div class="notification-title">Chương trình quà tặng đặc biệt tháng 9</div>
-        <div class="notification-time">3 ngày trước</div>
-      </div>
+
+      <nav class="main-menu" aria-label="Main menu">
+        <ul>
+          <li><a href="index.html">TRANG CHỦ</a></li>
+          <li><a href="Introduce.html">GIỚI THIỆU</a></li>
+          <li class="brand-menu">
+            <a href="store.html">CỬA HÀNG</a>
+            <ul class="submenu" aria-label="Danh mục">
+              <li><a href="mypham.html">Mỹ phẩm</a></li>
+              <li><a href="thoitrang.html">Thời trang</a></li>
+            </ul>
+          </li>
+          <li><a href="livestream.html">TRANG LIVESTREAM</a></li>
+          <li><a href="hopthoai.html">HỘP THOẠI</a></li>
+          <li><a href="thongbao.html">THÔNG BÁO</a></li>
+        </ul>
+      </nav>
     </div>
-  </div>
+  </header>
+
+<main>
+    <aside class="sidebar">
+        <div class="user-profile">
+            <img src="https://i.pravatar.cc/100" alt="User Avatar">
+            <div>
+               <div class="username" id="sidebar-username"></div>
+                <div class="edit-profile">Sửa hồ sơ</div>
+            </div>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="#" id="nav-notifications" class="active">Thông Báo</a></li>
+            <li><a href="#" id="nav-orders">Đơn Mua</a></li>
+            <li><a href="#" id="nav-vouchers">Kho Voucher</a></li>
+            <li><a href="#">Chính sách</a></li>
+        </ul>
+    </aside>
+
+    <div class="content">
+        <div id="notifications-view">
+            <div class="content-header"><h1>Thông Báo</h1><button class="mark-all-read">Đánh dấu đã đọc tất cả</button></div>
+            <section class="notification-group"><h2 class="notification-list-title">Tất cả cập nhật</h2><div class="notification-list"></div></section>
+        </div>
+
+        <div id="orders-view" style="display: none;">
+            <nav class="tabs order-tabs"><a href="#" class="active" data-status="all">Tất cả</a><a href="#" data-status="pending">Chờ xác nhận</a><a href="#" data-status="shipping">Vận chuyển</a><a href="#" data-status="delivered">Hoàn thành</a><a href="#" data-status="cancelled">Đã hủy</a></nav>
+            <div class="order-list"></div>
+        </div>
+
+        <div id="vouchers-view" style="display: none;">
+            <div class="voucher-header"><input type="text" placeholder="Nhập mã voucher..."><button>Lưu</button></div>
+            <nav class="tabs voucher-tabs"><a href="#" class="active" data-filter="all">Tất cả</a><a href="#" data-filter="platform">TikTok Voucher</a><a href="#" data-filter="shipping">Voucher Vận Chuyển</a></nav>
+            <div class="voucher-grid"></div>
+        </div>
+    </div>
 </main>
 
-
-<!-- Footer -->
 <footer>
-  <div class="footer-logo">
-    <img src="Hình/LOGO/LOGO.png" alt="TikTok Trendy Shop" style="height:100px; margin-bottom:10px;">
-  </div>
-  <div class="footer-info">
-    <h3>THÔNG TIN LIÊN HỆ</h3>
-    <p>TikTok Trendy Shop</p>
-    <p>Địa chỉ: Khu phố 6, phường Linh Trung, TP Thủ Đức, TP Hồ Chí Minh</p>
-    <p>Email: tiktoktrendyshop@gmail.com</p>
-  </div>
-  <div class="footer-license">
-    <h3>HỖ TRỢ KHÁCH HÀNG</h3>
-    <p>Chăm sóc khách hàng</p>
-    <p>Hướng dẫn mua hàng</p>
-    <p>Hỗ trợ đổi trả hàng</p>
-  </div>
-  <div class="footer-payment">
-    <h3>CHÍNH SÁCH</h3>
-    <p>Chính sách đổi hàng</p>
-    <p>Bảo mật thông tin</p>
-    <p>Chính sách giao hàng</p>
-  </div>
-</footer>
+    <div class="footer-container" style="background-color: #000000; color: #ffffff; padding: 20px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; text-align: center;">
+      <div class="footer-logo">
+        <img src="Hình/LOGO/LOGO.png" alt="TikTok Trendy Shop" style="height: 100px; margin-bottom: 10px;">
+      </div>
+      <div class="footer-info">
+        <h3 style="margin: 0 0 10px;">THÔNG TIN LIÊN HỆ</h3>
+        <p>TikTok Trendy Shop</p>
+        <p>Địa chỉ: Khu phố 6, phường Linh Trung, TP Thủ Đức, TP Hồ Chí Minh</p>
+        <p>Email: tiktoktrendyshop@gmail.com</p>
+      </div>
+      <div class="footer-license">
+        <h3 style="margin: 0 0 10px;">HỒ TRỢ KHÁCH HÀNG</h3>
+        <p>Chăm sóc khách hàng</p>
+        <p>Hướng dẫn mua hàng</p>
+        <p>Hỗ trợ đổi trả hàng</p>
+      </div>
+      <div class="footer-payment">
+        <h3 style="margin: 0 0 10px;">CHÍNH SÁCH</h3>
+        <p>Chính sách đổi hàng</p>
+        <p>Bảo mật thông tin</p>
+        <p>Chính sách giao hàng</p>
+      </div>
+    </div>
+  </footer>
 
 <script>
-  // Click vào thông báo sẽ alert
-  const notifications = document.querySelectorAll('.notification-item');
-  notifications.forEach(item => {
-    item.addEventListener('click', () => {
-      alert(item.querySelector('.notification-title').textContent);
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const allOrders = [
+        { id: 'DH001', shopName: 'Dr Thêm Cosmetics', status: 'delivered', statusText: 'HOÀN THÀNH', statusColor: '#34d399', lastUpdate: { title: 'Đơn hàng đã hoàn tất', time: '11:20 24-09-2025' }, total: 80080, products: [{ name: 'Sữa Rửa Mặt Hada Labo Premium 80g', classification: 'PERFECT WHITE', quantity: 1, price: 91000, originalPrice: 100000, image: 'Hình/CUAHANG/hadalabo.webp' }], timeline: [{ title: 'Đơn hàng đã hoàn tất', time: '11:20 24-09-2025' }, { title: 'Giao hàng thành công', time: '10:00 24-09-2025' }] },
+        { id: 'DH002', shopName: 'VEGAN - Mỹ phẩm thuần chay', status: 'delivered', statusText: 'HOÀN THÀNH', statusColor: '#34d399', lastUpdate: { title: 'Giao kiện hàng thành công', time: '16:21 18-09-2025' }, total: 178000, products: [{ name: 'Nước tẩy trang bí đao The Cocoon Vietnam 500ml', classification: '1 CHAI LẺ', quantity: 1, price: 200000, originalPrice: 295000, image: 'Hình/CUAHANG/ttcocoon.webp' }], timeline: [{ title: 'Giao hàng thành công', time: '16:21 18-09-2025' }, { title: 'Đang vận chuyển', time: '10:30 17-09-2025' }] },
+        { id: 'DH003', shopName: 'Wipro Việt Nam Chính Hãng', status: 'shipping', statusText: 'ĐANG VẬN CHUYỂN', statusColor: '#f59e0b', lastUpdate: { title: 'Đơn hàng đang được vận chuyển', time: '08:30 Hôm nay' }, total: 131000, products: [{ name: 'Sữa tắm trắng da hương nước hoa Gervenne 1.2l', classification: 'Kiwi 1.2l (+ 600g)', quantity: 1, price: 143000, originalPrice: null, image: 'Hình/CUAHANG/suatam.webp' }], timeline: [{ title: 'Đã đến trung tâm chia hàng', time: '08:30 Hôm nay' }, { title: 'Người bán đã giao cho ĐVVC', time: '17:00 Hôm qua' }] },
+        { id: 'DH004', shopName: 'Túi Xách VINICHY STORE', status: 'cancelled', statusText: 'ĐÃ HỦY', statusColor: '#ef4444', lastUpdate: { title: 'Đơn hàng đã bị hủy', time: '09:05 Hôm qua' }, total: 93280, products: [{ name: 'Túi xách nữ đeo chéo, đeo vai VINICHY size 22cm', classification: 'Trắng', quantity: 1, price: 106000, originalPrice: 135000, image: 'Hình/CUAHANG/tui.webp' }], timeline: [{ title: 'Người mua đã yêu cầu hủy đơn', time: '09:05 Hôm qua' }] },
+        { id: 'DH005', shopName: 'Obaxua Việt Nam', status: 'delivered', statusText: 'HOÀN THÀNH', statusColor: '#34d399', lastUpdate: { title: 'Đơn hàng đã hoàn tất', time: '14:00 22-09-2025' }, total: 70000, products: [ { name: 'Bột Lá Tía Tô đắp mặt nạ OBAXUA nguyên chất', classification: 'Tía tô 75gr', quantity: 1, price: 35000, originalPrice: 55000, image: 'Hình/CUAHANG/tiato.webp' }, { name: 'Bột Cam Thảo Đậu Đỏ Obaxua', classification: 'Cam thảo đậu đỏ-75G', quantity: 1, price: 35000, originalPrice: 50000, image: 'Hình/CUAHANG/camthao.webp' } ], timeline: [{ title: 'Đơn hàng đã hoàn tất', time: '14:00 22-09-2025' }, { title: 'Giao hàng thành công', time: '11:00 22-09-2025' }] },
+        { id: 'DH006', shopName: 'Yody Official', status: 'pending', statusText: 'CHỜ XÁC NHẬN', statusColor: '#eab308', lastUpdate: { title: 'Đơn hàng đang chờ người bán xác nhận', time: '20:15 24-09-2025' }, total: 399000, products: [{ name: 'Quần jeans nữ Yody Slim Fit', classification: 'Xanh, Size M', quantity: 1, price: 399000, originalPrice: null, image: 'Hình/CUAHANG/yody.webp' }], timeline: [{ title: 'Đơn hàng đang chờ xác nhận', time: '20:15 24-09-2025' }] }
+    ];
+    const allVouchers = [
+        { id: 'VC01', type: 'platform', shopName: 'TikTok Shop', logoUrl: 'https://sf-ecom-webapp-c-sg.tiktokcdn.com/obj/ecom-shop-logo/tiktok-shop-logo-1.png', title: 'Giảm 15% tối đa 200k', minSpend: 'Đơn Tối Thiểu 500k', expiry: 'Sắp hết hạn: Còn 5 giờ' }, { id: 'VC02', type: 'shipping', shopName: 'Vận Chuyển', logoUrl: 'https://cdn-icons-png.flaticon.com/512/3721/3721611.png', title: 'Miễn phí vận chuyển', maxDiscount: 'Giảm tối đa 25k', minSpend: 'Đơn Tối Thiểu 0đ', expiry: 'Hiệu lực: 5 ngày' }, { id: 'VC03', type: 'platform', shopName: 'TikTok Shop', logoUrl: 'https://sf-ecom-webapp-c-sg.tiktokcdn.com/obj/ecom-shop-logo/tiktok-shop-logo-1.png', title: 'Giảm 12% tối đa 150k', minSpend: 'Đơn Tối Thiểu 300k', expiry: 'Sắp hết hạn: Còn 12 giờ' }, { id: 'VC04', type: 'shipping', shopName: 'Vận Chuyển', logoUrl: 'https://cdn-icons-png.flaticon.com/512/3721/3721611.png', title: 'Giảm 50% phí vận chuyển', maxDiscount: 'Giảm tối đa 15k', minSpend: 'Đơn Tối Thiểu 50k', expiry: 'Hiệu lực: 2 ngày' }, { id: 'VC05', type: 'platform', shopName: 'Live', logoUrl: 'https://cdn-icons-png.flaticon.com/512/1169/1169894.png', title: 'Giảm 18% tối đa 150k', minSpend: 'Đơn Tối Thiểu 300k', expiry: 'Hiệu lực sau: 1 ngày' },
+    ];
+
+    const notificationListContainer = document.querySelector('#notifications-view .notification-list');
+    const orderListContainer = document.querySelector('#orders-view .order-list');
+    const voucherGridContainer = document.querySelector('#vouchers-view .voucher-grid');
+    
+    function renderNotifications(orderData) {
+        notificationListContainer.innerHTML = '';
+        if (orderData.length === 0) { notificationListContainer.innerHTML = '<p style="text-align:center;color:var(--text-secondary);">Không có thông báo nào.</p>'; return; }
+        orderData.forEach(order => {
+            const timelineHTML = order.timeline.map(item => `<li class="timeline-item"><div class="title">${item.title}</div><div class="time">${item.time}</div></li>`).join('');
+            const notificationHTML = `<div class="notification-item"><div class="notification-summary"><img src="${order.products[0].image}" class="notification-image" alt="Product Image"><div class="notification-details"><div class="title">${order.lastUpdate.title}</div><div class="body">Đơn hàng #${order.id} từ shop ${order.shopName}.</div></div><div class="arrow-icon">▼</div></div><div class="notification-timeline"><ul class="timeline-list">${timelineHTML}</ul></div></div>`;
+            notificationListContainer.innerHTML += notificationHTML;
+        });
+        addAccordionListeners();
+    }
+
+    function renderOrders(orderData) {
+        orderListContainer.innerHTML = '';
+        if (orderData.length === 0) { orderListContainer.innerHTML = '<p style="text-align:center;color:var(--text-secondary);margin-top:40px;">Không có đơn hàng nào trong mục này.</p>'; return; }
+        orderData.forEach(order => {
+            const productsHTML = order.products.map(p => `<div class="product-item"><img src="${p.image}" alt="Product Image"><div class="product-details"><div class="name">${p.name}</div><div class="classification">Phân loại hàng: ${p.classification}</div><div class="quantity">x${p.quantity}</div></div><div class="product-price">${p.originalPrice ? `<div class="original">${p.originalPrice.toLocaleString('vi-VN')}₫</div>` : ''}<div class="sale">${p.price.toLocaleString('vi-VN')}₫</div></div></div>`).join('');
+            let actionButtonsHTML = '';
+            if (order.status === 'delivered') actionButtonsHTML = `<button class="btn btn-secondary">Mua Lại</button><button class="btn btn-primary">Đánh Giá</button>`;
+            else if (order.status === 'shipping') actionButtonsHTML = `<button class="btn btn-primary">Đã Nhận Hàng</button>`;
+            else if (order.status === 'pending') actionButtonsHTML = `<button class="btn btn-secondary">Hủy Đơn</button>`;
+            const orderHTML = `<div class="order-card" data-status-group="${order.status}"><div class="card-header"><div class="shop-info"><span>${order.shopName}</span><a href="#" class="btn-chat">Chat</a></div><div class="order-status" style="color: ${order.statusColor};">${order.statusText}</div></div>${productsHTML}<div class="card-footer"><div class="total-amount">Thành tiền: <span>${order.total.toLocaleString('vi-VN')}₫</span></div><div class="action-buttons">${actionButtonsHTML}</div></div></div>`;
+            orderListContainer.innerHTML += orderHTML;
+        });
+    }
+
+   function renderVouchers(voucherData) {
+    voucherGridContainer.innerHTML = '';
+    if (voucherData.length === 0) {
+        voucherGridContainer.innerHTML = '<p style="text-align:center;color:var(--text-secondary);margin-top:40px;">Không có voucher nào.</p>';
+        return;
+    }
+    voucherData.forEach(voucher => {
+        const voucherHTML = `
+            <div class="voucher-card">
+                <div class="voucher-brand">
+                    <img src="${voucher.logoUrl}" alt="${voucher.shopName}">
+                    <div class="shop-name">${voucher.shopName}</div>
+                </div>
+                <div class="voucher-details">
+                    <div class="info">
+                        <div class="title">${voucher.title}</div>
+                        <div class="min-spend">${voucher.minSpend}</div>
+                    </div>
+                    <div class="expiry">${voucher.expiry}</div>
+                </div>
+                <div class="voucher-action">
+                    <a href="index.html"><button class="btn-use">Dùng ngay</button></a>
+                </div>
+            </div>`;
+        voucherGridContainer.innerHTML += voucherHTML;
     });
-  });
+}
+
+
+    const sidebarUsernameElement = document.getElementById('sidebar-username');
+    const user = JSON.parse(localStorage.getItem("user")) || null;
+    if (sidebarUsernameElement && user && user.fullname) { sidebarUsernameElement.textContent = user.fullname; } 
+    else if (sidebarUsernameElement) { sidebarUsernameElement.textContent = 'Khách'; }
+
+    const views = { notifications: document.getElementById('notifications-view'), orders: document.getElementById('orders-view'), vouchers: document.getElementById('vouchers-view') };
+    const navLinks = { notifications: document.getElementById('nav-notifications'), orders: document.getElementById('nav-orders'), vouchers: document.getElementById('nav-vouchers') };
+    function switchView(viewName) {
+        Object.values(views).forEach(view => view.style.display = 'none');
+        Object.values(navLinks).forEach(link => link.classList.remove('active'));
+        views[viewName].style.display = 'block';
+        navLinks[viewName].classList.add('active');
+    }
+    navLinks.notifications.addEventListener('click', (e) => { e.preventDefault(); switchView('notifications'); });
+    navLinks.orders.addEventListener('click', (e) => { e.preventDefault(); switchView('orders'); });
+    navLinks.vouchers.addEventListener('click', (e) => { e.preventDefault(); switchView('vouchers'); });
+
+    function addAccordionListeners() {
+        const notificationItems = document.querySelectorAll('#notifications-view .notification-item');
+        notificationItems.forEach(item => {
+            const summary = item.querySelector('.notification-summary');
+            if (summary && !summary.dataset.listenerAttached) { 
+                summary.addEventListener('click', () => item.classList.toggle('active'));
+                summary.dataset.listenerAttached = 'true';
+            }
+        });
+    }
+  
+    const orderTabs = document.querySelectorAll('#orders-view .order-tabs a');
+    orderTabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
+            e.preventDefault();
+            orderTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            const statusToShow = this.getAttribute('data-status');
+            const filteredOrders = (statusToShow === 'all') ? allOrders : allOrders.filter(order => order.status === statusToShow);
+            renderOrders(filteredOrders);
+        });
+    });
+
+    const voucherTabs = document.querySelectorAll('#vouchers-view .voucher-tabs a');
+    voucherTabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
+            e.preventDefault();
+            voucherTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            const filter = this.getAttribute('data-filter');
+            const filteredVouchers = (filter === 'all') ? allVouchers : allVouchers.filter(v => v.type === filter);
+            renderVouchers(filteredVouchers);
+        });
+    });
+
+    renderNotifications(allOrders);
+    renderOrders(allOrders);
+    renderVouchers(allVouchers);
+});
 </script>
 
 </body>
