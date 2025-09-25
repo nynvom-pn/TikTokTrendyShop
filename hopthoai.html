@@ -6,6 +6,7 @@
  <title> Hộp thoại | TikTok Trendy Shop</title>
  <link rel="stylesheet" href="css/index.css">
  <style>
+   /* Các style cũ của bạn được giữ nguyên */
    .header-right {
      display: flex;
      align-items: center;
@@ -45,147 +46,169 @@
    .login-btn:hover {
      background-color: #187bcd;
    }
-   
     .cart-icon {
       width: 24px;
       height: 24px;
     }
     main {
-  display: flex;
-  justify-content: center; /* Căn giữa container */
-  margin: 30px auto;
-  padding: 0 20px;
-}
-
-.container {
-  width: 900px; /* Rộng hơn trước, tùy ý */
-  max-width: 100%;
-  height: 600px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(1, 1, 1, 0.5);
-}
-    .cart-icon {
-      width: 24px;
-      height: 24px;
-    }
-    .login-btn, .logout-btn {
-      padding: 5px 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-    .login-btn { background-color: #ff9a02; color: #fff; }
-    .logout-btn { background-color: #ff9a02; color: #fff; }
-    .login-btn:hover { background-color: #0086bf; }
-    .logout-btn:hover { background-color: #777; }
-
-    /* Main container */
-    main {
-      max-width: 1000px;
-      margin: 20px auto;
-      padding: 0 10px;
-    }
-
-    /* Chat container */
-    .container {
       display: flex;
+      justify-content: center; /* Căn giữa container */
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .container {
+      width: 900px;
+      max-width: 100%;
       height: 600px;
       background-color: #ffffff;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 10px rgba(1, 1, 1, 0.5);
+      display: flex;
     }
-
-    /* Shop list */
     .shop-list {
       width: 30%;
-      border-right: 1px solid #333;
+      border-right: 1px solid #ccc;
       overflow-y: auto;
-      background-color: #ffffff;
+      background-color: #f9f9f9;
     }
     .shop-item {
       padding: 15px;
       display: flex;
       align-items: center;
       cursor: pointer;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid #eee;
       transition: background 0.2s;
     }
-    .shop-item:hover { background-color: #333; color:#f0f0f0;}
-    .shop-item.active { background-color: #555; color:#f0f0f0;}
+    .shop-item:hover { background-color: #e9e9e9; }
+    .shop-item.active { background-color: #ddd; }
     .shop-avatar {
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background-color: #888;
       margin-right: 10px;
       flex-shrink: 0;
+      overflow: hidden;
+    }
+    .shop-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     .shop-name { font-weight: bold; }
 
-    /* Chat box */
+    /* ---- CSS MỚI VÀ CẬP NHẬT CHO KHUNG CHAT ---- */
     .chat-box {
-      flex: 1;
+      width: 70%;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
     }
-    .chat-header {
-      background-color: #000000;
-      padding: 15px;
-      font-weight: bold;
-      color:#ffffff;
+    .chat-messages-container {
+      flex: 1; /* Chiếm hết không gian còn lại */
+      padding: 20px;
+      overflow-y: auto; /* Thêm thanh cuộn khi tin nhắn dài */
+      background-color: #f4f4f4;
     }
-    .chat-messages {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      background-color: #ffffff;
-    }
-    .message {
-      max-width: 70%;
-      padding: 10px 15px;
-      border-radius: 20px;
-      word-wrap: break-word;
-    }
-    .user-message {
-      background-color: #bcb7b7;
-      align-self: flex-end;
-      color: #fff;
-    }
-    .shop-message {
-      background-color: #ffffff;
-      align-self: flex-start;
-      color: #000000;
-    }
-    .chat-input {
-      display: flex;
-      border-top: 1px solid #000000;
-    }
-    .chat-input input {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      outline: none;
-      background-color: #ffffff;
-      color: #000000;
-    }
-    .chat-input button {
-      background-color: #ffffff;
-      color: #000000;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-    }
-    .chat-input button:hover { background-color: #777; }
+   /* ---- ĐÂY LÀ KHUNG CHỨA TẤT CẢ TIN NHẮN ---- */
+/* BỔ SUNG ĐOẠN CSS NÀY VÀO FILE */
 
-    /* Footer */
+/* ---- KHỐI CSS HOÀN CHỈNH CHO TIN NHẮN ---- */
+
+/* Khung chứa TẤT CẢ tin nhắn của MỘT shop */
+.messages {
+  display: flex;            /* BẮT BUỘC: Kích hoạt Flexbox */
+  flex-direction: column; /* Sắp xếp các tin nhắn theo chiều dọc */
+}
+
+/* Style chung cho MỘT bong bóng tin nhắn */
+.message {
+  max-width: 80%;           /* Giới hạn độ rộng tối đa */
+  padding: 10px 15px;
+  border-radius: 18px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  word-wrap: break-word;    /* Tự xuống dòng khi chữ dài */
+}
+
+/* Tin nhắn của shop (căn trái và tự co giãn) */
+.shop-message {
+  background-color: #e9e9eb;
+  color: #000;
+  align-self: flex-start; /* QUAN TRỌNG: Tự đẩy mình sang trái và co lại */
+}
+
+/* Tin nhắn của người dùng (căn phải và tự co giãn) */
+.user-message {
+  background-color: #0084ff;
+  color: white;
+  align-self: flex-end;   /* QUAN TRỌNG: Tự đẩy mình sang phải và co lại */
+}
+
+/* Style riêng cho tin nhắn dạng thẻ sản phẩm */
+.card-message {
+  padding: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 300px;
+}
+/* ---- KẾT THÚC KHỐI CSS ---- */
+
+    .chat-input-area {
+      display: flex;
+      border-top: 1px solid #ccc;
+      padding: 10px;
+      background-color: #ffffff;
+    }
+    .chat-input-area input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      outline: none;
+      margin-right: 10px;
+    }
+    .chat-input-area button {
+      background-color: #000000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .chat-input-area button:hover {
+      background-color: #0073e6;
+    }
+    /* Card tin nhắn khuyến mãi */
+    .card-message {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      max-width: 300px;
+    }
+    .card-image { width: 100%; display: block; }
+    .card-content { padding: 10px; }
+    .card-content h4 { margin: 0 0 5px; font-size: 16px; color: #333; }
+    .card-content p { margin: 0 0 10px; font-size: 14px; color: #666; }
+    .card-buttons { display: flex; gap: 8px; }
+    .card-buttons button {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background: #000000;
+      color: #fff;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+    .card-buttons button:hover { background: #e65c00; }
+    /* ------------------------------------------- */
+
     footer {
       background-color: #1e1e1e;
       color: #fff;
@@ -195,15 +218,14 @@
 
     @media(max-width: 768px){
       .container { flex-direction: column; height: 80vh; }
-      .shop-list { width: 100%; height: 150px; display: flex; }
+      .shop-list { width: 100%; height: 150px; display: flex; border-right: none; border-bottom: 1px solid #ccc;}
+      .chat-box { width: 100%; flex: 1; }
       .shop-item { flex: 1; justify-content: center; flex-direction: column; }
-      .chat-box { flex: 1; }
     }
-  </style>
+ </style>
 </head>
 <body>
 
-<!-- Header -->
 <header>
  <div class="header-container">
    <div class="logo">
@@ -231,60 +253,95 @@
        <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Cart">
      </a>
      <script>
-   function updateUserSection() {
-     const userSection = document.getElementById("user-section");
-     const user = JSON.parse(localStorage.getItem("user")) || null;
-     if (user && user.fullname) {
-       userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span><button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
-     } else {
-       userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
-     }
-   }
-   function logout() {
-     localStorage.removeItem("user");
-     updateUserSection();
-     alert("Đã đăng xuất thành công!");
-   }
-   document.addEventListener("DOMContentLoaded", updateUserSection);
- </script>
+       function updateUserSection() {
+         const userSection = document.getElementById("user-section");
+         const user = JSON.parse(localStorage.getItem("user")) || null;
+         if (user && user.fullname) {
+           userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span><button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
+         } else {
+           userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
+         }
+       }
+       function logout() {
+         localStorage.removeItem("user");
+         updateUserSection();
+         alert("Đã đăng xuất thành công!");
+       }
+       document.addEventListener("DOMContentLoaded", updateUserSection);
+     </script>
      <div id="user-section"></div>
-   </div>    
+   </div>
  </div>
 </header>
 
 <main>
   <div class="container">
-    <!-- Danh sách shop -->
     <div class="shop-list" id="shop-list">
       <div class="shop-item active" data-shop="shop1">
-        <div class="shop-avatar"></div>
-        <div class="shop-name">Shop A</div>
+        <div class="shop-avatar">
+          <img src="Hình/LOGO/logoshop1.jpg" alt="Shop A">
+        </div>
+        <div class="shop-name">Cocoon Việt Nam</div>
       </div>
       <div class="shop-item" data-shop="shop2">
-        <div class="shop-avatar"></div>
-        <div class="shop-name">Shop B</div>
+        <div class="shop-avatar">
+          <img src="Hình/LOGO/logoshop2.webp" alt="Shop B">
+        </div>
+        <div class="shop-name">Lumi Couple</div>
       </div>
       <div class="shop-item" data-shop="shop3">
-        <div class="shop-avatar"></div>
-        <div class="shop-name">Shop C</div>
+        <div class="shop-avatar">
+          <img src="Hình/LOGO/logoshop3.webp" alt="Shop C">
+        </div>
+        <div class="shop-name">Lyke.vn</div>
       </div>
     </div>
 
-    <!-- Khung chat -->
-    <div class="chat-box">
-      <div class="chat-header" id="chat-header">Shop A</div>
-      <div class="chat-messages" id="chat-messages">
-        <div class="shop-message">Xin chào! Bạn cần hỗ trợ gì hôm nay?</div>
-      </div>
-      <div class="chat-input">
+    <div class="chat-box" id="chat-box">
+      <div class="chat-messages-container">
+    
+    <div class="messages" data-shop="shop1">
+        <div class="message shop-message card-message">
+            <img src="Hình/CUAHANG/khuyenmaishop1.webp" class="card-image">
+            <div class="card-content">
+                <h4>Khuyến mãi cực hot 🔥</h4>
+                <p>Mua 2 sản phẩm bất kỳ sẽ được giảm ngay 20%. Nhanh tay kẻo hết!</p>
+                <div class="card-buttons">
+                    <button onclick="window.location.href='product-detail.html'">Xem ngay</button>
+                    <button onclick="alert('Bạn đã quan tâm sản phẩm!')">Quan tâm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="messages" data-shop="shop2" style="display: none;">
+       <div class="message shop-message">Chào bạn, Lumi Couple có rất nhiều mẫu áo đôi mới về. Bạn cần tư vấn gì không?</div>
+    </div>
+
+    <div class="messages" data-shop="shop3" style="display: none;">
+        <div class="message shop-message card-message">
+            <img src="Hình/CUAHANG/khuyenmaishop3.webp" class="card-image">
+            <div class="card-content">
+                <h4>Khuyến mãi cực hot 🔥</h4>
+                <p>Mua 2 sản phẩm bất kỳ sẽ được giảm ngay 20%. Nhanh tay kẻo hết!</p>
+                <div class="card-buttons">
+                    <button onclick="window.location.href='product-detail.html'">Xem ngay</button>
+                    <button onclick="alert('Bạn đã quan tâm sản phẩm!')">Quan tâm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+      <div class="chat-input-area">
         <input type="text" id="chat-input" placeholder="Nhập tin nhắn...">
-        <button onclick="sendMessage()">Gửi</button>
+        <button id="send-btn">Gửi</button>
       </div>
     </div>
   </div>
 </main>
 
-<!-- Footer -->
 <footer>
     <div class="footer-container" style="background-color: #000000; color: #ffffff; padding: 20px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; text-align: center;">
       <div class="footer-logo">
@@ -309,61 +366,82 @@
         <p>Chính sách giao hàng</p>
       </div>
     </div>
-  </footer>
+</footer>
 
 <script>
-  const shopList = document.querySelectorAll('.shop-item');
-  const chatHeader = document.getElementById('chat-header');
-  const chatMessages = document.getElementById('chat-messages');
+  document.addEventListener("DOMContentLoaded", function() {
+    const shopItems = document.querySelectorAll('.shop-item');
+    const messageContainers = document.querySelectorAll('.messages');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+    const messagesContainerWrapper = document.querySelector('.chat-messages-container');
 
-  const chats = {
-    shop1: ['Xin chào! Bạn cần hỗ trợ gì hôm nay?'],
-    shop2: ['Chào bạn, Shop B đây!'],
-    shop3: ['Shop C sẵn sàng hỗ trợ bạn!']
-  };
+    // --- Xử lý chuyển đổi giữa các shop ---
+    shopItems.forEach(item => {
+      item.addEventListener('click', () => {
+        // Bỏ active ở tất cả shop
+        shopItems.forEach(i => i.classList.remove('active'));
+        // Thêm active cho shop được click
+        item.classList.add('active');
 
-  let currentShop = 'shop1';
+        const targetShop = item.getAttribute('data-shop');
 
-  shopList.forEach(item => {
-    item.addEventListener('click', () => {
-      shopList.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-      currentShop = item.dataset.shop;
-      chatHeader.textContent = item.querySelector('.shop-name').textContent;
+        // Ẩn tất cả các hộp tin nhắn
+        messageContainers.forEach(container => {
+          container.style.display = 'none';
+        });
 
-      chatMessages.innerHTML = '';
-      chats[currentShop].forEach(msg => {
-        const div = document.createElement('div');
-        div.className = 'shop-message';
-        div.textContent = msg;
-        chatMessages.appendChild(div);
+        // Hiển thị hộp tin nhắn của shop được chọn
+        const activeMessageContainer = document.querySelector(`.messages[data-shop="${targetShop}"]`);
+        if (activeMessageContainer) {
+          activeMessageContainer.style.display = 'block';
+        }
       });
-      chatMessages.scrollTop = chatMessages.scrollHeight;
+    });
+
+    // --- Xử lý gửi tin nhắn ---
+    function sendMessage() {
+      const messageText = chatInput.value.trim();
+      if (messageText === '') return; // Không gửi tin nhắn rỗng
+
+      // Tìm khung chat hiện tại đang active
+      const activeMessageContainer = document.querySelector('.messages:not([style*="display: none"])');
+      if (!activeMessageContainer) return; // Nếu không tìm thấy thì không làm gì
+
+      // 1. Tạo và hiển thị tin nhắn của người dùng
+      const userMessageDiv = document.createElement('div');
+      userMessageDiv.className = 'message user-message';
+      userMessageDiv.textContent = messageText;
+      activeMessageContainer.appendChild(userMessageDiv);
+
+      // 2. Xóa nội dung trong ô input
+      chatInput.value = '';
+
+      // Cuộn xuống tin nhắn mới nhất
+      messagesContainerWrapper.scrollTop = messagesContainerWrapper.scrollHeight;
+
+      // 3. Shop tự động trả lời sau 1 giây
+      setTimeout(() => {
+        const shopReplyDiv = document.createElement('div');
+        shopReplyDiv.className = 'message shop-message';
+        shopReplyDiv.textContent = 'Xin chào! Cảm ơn bạn đã quan tâm đến sản phẩm của chúng tôi. Chúng tôi sẽ cố gắng phản hồi nhanh nhất có thể';
+        activeMessageContainer.appendChild(shopReplyDiv);
+        
+        // Cuộn xuống tin nhắn mới nhất
+        messagesContainerWrapper.scrollTop = messagesContainerWrapper.scrollHeight;
+      }, 1000);
+    }
+
+    // Gửi tin khi nhấn nút "Gửi"
+    sendBtn.addEventListener('click', sendMessage);
+
+    // Gửi tin khi nhấn phím Enter
+    chatInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
     });
   });
-
-  function sendMessage() {
-    const input = document.getElementById('chat-input');
-    const message = input.value.trim();
-    if (!message) return;
-
-    const userDiv = document.createElement('div');
-    userDiv.className = 'message user-message';
-    userDiv.textContent = message;
-    chatMessages.appendChild(userDiv);
-    chats[currentShop].push(message);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-    input.value = '';
-
-    setTimeout(() => {
-      const shopDiv = document.createElement('div');
-      shopDiv.className = 'message shop-message';
-      shopDiv.textContent = 'Cảm ơn bạn! Chúng tôi sẽ phản hồi sớm.';
-      chatMessages.appendChild(shopDiv);
-      chats[currentShop].push(shopDiv.textContent);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }, 1000);
-  }
 </script>
 
 </body>
