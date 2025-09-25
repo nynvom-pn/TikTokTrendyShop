@@ -1,414 +1,333 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TikTok Trendy Shop</title>
-
-  <!-- Font Awesome -->
+  <meta charset="UTF-8">
+  <title>Trang Chủ - Tiktok Trendy Shop</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <!-- HEADER -->
-   <!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<!-- ========== HEADER ========== -->
-<header class="site-header">
-  <div class="header-container">
-    <div class="logo">
-      <a href="index.html"><img src="Hình/LOGO/LOGO.png" alt="Logo"></a>
-    </div>
-
-    <div class="search-box" role="search" aria-label="Tìm kiếm">
-      <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
-      <input class="search-input" type="search" placeholder="Tìm sản phẩm, thương hiệu..." aria-label="Tìm kiếm">
-    </div>
-
-    <div class="header-right" aria-hidden="false">
-      <a href="cart.html" class="cart-btn" aria-label="Giỏ hàng">
-        <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Giỏ hàng">
-        <span class="cart-badge" id="cartCount" style="display:none">0</span>
-      </a>
-      <div id="user-section"></div>
-    </div>
-
-    <nav class="main-menu" aria-label="Main menu">
-      <ul>
-        <li><a href="index.html">TRANG CHỦ</a></li>
-        <li><a href="Introduce.html">GIỚI THIỆU</a></li>
-        <li class="brand-menu">
-          <a href="store.html">CỬA HÀNG</a>
-          <ul class="submenu" aria-label="Danh mục">
-            <li><a href="mypham.html">Mỹ phẩm</a></li>
-            <li><a href="thoitrang.html">Thời trang</a></li>
-          </ul>
-        </li>
-        <li><a href="livestream.html">TRANG LIVESTREAM</a></li>
-        <li><a href="hopthoai.html">HỘP THOẠI</a></li>
-        <li><a href="thongbao.html">THÔNG BÁO</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<!-- ========== CSS CHO HEADER ========== -->
-<style>
-
-:root {
-    --max-w: 1200px;
-    --bg-1: #000000;
-    --bg-2: #000000;
-    --muted: #fff;
-    --text: #eef2f7;
-    --accent: #fe2c55;
-    --accent-2: #ff8a2d;
-    --card-bg: rgba(255, 255, 255, 0.03);
-    --card-border: rgba(255, 255, 255, 0.06);
-    --shadow: rgba(2, 6, 23, 0.45);
-    --radius: 12px;
-}
-
-/* Reset body để không có khoảng trắng */
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-}
-
-* { box-sizing: border-box }
-a { text-decoration: none; color: inherit }
-img { max-width: 100%; display: block }
-
-header.site-header {
-  background: #000000;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  position: sticky; top: 0; z-index: 1200;
-  box-shadow: 0 6px 18px rgba(15,23,36,0.04);
-}
-.header-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 12px 18px;
-  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-}
-
-.logo img { height: 56px; display: block }
-
-.search-box { position: relative; flex: 1 1 520px; max-width: 60vw; min-width: 160px }
-.search-icon {
-  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-  color: #605f5f; font-size: 1.05rem; pointer-events: none
-}
-.search-input {
-  width: 100%; height: 44px; padding: 10px 16px 10px 44px; border-radius: 999px;
-  border: 1px solid #3e3e3f; background: #fff; color: #000; font-size: 0.95rem;
-  outline: none; transition: box-shadow .12s, transform .08s, border-color .12s;
-}
-.search-input::placeholder { color: rgba(0,0,0,0.4) }
-
-.header-right {
-  display: flex; align-items: center; gap: 12px; margin-left: auto
-}
-.cart-btn {
-  position: relative; display: inline-flex; align-items: center; justify-content: center;
-  padding: 8px; border-radius: 10px; cursor: pointer
-}
-.cart-icon { width: 28px; height: 28px; object-fit: contain }
-.cart-badge {
-  position: absolute; top: -6px; right: -6px;
-  background: #fe2c55; color: #fff;
-  min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px;
-  font-size: 0.75rem; display: inline-flex; align-items: center; justify-content: center
-}
-
-#user-section { display: flex; align-items: center; gap: 8px; font-family: inherit }
-.user-name {
-  background: #fff; color: #000; padding: 6px 16px; border-radius: 20px; font-weight: 600
-}
-.logout-btn {
-  background: transparent; border: 1px solid #fe2c55; color: #fe2c55;
-  padding: 6px 12px; border-radius: 20px; font-weight: 600; cursor: pointer;
-}
-.logout-btn:hover { background: #fe2c55; color: #fff; transform: translateY(-1px) }
-
-nav.main-menu {
-  width: 100%; order: 2; margin-top: 10px; display: flex; justify-content: center
-}
-.main-menu ul {
-  display: flex; gap: 24px; list-style: none; margin: 0; padding: 6px 0;
-  align-items: center; flex-wrap: wrap
-}
-.main-menu a {
-  color: #fff; font-weight: 700; text-transform: uppercase; padding: 6px 8px
-}
-.main-menu a:hover { text-decoration: none; color: #fe2c55 !important }
-
-.brand-menu { position: relative }
-.brand-menu .submenu {
-  display: none; position: absolute; left: 0; top: calc(100% + 8px); min-width: 180px;
-  background: #000; color: #eef2f7; border-radius: 10px;
-  box-shadow: 0 12px 36px rgba(15,23,36,0.08);
-  overflow: hidden; z-index: 400;
-  transform: translateY(-6px); opacity: 0;
-  transition: opacity .12s, transform .12s; pointer-events: none
-}
-.brand-menu:hover .submenu,
-.brand-menu:focus-within .submenu {
-  display: block; transform: translateY(0); opacity: 1; pointer-events: auto
-}
-.submenu li a {
-  display: block; padding: 10px 14px; font-weight: 700; color: #eef2f7 !important
-}
-.submenu li a:hover { background: #292929; color: #fe2c55 !important }
-
-</style>
-
-<!-- ========== JS CHO HEADER ========== -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const userSection = document.getElementById("user-section");
-
-  // Giả lập user login
-  const username = "KimNganP"; // lấy từ localStorage/session nếu có
-
-  if (username) {
-    userSection.innerHTML = `
-      <span class="user-name">Xin chào, ${username}</span>
-      <button class="logout-btn" id="logoutBtn">Đăng xuất</button>
-    `;
-    document.getElementById("logoutBtn").addEventListener("click", () => {
-      alert("Đã đăng xuất!");
-      // ở đây bạn có thể xoá session/localStorage và reload trang
-    });
-  } else {
-    userSection.innerHTML = `<button class="login-btn">Đăng nhập</button>`;
-  }
-});
-</script>
-
   <style>
-  /* ========== VARIABLES & RESET ========== */
-  :root{
-    --bg:#f5f7fb;
-    --card:#ffffff;
-    --muted:#6b7280;
-    --text:#0f1724;
-    --accent:#e00707;
-    --accent-2:#FF8A2D;
-    --shadow: rgba(15,23,36,0.08);
-    --max-w:1200px;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
+    :root {
+      --max-w: 1200px;
+      --bg: #f8f8f8;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --text: #0f1724;
+      --accent: #e00707;
+      --accent-2: #FF8A2D;
+      --shadow: rgba(15,23,36,0.08);
+    }
+    
+    html, body { margin: 0; padding: 0; font-family: Inter, Arial, sans-serif; background: #f8f8f8; }
+    * { box-sizing: border-box }
+    a { text-decoration: none; color: inherit }
+    img { max-width: 100%; display: block }
 
-  /* ========== BANNER (LỚN hơn, ít cắt) ========== */
-  .banner { width:100%; padding:18px 0 8px; background:transparent }
-  .slideshow-container {
-    max-width:var(--max-w);
-    margin:0 auto;
-    position:relative;
-    border-radius:14px;
-    overflow:hidden;
-    box-shadow:0 18px 60px rgba(15,23,36,0.06);
-    background:#fff;
-  }
+    header.site-header {
+      background: #000; border-bottom: 1px solid rgba(255,255,255,0.04);
+      position: sticky; top:0; z-index:1200;
+    }
+    .header-container {
+      max-width: 1200px; margin: 0 auto; padding: 12px 18px;
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    }
+    .logo img { height: 56px; }
 
-  .slide{display:none}
-  .slide img{
-    width:100%;
-    height:520px;
-    object-fit:cover;
-    object-position:center center;
-    display:block;
-    transition:transform .6s ease;
-    background:#e6eef8;
-  }
-  .slide img:hover{transform:scale(1.02)}
-  .prev,.next{
-    cursor:pointer; position:absolute; top:50%; transform:translateY(-50%); padding:12px 16px; border-radius:10px;
-    background:rgba(255,255,255,0.9); color:var(--text); font-size:20px; box-shadow:0 6px 18px rgba(15,23,36,0.06);
-  }
-  .prev:hover,.next:hover{transform:translateY(-50%) scale(1.02)}
-  .prev{left:12px} .next{right:12px}
+    /* Search */
+    .search-box { position: relative; flex: 1 1 520px; max-width: 60vw; min-width: 160px }
+    .search-icon {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: #605f5f; font-size: 1.05rem; pointer-events: none;
+    }
+    .search-input {
+      width: 100%; height: 44px; padding: 10px 16px 10px 44px;
+      border-radius: 999px; border: 1px solid #3e3e3f; background: #fff; color: #000;
+    }
 
-  .dots{ text-align:center; margin-top:10px }
-  .dot{width:12px;height:12px;border-radius:999px;display:inline-block;margin:0 6px;background:rgba(15,23,36,0.12);cursor:pointer}
-  .dot.active{background:var(--accent);box-shadow:0 8px 24px rgba(255,107,107,0.12)}
+    /* Header Right */
+    .header-right { display: flex; align-items: center; gap: 12px; margin-left: auto }
+    .cart-btn { position: relative; padding: 8px; border-radius: 10px; }
+    .cart-icon { width: 28px; height: 28px }
+    .cart-badge {
+      position: absolute; top: -6px; right: -6px;
+      background: #fe2c55; color: #fff; min-width: 20px; height: 20px;
+      border-radius: 50%; font-size: 0.75rem; display: flex; align-items: center; justify-content: center;
+    }
 
-  /* ========== FLASHSALE ========== */
-  .flashsale{padding:18px 0}
-  .flashsale-container{max-width:var(--max-w);margin:0 auto;padding:8px 18px;box-sizing:border-box;position:relative}
-  .flashsale-title{color:var(--accent);font-weight:800;margin:0 0 12px;font-size:1.4rem}
-  .flashsale-wrapper{display:flex;gap:16px;transition:transform .45s cubic-bezier(.2,.8,.2,1);align-items:stretch}
-  .flashsale-item{flex:0 0 180px;max-width:180px}
-  .flashsale-btn{position:absolute;top:50%;transform:translateY(-50%);background:#fff;border:1px solid rgba(15,23,36,0.06);border-radius:999px;padding:8px;cursor:pointer;box-shadow:0 6px 18px rgba(15,23,36,0.06)}
-  .flashsale-btn.prev{left:8px} .flashsale-btn.next{right:8px}
-  .flashsale-btn:hover{background:var(--accent);color:#fff}
+    #userSection { display: flex; align-items: center; gap: 8px }
+    .user-name {
+      background: #fff; color: #000; padding: 6px 16px;
+      border-radius: 20px; font-weight: 600
+    }
+    .logout-btn {
+      background: transparent; border: 1px solid #fe2c55; color: #fe2c55;
+      padding: 6px 12px; border-radius: 20px; font-weight: 600; cursor: pointer;
+    }
+    .logout-btn:hover { background: #fe2c55; color: #fff }
+    .login-btn {
+      background: transparent; border: 1px solid #fff; color: #fff;
+      padding: 6px 16px; border-radius: 20px; font-weight: 600; cursor: pointer;
+    }
+    .login-btn:hover { background: #fff; color: #000 }
 
-  /* ========== PRODUCTS ========== */
-  main{padding:22px 0 60px}
-  .products{max-width:var(--max-w);margin:30px auto;padding:0 18px;box-sizing:border-box;display:flex;gap:20px;align-items:flex-start}
-  .filters{width:220px;min-width:160px;color:var(--muted)}
-  .products-grid{flex:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
-  .product-card{background:var(--card);border:1px solid rgba(15,23,36,0.04);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;min-height:360px;transition:transform .16s ease,box-shadow .16s ease}
-  .product-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(15,23,36,0.06)}
-  .product-card img{width:100%;height:220px;object-fit:cover;border-radius:8px}
-  .product-card h4{margin:0;font-size:1rem;line-height:1.25;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .product-card .price{margin-top:auto;font-weight:800;color:var(--accent-2);font-size:1.05rem}
+    /* Menu */
+    nav.main-menu { width: 100%; order: 2; margin-top: 10px; display: flex; justify-content: center }
+    .main-menu ul {
+      display: flex; gap: 24px; list-style: none; margin: 0; padding: 6px 0;
+      align-items: center; flex-wrap: wrap
+    }
+    .main-menu a { color: #fff; font-weight: 700; text-transform: uppercase; padding: 6px 8px }
+    .main-menu a:hover { text-decoration: none; color: #fe2c55 !important }
 
-  /* ========== RESPONSIVE ========== */
-  @media (max-width:1000px){ .slide img{height:420px} .products-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))} }
-  @media (max-width:900px){
-    .slide img{height:340px}
-    .products{flex-direction:column}
-    .filters{width:100%;order:2}
-    .products-grid{order:1}
-    .main-menu ul{gap:12px}
-  }
-  @media (max-width:600px){
-    .slide img{height:260px}
-    .products-grid{grid-template-columns:repeat(2,1fr);gap:12px}
-    .flashsale-item{flex:0 0 140px;max-width:140px}
-    .header-container{padding:10px}
-    .prev,.next{padding:8px 10px;font-size:18px}
-  }
+    .brand-menu { position: relative }
+    .brand-menu .submenu {
+      display: none; position: absolute; left: 0; top: calc(100% + 8px); min-width: 180px;
+      background: #000; color: #eef2f7; border-radius: 10px;
+      box-shadow: 0 12px 36px rgba(15,23,36,0.08);
+      overflow: hidden; z-index: 400;
+      transform: translateY(-6px); opacity: 0;
+      transition: opacity .12s, transform .12s; pointer-events: none
+    }
+    .brand-menu:hover .submenu,
+    .brand-menu:focus-within .submenu {
+      display: block; transform: translateY(0); opacity: 1; pointer-events: auto
+    }
+    .submenu li a {
+      display: block; padding: 10px 14px; font-weight: 700; color: #eef2f7 !important
+    }
+    .submenu li a:hover { background: #292929; color: #fe2c55 !important }
 
-  /* small helpers (buttons padding per request) */
-  .btn { padding:10px 17px; border-radius:8px; font-weight:700; cursor:pointer; border:0 }
-  .btn-primary { background:var(--accent); color:#fff }
-  .btn-ghost { background:transparent; border:1px solid rgba(15,23,36,0.06) }
+    /* ========== BANNER (LỚN hơn, ít cắt) ========== */
+    .banner { width:100%; padding:18px 0 8px; background:transparent }
+    .slideshow-container {
+      max-width:var(--max-w);
+      margin:0 auto;
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 18px 60px rgba(15,23,36,0.06);
+      background:#fff;
+    }
 
-  /* Loading animation */
-  .loading { 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    height: 200px; 
-    font-size: 1.2rem; 
-    color: var(--muted);
-  }
-  .spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left-color: var(--accent);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin-right: 10px;
-  }
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
+    .slide{display:none}
+    .slide img{
+      width:100%;
+      height:520px;
+      object-fit:cover;
+      object-position:center center;
+      display:block;
+      transition:transform .6s ease;
+      background:#e6eef8;
+    }
+    .slide img:hover{transform:scale(1.02)}
+    .prev,.next{
+      cursor:pointer; position:absolute; top:50%; transform:translateY(-50%); padding:12px 16px; border-radius:10px;
+      background:rgba(255,255,255,0.9); color:var(--text); font-size:20px; box-shadow:0 6px 18px rgba(15,23,36,0.06);
+    }
+    .prev:hover,.next:hover{transform:translateY(-50%) scale(1.02)}
+    .prev{left:12px} .next{right:12px}
+
+    .dots{ text-align:center; margin-top:10px }
+    .dot{width:12px;height:12px;border-radius:999px;display:inline-block;margin:0 6px;background:rgba(15,23,36,0.12);cursor:pointer}
+    .dot.active{background:var(--accent);box-shadow:0 8px 24px rgba(255,107,107,0.12)}
+
+    /* ========== FLASHSALE ========== */
+    .flashsale{padding:18px 0}
+    .flashsale-container{max-width:var(--max-w);margin:0 auto;padding:8px 18px;box-sizing:border-box;position:relative}
+    .flashsale-title{color:var(--accent);font-weight:800;margin:0 0 12px;font-size:1.4rem}
+    .flashsale-wrapper{display:flex;gap:16px;transition:transform .45s cubic-bezier(.2,.8,.2,1);align-items:stretch}
+    .flashsale-item{flex:0 0 180px;max-width:180px}
+    .flashsale-btn{position:absolute;top:50%;transform:translateY(-50%);background:#fff;border:1px solid rgba(15,23,36,0.06);border-radius:999px;padding:8px;cursor:pointer;box-shadow:0 6px 18px rgba(15,23,36,0.06)}
+    .flashsale-btn.prev{left:8px} .flashsale-btn.next{right:8px}
+    .flashsale-btn:hover{background:var(--accent);color:#fff}
+
+    /* ========== PRODUCTS ========== */
+    main{padding:22px 0 60px}
+    .products{max-width:var(--max-w);margin:30px auto;padding:0 18px;box-sizing:border-box;display:flex;gap:20px;align-items:flex-start}
+    .filters{width:220px;min-width:160px;color:var(--muted)}
+    .products-grid{flex:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+    .product-card{background:var(--card);border:1px solid rgba(15,23,36,0.04);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;min-height:360px;transition:transform .16s ease,box-shadow .16s ease}
+    .product-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(15,23,36,0.06)}
+    .product-card img{width:100%;height:220px;object-fit:cover;border-radius:8px}
+    .product-card h4{margin:0;font-size:1rem;line-height:1.25;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .product-card .price{margin-top:auto;font-weight:800;color:var(--accent-2);font-size:1.05rem}
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width:1000px){ .slide img{height:420px} .products-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))} }
+    @media (max-width:900px){
+      .slide img{height:340px}
+      .products{flex-direction:column}
+      .filters{width:100%;order:2}
+      .products-grid{order:1}
+      .main-menu ul{gap:12px}
+    }
+    @media (max-width:600px){
+      .slide img{height:260px}
+      .products-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+      .flashsale-item{flex:0 0 140px;max-width:140px}
+      .header-container{padding:10px}
+      .prev,.next{padding:8px 10px;font-size:18px}
+    }
+
+    /* small helpers (buttons padding per request) */
+    .btn { padding:10px 17px; border-radius:8px; font-weight:700; cursor:pointer; border:0 }
+    .btn-primary { background:var(--accent); color:#fff }
+    .btn-ghost { background:transparent; border:1px solid rgba(15,23,36,0.06) }
+
+    /* Loading animation */
+    .loading { 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      height: 200px; 
+      font-size: 1.2rem; 
+      color: var(--muted);
+    }
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-left-color: var(--accent);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin-right: 10px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo">
+        <a href="index.html"><img src="Hình/LOGO/LOGO.png" alt="Logo"></a>
+      </div>
+      <div class="search-box" role="search">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input class="search-input" type="search" placeholder="Tìm sản phẩm, thương hiệu...">
+      </div>
+      <div class="header-right">
+        <a href="cart.html" class="cart-btn">
+          <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Giỏ hàng">
+          <span class="cart-badge" id="cartCount" style="display:none">0</span>
+        </a>
+        <div id="userSection"></div>
+      </div>
+      <nav class="main-menu">
+        <ul>
+          <li><a href="index.html">TRANG CHỦ</a></li>
+          <li><a href="Introduce.html">GIỚI THIỆU</a></li>
+          <li class="brand-menu">
+            <a href="store.html">CỬA HÀNG</a>
+            <ul class="submenu">
+              <li><a href="mypham.html">Mỹ phẩm</a></li>
+              <li><a href="thoitrang.html">Thời trang</a></li>
+            </ul>
+          </li>
+          <li><a href="livestream.html">TRANG LIVESTREAM</a></li>
+          <li><a href="hopthoai.html">HỘP THOẠI</a></li>
+          <li><a href="thongbao.html">THÔNG BÁO</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
   <!-- BANNER -->
- <section class="banner" aria-label="Banner chính">
-  <div class="slideshow-container">
-    <div class="slide fade">
-      <img src="Hình/BANNER/banner 1.jpg" alt="Banner 1">
-    </div>
-    <div class="slide fade">
-      <img src="Hình/BANNER/Banner2.png" alt="Banner 2">
-    </div>
-    <div class="slide fade">
-      <img src="Hình/BANNER/Banner3.png" alt="Banner 3">
+  <section class="banner" aria-label="Banner chính">
+    <div class="slideshow-container">
+      <div class="slide fade">
+        <img src="Hình/BANNER/banner 1.png" alt="Banner 1" onerror="this.src='https://via.placeholder.com/1600x900?text=Banner+1'">
+      </div>
+      <div class="slide fade">
+        <img src="Hình/BANNER/Banner2.png" alt="Banner 2" onerror="this.src='https://via.placeholder.com/1600x900?text=Banner+2'">
+      </div>
+      <div class="slide fade">
+        <img src="Hình/BANNER/Banner3.png" alt="Banner 3" onerror="this.src='https://via.placeholder.com/1600x900?text=Banner+3'">
+      </div>
+
+      <a class="prev" onclick="plusSlides(-1)" aria-hidden="true">❮</a>
+      <a class="next" onclick="plusSlides(1)" aria-hidden="true">❯</a>
     </div>
 
-    <a class="prev" onclick="plusSlides(-1)" aria-hidden="true">❮</a>
-    <a class="next" onclick="plusSlides(1)" aria-hidden="true">❯</a>
-  </div>
-
-  <div class="dots" style="max-width:var(--max-w); margin:10px auto 0; text-align:center;">
-    <span class="dot" onclick="currentSlide(1)"></span>
-    <span class="dot" onclick="currentSlide(2)"></span>
-    <span class="dot" onclick="currentSlide(3)"></span>
-  </div>
-</section>
+    <div class="dots" style="max-width:var(--max-w); margin:10px auto 0; text-align:center;">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+  </section>
 
   <!-- FLASHSALE -->
- <section class="flashsale" aria-label="Flash sale">
+  <section class="flashsale" aria-label="Flash sale">
     <div class="flashsale-container">
       <h2 class="flashsale-title">FLASH SALE</h2>
       <button class="flashsale-btn prev" aria-label="Prev flashsale">&#10094;</button>
       <div class="flashsale-wrapper" id="flashsaleWrapper">
-        <!-- sample items (images may be in images/ or Hình/; fallback will handle missing ones) -->
         <div class="product-card flashsale-item">
-  <a href="#">
-    <img src="Hình/CUAHANG/quankesoc.webp" alt="P1" onerror="this.src='https://via.placeholder.com/400x300?text=P1'">
-    <h4>Quần suông kẻ sọc, dáng suông</h4>
-    <div class="price-wrapper" style="display:flex; gap:8px; align-items:center;">
-      <div class="sale-price" style="color:#e60000; font-weight:bold;">đ34.650</div>
-      <div class="original-price" style="color:#999; text-decoration: line-through; font-size:0.85rem;">đ59.000</div>
-    </div>
-  </a>
-</div>
+          <a href="#">
+            <img src="Hình/CUAHANG/quankesoc.webp" alt="P1" onerror="this.src='https://via.placeholder.com/400x300?text=P1'">
+            <h4>Quần sông kẻ sọc, dáng suông</h4>
+            <div class="price-wrapper" style="display:flex; gap:8px; align-items:center;">
+              <div class="sale-price" style="color:#e60000; font-weight:bold;">đ34.650</div>
+              <div class="original-price" style="color:#999; text-decoration: line-through; font-size:0.85rem;">đ59.000</div>
+            </div>
+          </a>
+        </div>
 
-<div class="product-card flashsale-item">
-  <a href="#">
-    <img src="Hình/CUAHANG/cocoon.webp" alt="P2" onerror="this.src='https://via.placeholder.com/400x300?text=P2'">
-    <h4>Nước sen Hậu Giang COCOON</h4>
-    <div class="price-wrapper" style="display:flex; gap:8px; align-items:center;">
-      <div class="sale-price" style="color:#e60000; font-weight:bold;">₫255.199</div>
-      <div class="original-price" style="color:#999; text-decoration: line-through; font-size:0.85rem;">₫290.000</div>
-    </div>
-  </a>
-</div>
+        <div class="product-card flashsale-item">
+          <a href="#">
+            <img src="Hình/CUAHANG/cocoon.webp" alt="P2" onerror="this.src='https://via.placeholder.com/400x300?text=P2'">
+            <h4>Nước sen Hậu Giang COCOON</h4>
+            <div class="price-wrapper" style="display:flex; gap:8px; align-items:center;">
+              <div class="sale-price" style="color:#e60000; font-weight:bold;">₫255.199</div>
+              <div class="original-price" style="color:#999; text-decoration: line-through; font-size:0.85rem;">₫290.000</div>
+            </div>
+          </a>
+        </div>
 
-<div class="product-card flashsale-item">
-  <a href="#">
-    <img src="Hình/CUAHANG/quandui.webp" alt="P2" onerror="this.src='https://via.placeholder.com/400x300?text=P2'">
-    <h4>Quần đùi ngủ hình hoạt hình </h4>
-    <div class="price-wrapper" style="display:flex; gap:8px; align-items:center;">
-      <div class="sale-price" style="color:#e60000; font-weight:bold;">₫9,000</div>
-      <div class="original-price" style="color:#999; text-decoration: line-through; font-size:0.85rem;">₫26,000</div>
-    </div>
-  </a>
-</div>
-<div class="product-card flashsale-item">
-  <a href="#">
-    <img src="Hình/CUAHANG/quanpastel.webp" alt="P2" onerror="this.src='https://via.placeholder.com/400x300?text=P2'">
-    <h4>Combo 3 quần đùi kẻ sọc màu pastel</h4>
-    <div class="price-wrapper" style="display:flex; gap:8px; align-items:center;">
-      <div class="sale-price" style="color:#e60000; font-weight:bold;">₫39,000</div>
-      <div class="original-price" style="color:#999; text-decoration: line-through; font-size:0.85rem;">₫99,000</div>
-    </div>
-  </a>
-</div>
-<div class="product-card flashsale-item">
-  <a href="#">
-    <img src="Hình/CUAHANG/sapwax.webp" alt="P2" onerror="this.src='https://via.placeholder.com/400x300?text=P2'">
-    <h4>Sáp wax lông sữa dừa màu hồng</h4>
-    <div class="price-wrapper" style="display:flex; gap:8px; align-items:center;">
-      <div class="sale-price" style="color:#e60000; font-weight:bold;">₫19,000</div>
-      <div class="original-price" style="color:#999; text-decoration: line-through; font-size:0.85rem;">₫40,000</div>
-    </div>
-  </a>
-</div>
-<div class="product-card flashsale-item">
-  <a href="#">
-    <img src="Hình/CUAHANG/kemtaylong.webp" alt="P2" onerror="this.src='https://via.placeholder.com/400x300?text=P2'">
-    <h4>Kem tẩy lông cho da nhạy cảm</h4>
-    <div class="price-wrapper" style="display:flex; gap:8px; align-items:center;">
-      <div class="sale-price" style="color:#e60000; font-weight:bold;">₫54,000</div>
-      <div class="original-price" style="color:#999; text-decoration: line-through; font-size:0.85rem;">₫60,000</div>
-    </div>
-  </a>
-</div>
-        
+        <div class="product-card flashsale-item">
+          <a href="#">
+            <img src="Hình/CUAHANG/quandui.webp" alt="P2" onerror="this.src='https://via.placeholder.com/400x300?text=P2'">
+            <h4>Quần đùi ngủ hình hoạt hình </h4>
+            <div class="price-wrapper" style="display:flex; gap:8px; align-items:center;">
+              <div class="sale-price" style="color:#e60000; font-weight:bold;">₫9,000</div>
+              <div class="original-price" style="color:#999; text-decoration: line-through; font-size:0.85rem;">₫26,000</div>
+            </div>
+          </a>
+        </div>
+        <div class="product-card flashsale-item">
+          <a href="#">
+            <img src="Hình/CUAHANG/quanpastel.webp" alt="P2" onerror="this.src='https://via.placeholder.com/400x300?text=P2'">
+            <h4>Combo 3 quần đùi kẻ sọc màu pastel</h4>
+            <div class="price-wrapper" style="display:flex; gap:8px; align-items:center;">
+              <div class="sale-price" style="color:#e60000; font-weight:bold;">₫39,000</div>
+              <div class="original-price" style="color:#999; text-decoration: line-through; font-size:0.85rem;">₫99,000</div>
+            </div>
+          </a>
+        </div>
+        <div class="product-card flashsale-item">
+          <a href="#">
+            <img src="Hình/CUAHANG/sapwax.webp" alt="P2" onerror="this.src='https://via.placeholder.com/400x300?text=P2'">
+            <h4>Sáp wax lông sữa dừa màu hồng</h4>
+            <div class="price-wrapper" style="display:flex; gap:8px; align-items:center;">
+              <div class="sale-price" style="color:#e60000; font-weight:bold;">₫19,000</div>
+              <div class="original-price" style="color:#999; text-decoration: line-through; font-size:0.85rem;">₫40,000</div>
+            </div>
+          </a>
+        </div>
+        <div class="product-card flashsale-item">
+          <a href="#">
+            <img src="Hình/CUAHANG/kemtaylong.webp" alt="P2" onerror="this.src='https://via.placeholder.com/400x300?text=P2'">
+            <h4>Kem tẩy lông cho da nhạy cảm</h4>
+            <div class="price-wrapper" style="display:flex; gap:8px; align-items:center;">
+              <div class="sale-price" style="color:#e60000; font-weight:bold;">₫54,000</div>
+              <div class="original-price" style="color:#999; text-decoration: line-through; font-size:0.85rem;">₫60,000</div>
+            </div>
+          </a>
+        </div>
       </div>
       <button class="flashsale-btn next" aria-label="Next flashsale">&#10095;</button>
     </div>
   </section>
-
 
   <!-- MAIN CONTENT: products -->
   <main>
@@ -458,340 +377,326 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     </div>
   </footer>
-  </body>
-  </html>
+
+  <!-- JS xử lý user -->
+  <script>
+    function updateUserSection(){
+      const userSection = document.getElementById("userSection");
+      const user = JSON.parse(localStorage.getItem("user") || "null");
+
+      if(user){
+        userSection.innerHTML = `
+          <span class="user-name">Xin chào, ${user.username}</span>
+          <button id="logoutBtn" class="logout-btn">Đăng xuất</button>
+        `;
+        document.getElementById("logoutBtn").addEventListener("click", ()=>{
+          localStorage.removeItem("user");
+          updateUserSection();
+        });
+      }else{
+        userSection.innerHTML = `<a href="login.html" class="login-btn">Đăng nhập / Đăng ký</a>`;
+      }
+    }
+    updateUserSection();
+  </script>
 
   <!-- ========== JAVASCRIPT (1 script, safe) ========== -->
-<script src="js/index.js"></script>
+  <script>
+  /* Unified safe script for static site (no PHP). Keeps product data unchanged. */
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window._tts_inited) return;
+    window._tts_inited = true;
 
-<script>
-/* Unified safe script for static site (no PHP). Keeps product data unchanged. */
-document.addEventListener('DOMContentLoaded', function() {
-  if (window._tts_inited) return;
-  window._tts_inited = true;
+    // image fallback (prevent infinite error spam)
+    document.addEventListener('error', function(e){
+      const t = e.target;
+      if (!t || t.tagName !== 'IMG') return;
+      if (t.dataset._fallbackdone) return;
+      t.dataset._fallbackdone = '1';
+      t.src = 'https://via.placeholder.com/600x400?text=No+Image';
+    }, true);
 
-  // image fallback (prevent infinite error spam)
-  document.addEventListener('error', function(e){
-    const t = e.target;
-    if (!t || t.tagName !== 'IMG') return;
-    if (t.dataset._fallbackdone) return;
-    t.dataset._fallbackdone = '1';
-    t.src = 'https://via.placeholder.com/600x400?text=No+Image';
-  }, true);
-
-  /* BANNER SLIDESHOW */
-  (function(){
-    const slides = Array.from(document.getElementsByClassName('slide'));
-    const dots   = Array.from(document.getElementsByClassName('dot'));
-    if (!slides.length) return;
-    let idx = 0, auto = null; const AUTO_MS = 5000;
-    
-    function show(i){
-      if (i >= slides.length) idx = 0;
-      else if (i < 0) idx = slides.length - 1;
-      else idx = i;
+    /* BANNER SLIDESHOW */
+    (function(){
+      const slides = Array.from(document.getElementsByClassName('slide'));
+      const dots   = Array.from(document.getElementsByClassName('dot'));
+      if (!slides.length) return;
+      let idx = 0, auto = null; const AUTO_MS = 5000;
       
-      slides.forEach(s => s.style.display = 'none');
-      dots.forEach(d => d.classList.remove('active'));
-      
-      if (slides[idx]) {
-        slides[idx].style.display = 'block';
-        if (dots[idx]) dots[idx].classList.add('active');
+      function show(i){
+        if (i >= slides.length) idx = 0;
+        else if (i < 0) idx = slides.length - 1;
+        else idx = i;
+        
+        slides.forEach(s => s.style.display = 'none');
+        dots.forEach(d => d.classList.remove('active'));
+        
+        if (slides[idx]) {
+          slides[idx].style.display = 'block';
+          if (dots[idx]) dots[idx].classList.add('active');
+        }
       }
-    }
-    
-    function start(){ 
-      if (auto) return; 
-      auto = setInterval(() => { 
-        show(idx + 1); 
-      }, AUTO_MS); 
-    }
-    
-    function stop(){ 
-      if (!auto) return; 
-      clearInterval(auto); 
-      auto = null; 
-    }
-    
-    function reset(){ 
-      stop(); 
-      start(); 
-    }
-    
-    function go(offset){ 
-      show(idx + offset); 
-    }
-    
-    window.plusSlides = function(n){ 
-      go(n); 
-      reset(); 
-    };
-    
-    window.currentSlide = function(n){ 
-      show(n - 1); 
-      reset(); 
-    };
-    
-    dots.forEach((d, i) => { 
-      if (!d._bound){ 
-        d._bound = true; 
-        d.addEventListener('click', () => currentSlide(i + 1)); 
-      } 
-    });
-    
-    const sc = document.querySelector('.slideshow-container');
-    if (sc){ 
-      sc.addEventListener('mouseenter', stop); 
-      sc.addEventListener('mouseleave', start); 
-    }
-    
-    document.addEventListener('visibilitychange', () => { 
-      if (document.hidden) stop(); 
-      else start(); 
-    });
-    
-    show(0); 
-    start();
-  })();
+      
+      function start(){ 
+        if (auto) return; 
+        auto = setInterval(() => { 
+          show(idx + 1); 
+        }, AUTO_MS); 
+      }
+      
+      function stop(){ 
+        if (!auto) return; 
+        clearInterval(auto); 
+        auto = null; 
+      }
+      
+      function reset(){ 
+        stop(); 
+        start(); 
+      }
+      
+      function go(offset){ 
+        show(idx + offset); 
+      }
+      
+      window.plusSlides = function(n){ 
+        go(n); 
+        reset(); 
+      };
+      
+      window.currentSlide = function(n){ 
+        show(n - 1); 
+        reset(); 
+      };
+      
+      dots.forEach((d, i) => { 
+        if (!d._bound){ 
+          d._bound = true; 
+          d.addEventListener('click', () => currentSlide(i + 1)); 
+        } 
+      });
+      
+      const sc = document.querySelector('.slideshow-container');
+      if (sc){ 
+        sc.addEventListener('mouseenter', stop); 
+        sc.addEventListener('mouseleave', start); 
+      }
+      
+      document.addEventListener('visibilitychange', () => { 
+        if (document.hidden) stop(); 
+        else start(); 
+      });
+      
+      show(0); 
+      start();
+    })();
 
-  /* FLASHSALE */
-  (function(){
-    const wrapper = document.getElementById('flashsaleWrapper');
-    if (!wrapper) return;
-    const items = Array.from(wrapper.children);
-    if (!items.length) return;
-    const prevBtn = document.querySelector('.flashsale-btn.prev');
-    const nextBtn = document.querySelector('.flashsale-btn.next');
-    let current = 0, visible = 6, auto = null; const AUTO_MS = 4000;
-    
-    const gap = () => parseFloat(getComputedStyle(wrapper).gap) || 16;
-    
-    function computeVisible(){ 
-      try { 
-        const parentW = wrapper.parentElement.clientWidth; 
+    /* FLASHSALE */
+    (function(){
+      const wrapper = document.getElementById('flashsaleWrapper');
+      if (!wrapper) return;
+      const items = Array.from(wrapper.children);
+      if (!items.length) return;
+      const prevBtn = document.querySelector('.flashsale-btn.prev');
+      const nextBtn = document.querySelector('.flashsale-btn.next');
+      let current = 0, visible = 6, auto = null; const AUTO_MS = 4000;
+      
+      const gap = () => parseFloat(getComputedStyle(wrapper).gap) || 16;
+      
+      function computeVisible(){ 
+        try { 
+          const parentW = wrapper.parentElement.clientWidth; 
+          const itemW = items[0].getBoundingClientRect().width; 
+          const fit = Math.floor((parentW + gap()) / (itemW + gap())); 
+          return Math.max(1, Math.min(fit, items.length)); 
+        } catch(e){
+          return 1;
+        } 
+      }
+      
+      function clamp(){ 
+        const maxStart = Math.max(0, items.length - visible); 
+        if (current > maxStart) current = maxStart; 
+        if (current < 0) current = 0; 
+      }
+      
+      function update(){ 
         const itemW = items[0].getBoundingClientRect().width; 
-        const fit = Math.floor((parentW + gap()) / (itemW + gap())); 
-        return Math.max(1, Math.min(fit, items.length)); 
-      } catch(e){
-        return 1;
-      } 
-    }
-    
-    function clamp(){ 
-      const maxStart = Math.max(0, items.length - visible); 
-      if (current > maxStart) current = maxStart; 
-      if (current < 0) current = 0; 
-    }
-    
-    function update(){ 
-      const itemW = items[0].getBoundingClientRect().width; 
-      const offset = -(current * (itemW + gap())); 
-      wrapper.style.transform = `translateX(${offset}px)`; 
-      wrapper.style.transition = 'transform 0.45s cubic-bezier(.2,.8,.2,1)'; 
-    }
-    
-    function recalcAndShow(){ 
-      visible = computeVisible(); 
-      clamp(); 
-      update(); 
-    }
-    
-    function next(){ 
-      const maxStart = Math.max(0, items.length - visible); 
-      if (current < maxStart) current++; 
-      else current = 0; 
-      update(); 
-    }
-    
-    function prev(){ 
-      const maxStart = Math.max(0, items.length - visible); 
-      if (current > 0) current--; 
-      else current = maxStart; 
-      update(); 
-    }
-    
-    function start(){ 
-      if (auto) return; 
-      auto = setInterval(next, AUTO_MS); 
-    }
-    
-    function stop(){ 
-      if (!auto) return; 
-      clearInterval(auto); 
-      auto = null; 
-    }
-    
-    function reset(){ 
-      stop(); 
-      start(); 
-    }
-    
-    if (nextBtn && !nextBtn._bound){ 
-      nextBtn._bound = true; 
-      nextBtn.addEventListener('click', () => { 
-        next(); 
-        reset(); 
-      }); 
-    }
-    
-    if (prevBtn && !prevBtn._bound){ 
-      prevBtn._bound = true; 
-      prevBtn.addEventListener('click', () => { 
-        prev(); 
-        reset(); 
-      }); 
-    }
-    
-    let to; 
-    window.addEventListener('resize', () => { 
-      clearTimeout(to); 
-      to = setTimeout(recalcAndShow, 120); 
-    });
-    
-    const container = wrapper.parentElement; 
-    if (container){ 
-      container.addEventListener('mouseenter', stop); 
-      container.addEventListener('mouseleave', start); 
-    }
-    
-    document.addEventListener('visibilitychange', () => { 
-      if (document.hidden) stop(); 
-      else start(); 
-    });
-    
-    setTimeout(recalcAndShow, 80); 
-    setTimeout(start, 140);
-  })();
+        const offset = -(current * (itemW + gap())); 
+        wrapper.style.transform = `translateX(${offset}px)`; 
+        wrapper.style.transition = 'transform 0.45s cubic-bezier(.2,.8,.2,1)'; 
+      }
+      
+      function recalcAndShow(){ 
+        visible = computeVisible(); 
+        clamp(); 
+        update(); 
+      }
+      
+      function next(){ 
+        const maxStart = Math.max(0, items.length - visible); 
+        if (current < maxStart) current++; 
+        else current = 0; 
+        update(); 
+      }
+      
+      function prev(){ 
+        const maxStart = Math.max(0, items.length - visible); 
+        if (current > 0) current--; 
+        else current = maxStart; 
+        update(); 
+      }
+      
+      function start(){ 
+        if (auto) return; 
+        auto = setInterval(next, AUTO_MS); 
+      }
+      
+      function stop(){ 
+        if (!auto) return; 
+        clearInterval(auto); 
+        auto = null; 
+      }
+      
+      function reset(){ 
+        stop(); 
+        start(); 
+      }
+      
+      if (nextBtn && !nextBtn._bound){ 
+        nextBtn._bound = true; 
+        nextBtn.addEventListener('click', () => { 
+          next(); 
+          reset(); 
+        }); 
+      }
+      
+      if (prevBtn && !prevBtn._bound){ 
+        prevBtn._bound = true; 
+        prevBtn.addEventListener('click', () => { 
+          prev(); 
+          reset(); 
+        }); 
+      }
+      
+      let to; 
+      window.addEventListener('resize', () => { 
+        clearTimeout(to); 
+        to = setTimeout(recalcAndShow, 120); 
+      });
+      
+      const container = wrapper.parentElement; 
+      if (container){ 
+        container.addEventListener('mouseenter', stop); 
+        container.addEventListener('mouseleave', start); 
+      }
+      
+      document.addEventListener('visibilitychange', () => { 
+        if (document.hidden) stop(); 
+        else start(); 
+      });
+      
+      setTimeout(recalcAndShow, 80); 
+      setTimeout(start, 140);
+    })();
 
-  /* PRODUCTS + SEARCH (keeps your product data) */
-  (function(){
-    
-    const container = document.getElementById('products-container');
-    if (!container) return;
-    
-    function formatPrice(n){ 
-      return '₫' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); 
-    }
-    
-    function render(list){
-      container.innerHTML = '';
+    /* PRODUCTS + SEARCH (keeps your product data) */
+    (function(){
+      const products = [
+        { id:1, title:"Serum dưỡng da A", price:199000, category:"skincare", img:"images/product1.jpg" },
+        { id:2, title:"Son môi B", price:99000, category:"makeup", img:"images/product2.jpg" },
+        { id:3, title:"Áo thun nữ", price:149000, category:"ao", img:"images/product3.jpg" },
+        { id:4, title:"Quần jean xanh", price:299000, category:"quan", img:"images/product4.jpg" },
+        { id:5, title:"Váy dập ly", price:259000, category:"vay", img:"images/product5.jpg" },
+        { id:6, title:"Mặt nạ ngủ", price:89000, category:"skincare", img:"images/product6.jpg" },
+        { id:7, title:"Mascara đen", price:129000, category:"makeup", img:"images/product7.jpg" },
+        { id:8, title:"Áo khoác bomber", price:399000, category:"ao", img:"images/product8.jpg" },
+        { id:9, title:"Đầm dạ hội", price:599000, category:"vay", img:"images/product9.jpg" },
+        { id:10, title:"Túi xách mini", price:219000, category:"phukien", img:"images/product10.jpg" }
+      ];
       
-      if (!list.length){ 
-        container.innerHTML = '<div style="grid-column:1/-1;color:#6b7280;padding:20px">Không tìm thấy sản phẩm.</div>'; 
-        return; 
+      const container = document.getElementById('products-container');
+      if (!container) return;
+      
+      function formatPrice(n){ 
+        return '₫' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); 
       }
       
-      list.forEach(p => {
-        const el = document.createElement('div');
-        el.className = 'product-card';
-        el.innerHTML = `
-          <a href="#">
-            <img src="${p.img}" alt="${p.title}" onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'">
-            <h4>${p.title}</h4>
-            <div class="price">${formatPrice(p.price)}</div>
-          </a>
-        `;
-        container.appendChild(el);
-      });
-    }
-    
-    // Hiển thị sản phẩm sau một chút delay để tránh "xoay vòng"
-    setTimeout(() => {
-      render(products);
-    }, 300);
-    
-    const search = document.querySelector('.search-input');
-    if (search){
-      let t;
-      search.addEventListener('input', () => { 
-        clearTimeout(t); 
-        t = setTimeout(() => { 
-          const q = search.value.trim().toLowerCase(); 
-          filterProducts(q); 
-        }, 120); 
-      });
-      
-      search.addEventListener('keydown', e => { 
-        if (e.key === 'Enter'){ 
-          e.preventDefault(); 
-          const q = search.value.trim(); 
-          window.location.href = 'store.html?q=' + encodeURIComponent(q); 
-        }
-      });
-    }
-    
-    window.filterProducts = function(q){
-      const checked = Array.from(document.querySelectorAll('.category-filter:checked')).map(i => i.value);
-      let list = products.slice();
-      
-      if (q) {
-        list = list.filter(p => 
-          (p.title || '').toLowerCase().includes(q) || 
-          (p.category || '').toLowerCase().includes(q)
-        );
-      }
-      
-      if (checked.length) {
-        list = list.filter(p => checked.includes(p.category));
-      }
-      
-      render(list);
-    };
-    
-    Array.from(document.querySelectorAll('.category-filter')).forEach(f => { 
-      if (!f._bound){ 
-        f._bound = true; 
-        f.addEventListener('change', () => 
-          filterProducts(search ? search.value.trim().toLowerCase() : '') 
-        ); 
-      } 
-    });
-  })();
-
-  /* USER SECTION (restore Xin chào / Đăng xuất using localStorage) */
-  (function(){
-    const el = document.getElementById('user-section');
-    if (!el) return;
-    
-    function esc(s){ 
-      return String(s).replace(/[&<>"']/g, m => 
-        ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])
-      ); 
-    }
-    
-    function render(){
-      const u = JSON.parse(localStorage.getItem('user')) || null;
-      
-      if (u && u.fullname){
-        el.innerHTML = `
-          <span class="user-name">Xin chào, ${esc(u.fullname)}</span>
-          <button class="logout-btn" id="logoutBtn">Đăng xuất</button>
-        `;
+      function render(list){
+        container.innerHTML = '';
         
-        const b = document.getElementById('logoutBtn');
-        if (b && !b._bound){ 
-          b._bound = true; 
-          b.addEventListener('click', () => { 
-            localStorage.removeItem('user'); 
-            render(); 
-            alert('Đã đăng xuất thành công!'); 
-          }); 
+        if (!list.length){ 
+          container.innerHTML = '<div style="grid-column:1/-1;color:#6b7280;padding:20px">Không tìm thấy sản phẩm.</div>'; 
+          return; 
         }
-      } else {
-        el.innerHTML = `
-          <button id="loginBtn" class="btn btn-ghost" style="padding:8px 12px;border-radius:8px">
-            Đăng nhập / Đăng ký
-          </button>
-        `;
         
-        const b = document.getElementById('loginBtn');
-        if (b && !b._bound){ 
-          b._bound = true; 
-          b.addEventListener('click', () => { 
-            window.location.href = 'login.html'; 
-          }); 
-        }
+        list.forEach(p => {
+          const el = document.createElement('div');
+          el.className = 'product-card';
+          el.innerHTML = `
+            <a href="#">
+              <img src="${p.img}" alt="${p.title}" onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'">
+              <h4>${p.title}</h4>
+              <div class="price">${formatPrice(p.price)}</div>
+            </a>
+          `;
+          container.appendChild(el);
+        });
       }
-    }
+      
+      // Hiển thị sản phẩm sau một chút delay để tránh "xoay vòng"
+      setTimeout(() => {
+        render(products);
+      }, 300);
+      
+      const search = document.querySelector('.search-input');
+      if (search){
+        let t;
+        search.addEventListener('input', () => { 
+          clearTimeout(t); 
+          t = setTimeout(() => { 
+            const q = search.value.trim().toLowerCase(); 
+            filterProducts(q); 
+          }, 120); 
+        });
+        
+        search.addEventListener('keydown', e => { 
+          if (e.key === 'Enter'){ 
+            e.preventDefault(); 
+            const q = search.value.trim(); 
+            window.location.href = 'store.html?q=' + encodeURIComponent(q); 
+          }
+        });
+      }
+      
+      window.filterProducts = function(q){
+        const checked = Array.from(document.querySelectorAll('.category-filter:checked')).map(i => i.value);
+        let list = products.slice();
+        
+        if (q) {
+          list = list.filter(p => 
+            (p.title || '').toLowerCase().includes(q) || 
+            (p.category || '').toLowerCase().includes(q)
+          );
+        }
+        
+        if (checked.length) {
+          list = list.filter(p => checked.includes(p.category));
+        }
+        
+        render(list);
+      };
+      
+      Array.from(document.querySelectorAll('.category-filter')).forEach(f => { 
+        if (!f._bound){ 
+          f._bound = true; 
+          f.addEventListener('change', () => 
+            filterProducts(search ? search.value.trim().toLowerCase() : '') 
+          ); 
+        } 
+      });
+    })();
   });
-</script>
+  </script>
+</body>
+</html>
