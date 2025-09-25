@@ -8,6 +8,190 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+  <!-- HEADER -->
+   <!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- ========== HEADER ========== -->
+<header class="site-header">
+  <div class="header-container">
+    <div class="logo">
+      <a href="index.html"><img src="Hình/LOGO/LOGO.png" alt="Logo"></a>
+    </div>
+
+    <div class="search-box" role="search" aria-label="Tìm kiếm">
+      <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+      <input class="search-input" type="search" placeholder="Tìm sản phẩm, thương hiệu..." aria-label="Tìm kiếm">
+    </div>
+
+    <div class="header-right" aria-hidden="false">
+      <a href="cart.html" class="cart-btn" aria-label="Giỏ hàng">
+        <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Giỏ hàng">
+        <span class="cart-badge" id="cartCount" style="display:none">0</span>
+      </a>
+      <div id="user-section"></div>
+    </div>
+
+    <nav class="main-menu" aria-label="Main menu">
+      <ul>
+        <li><a href="index.html">TRANG CHỦ</a></li>
+        <li><a href="Introduce.html">GIỚI THIỆU</a></li>
+        <li class="brand-menu">
+          <a href="store.html">CỬA HÀNG</a>
+          <ul class="submenu" aria-label="Danh mục">
+            <li><a href="mypham.html">Mỹ phẩm</a></li>
+            <li><a href="thoitrang.html">Thời trang</a></li>
+          </ul>
+        </li>
+        <li><a href="livestream.html">TRANG LIVESTREAM</a></li>
+        <li><a href="hopthoai.html">HỘP THOẠI</a></li>
+        <li><a href="thongbao.html">THÔNG BÁO</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ========== CSS CHO HEADER ========== -->
+<style>
+
+:root {
+    --max-w: 1200px;
+    --bg-1: #000000;
+    --bg-2: #000000;
+    --muted: #fff;
+    --text: #eef2f7;
+    --accent: #fe2c55;
+    --accent-2: #ff8a2d;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.06);
+    --shadow: rgba(2, 6, 23, 0.45);
+    --radius: 12px;
+}
+
+/* Reset body để không có khoảng trắng */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+* { box-sizing: border-box }
+a { text-decoration: none; color: inherit }
+img { max-width: 100%; display: block }
+
+header.site-header {
+  background: #000000;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  position: sticky; top: 0; z-index: 1200;
+  box-shadow: 0 6px 18px rgba(15,23,36,0.04);
+}
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 18px;
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+}
+
+.logo img { height: 56px; display: block }
+
+.search-box { position: relative; flex: 1 1 520px; max-width: 60vw; min-width: 160px }
+.search-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  color: #605f5f; font-size: 1.05rem; pointer-events: none
+}
+.search-input {
+  width: 100%; height: 44px; padding: 10px 16px 10px 44px; border-radius: 999px;
+  border: 1px solid #3e3e3f; background: #fff; color: #000; font-size: 0.95rem;
+  outline: none; transition: box-shadow .12s, transform .08s, border-color .12s;
+}
+.search-input::placeholder { color: rgba(0,0,0,0.4) }
+
+.header-right {
+  display: flex; align-items: center; gap: 12px; margin-left: auto
+}
+.cart-btn {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
+  padding: 8px; border-radius: 10px; cursor: pointer
+}
+.cart-icon { width: 28px; height: 28px; object-fit: contain }
+.cart-badge {
+  position: absolute; top: -6px; right: -6px;
+  background: #fe2c55; color: #fff;
+  min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px;
+  font-size: 0.75rem; display: inline-flex; align-items: center; justify-content: center
+}
+
+#user-section { display: flex; align-items: center; gap: 8px; font-family: inherit }
+.user-name {
+  background: #fff; color: #000; padding: 6px 16px; border-radius: 20px; font-weight: 600
+}
+.logout-btn {
+  background: transparent; border: 1px solid #fe2c55; color: #fe2c55;
+  padding: 6px 12px; border-radius: 20px; font-weight: 600; cursor: pointer;
+}
+.logout-btn:hover { background: #fe2c55; color: #fff; transform: translateY(-1px) }
+
+nav.main-menu {
+  width: 100%; order: 2; margin-top: 10px; display: flex; justify-content: center
+}
+.main-menu ul {
+  display: flex; gap: 24px; list-style: none; margin: 0; padding: 6px 0;
+  align-items: center; flex-wrap: wrap
+}
+.main-menu a {
+  color: #fff; font-weight: 700; text-transform: uppercase; padding: 6px 8px
+}
+.main-menu a:hover { text-decoration: none; color: #fe2c55 !important }
+
+.brand-menu { position: relative }
+.brand-menu .submenu {
+  display: none; position: absolute; left: 0; top: calc(100% + 8px); min-width: 180px;
+  background: #000; color: #eef2f7; border-radius: 10px;
+  box-shadow: 0 12px 36px rgba(15,23,36,0.08);
+  overflow: hidden; z-index: 400;
+  transform: translateY(-6px); opacity: 0;
+  transition: opacity .12s, transform .12s; pointer-events: none
+}
+.brand-menu:hover .submenu,
+.brand-menu:focus-within .submenu {
+  display: block; transform: translateY(0); opacity: 1; pointer-events: auto
+}
+.submenu li a {
+  display: block; padding: 10px 14px; font-weight: 700; color: #eef2f7 !important
+}
+.submenu li a:hover { background: #292929; color: #fe2c55 !important }
+
+</style>
+
+<!-- ========== JS CHO HEADER ========== -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const userSection = document.getElementById("user-section");
+
+  // Giả lập user login
+  const username = "KimNganP"; // lấy từ localStorage/session nếu có
+
+  if (username) {
+    userSection.innerHTML = `
+      <span class="user-name">Xin chào, ${username}</span>
+      <button class="logout-btn" id="logoutBtn">Đăng xuất</button>
+    `;
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      alert("Đã đăng xuất!");
+      // ở đây bạn có thể xoá session/localStorage và reload trang
+    });
+  } else {
+    userSection.innerHTML = `<button class="login-btn">Đăng nhập</button>`;
+  }
+});
+</script>
+
   <style>
   /* ========== VARIABLES & RESET ========== */
   :root{
@@ -23,56 +207,6 @@
   *{box-sizing:border-box}
   html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
-
-  /* ========== HEADER ========== */
-  header.site-header{
-    background: #000000;
-    border-bottom: 1px solid rgba(15,23,36,0.06);
-    position: sticky; top:0; z-index:1200;
-    box-shadow: 0 6px 18px rgba(15,23,36,0.04);
-  }
-  .header-container{
-    max-width:var(--max-w);
-    margin:0 auto;
-    padding:14px 18px;
-    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
-  }
-  .logo img{height:56px; display:block}
-
-  /* search */
-  .search-box{position:relative; flex:1 1 520px; max-width:60vw; min-width:160px}
-  .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:1.05rem;pointer-events:none}
-  .search-input{
-    width:100%; height:48px; padding:10px 16px 10px 44px; border-radius:28px;
-    border:1px solid rgba(15,23,36,0.08); background:#fff; color:var(--text); font-size:0.96rem;
-    box-shadow: 0 4px 18px rgba(15,23,36,0.04); outline:none; transition:box-shadow .12s, transform .08s, border-color .12s;
-  }
-  .search-input:focus{ box-shadow:0 10px 30px rgba(15,23,36,0.06); border-color: rgba(255,107,107,0.18); transform:translateY(-1px) }
-
-  /* header right */
-  .header-right{display:flex;align-items:center;gap:12px;margin-left:auto}
-  .cart-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:8px;border-radius:10px;border:1px solid rgba(15,23,36,0.04);background:#fff;cursor:pointer}
-  .cart-icon{width:28px;height:28px;object-fit:contain}
-  .cart-badge{position:absolute;top:-6px;right:-6px;background:#ff3b30;color:#fff;min-width:20px;height:20px;padding:0 6px;border-radius:999px;font-size:0.75rem;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(15,23,36,0.12)}
-
-  #user-section{display:flex;align-items:center;gap:8px;font-family:inherit}
-  .user-name{background:#f3f4f6;color:var(--text);padding:6px 12px;border-radius:20px;font-weight:600;max-width:260px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word}
-  .logout-btn{background:transparent;border:1px solid var(--accent);color:var(--accent);padding:6px 12px;border-radius:20px;font-weight:600;cursor:pointer}
-  .logout-btn:hover{background:var(--accent);color:#fff;transform:translateY(-1px)}
-
-  /* main menu row */
-  nav.main-menu{width:100%;order:2;margin-top:12px;display:flex;justify-content:center}
-  .main-menu ul{display:flex;gap:24px;list-style:none;margin:0;padding:6px 0;align-items:center;flex-wrap:wrap}
-  .main-menu a{color:#fff;font-weight:700;padding:6px 8px}
-  .main-menu a:hover{color:var(--accent)}
-
-  .brand-menu{position:relative}
-  .brand-menu .submenu{
-    display:none;position:absolute;left:0;top:calc(100% + 8px);min-width:180px;background:#fff;color:var(--text);border-radius:10px;box-shadow:0 12px 36px rgba(15,23,36,0.08);overflow:hidden;z-index:400;transform:translateY(-6px);opacity:0;transition:opacity .12s,transform .12s;pointer-events:none
-  }
-  .brand-menu:hover .submenu,.brand-menu:focus-within .submenu{display:block;transform:translateY(0);opacity:1;pointer-events:auto}
-  .submenu li a{display:block;padding:10px 14px;font-weight:700;color:var(--text) !important}
-  .submenu li a:hover{background:#f8fafc;color:var(--accent)!important}
 
   /* ========== BANNER (LỚN hơn, ít cắt) ========== */
   .banner { width:100%; padding:18px 0 8px; background:transparent }
@@ -176,68 +310,29 @@
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="header-container">
-      <div class="logo"><a href="index.html"><img src="Hình/LOGO/LOGO.png" alt="Logo"></a></div>
-
-      <div class="search-box" role="search" aria-label="Tìm kiếm">
-        <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
-        <input class="search-input" type="search" placeholder="Nhập từ cần tìm..." aria-label="Tìm kiếm">
+  <!-- BANNER -->
+  <section class="banner" aria-label="Banner chính">
+    <div class="slideshow-container">
+      <div class="slide fade">
+        <img src="Hình/BANNER/banner 1.png" alt="Banner 1" onerror="this.src='https://via.placeholder.com/1600x900?text=Banner+1'">
+      </div>
+      <div class="slide fade">
+        <img src="Hình/BANNER/Banner2.png" alt="Banner 2" onerror="this.src='https://via.placeholder.com/1600x900?text=Banner+2'">
+      </div>
+      <div class="slide fade">
+        <img src="Hình/BANNER/Banner3.png" alt="Banner 3" onerror="this.src='https://via.placeholder.com/1600x900?text=Banner+3'">
       </div>
 
-      <div class="header-right">
-        <a href="cart.html" class="cart-btn" aria-label="Giỏ hàng">
-          <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Giỏ hàng">
-          <span class="cart-badge" id="cartCount" style="display:none">0</span>
-        </a>
-        <div id="user-section"></div>
-      </div>
-
-      <nav class="main-menu" aria-label="Main menu">
-        <ul>
-          <li><a href="index.html">TRANG CHỦ</a></li>
-          <li><a href="Introduce.html">GIỚI THIỆU</a></li>
-          <li class="brand-menu"><a href="store.html">CỬA HÀNG</a>
-            <ul class="submenu" aria-label="Danh mục">
-              <li><a href="mypham.html">Mỹ phẩm</a></li>
-              <li><a href="thoitrang.html">Thời trang</a></li>
-            </ul>
-          </li>
-          <li><a href="livestream.html">TRANG LIVESTREAM</a></li>
-          <li><a href="hopthoai.html">HỘP THOẠI</a></li>
-          <li><a href="thongbao.html">THÔNG BÁO</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-   <!-- BANNER -->
-<section class="banner" aria-label="Banner chính">
-  <div class="slideshow-container">
-    <div class="slide fade">
-      <img src="Hình/BANNER/banner 1.jpg" alt="Banner 1"
-           onerror="this.src='https://placehold.co/1600x900?text=Banner+1'">
-    </div>
-    <div class="slide fade">
-      <img src="Hình/BANNER/Banner2.png" alt="Banner 2"
-           onerror="this.src='https://placehold.co/1600x900?text=Banner+2'">
-    </div>
-    <div class="slide fade">
-      <img src="Hình/BANNER/Banner3.png" alt="Banner 3"
-           onerror="this.src='https://placehold.co/1600x900?text=Banner+3'">
+      <a class="prev" onclick="plusSlides(-1)" aria-hidden="true">❮</a>
+      <a class="next" onclick="plusSlides(1)" aria-hidden="true">❯</a>
     </div>
 
-    <a class="prev" onclick="plusSlides(-1)" aria-hidden="true">❮</a>
-    <a class="next" onclick="plusSlides(1)" aria-hidden="true">❯</a>
-  </div>
-
-  <div class="dots" style="max-width:var(--max-w); margin:10px auto 0; text-align:center;">
-    <span class="dot" onclick="currentSlide(1)"></span>
-    <span class="dot" onclick="currentSlide(2)"></span>
-    <span class="dot" onclick="currentSlide(3)"></span>
-  </div>
-</section>
+    <div class="dots" style="max-width:var(--max-w); margin:10px auto 0; text-align:center;">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+  </section>
 
   <!-- FLASHSALE -->
  <section class="flashsale" aria-label="Flash sale">
@@ -698,8 +793,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
     }
-    
-    
-});
+  });
 </script>
-
