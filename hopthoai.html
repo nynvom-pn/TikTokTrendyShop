@@ -4,57 +4,103 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title> Hộp thoại | TikTok Trendy Shop</title>
- <link rel="stylesheet" href="css/index.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+ <!-- ========== HEADER ========== -->
  <style>
-   /* Các style cũ của bạn được giữ nguyên */
-   .header-right {
-     display: flex;
-     align-items: center;
-     gap: 10px;
-   }
-   .user-name {
-     color: #333;
-     font-weight: bold;
-     padding: 5px 10px;
-     background-color: #f0f0f0;
-     border-radius: 5px;
-     margin-left: 20px;
-   }
-   .logout-btn {
-     background-color: lab(96.48% 4.36 1.55);
-     color: rgb(0, 0, 0);
-     border: none;
-     padding: 5px 10px;
-     border-radius: 5px;
-     cursor: pointer;
-     font-size: 0.9rem;
-     margin-top: 20px;
-     margin-left: 20px;
-   }
-   .logout-btn:hover {
-     background-color: #fe2c55;
-   }
-   .login-btn {
-     background-color: #fb8a01;
-     color: white;
-     border: none;
-     padding: 5px 10px;
-     border-radius: 5px;
-     cursor: pointer;
-     font-size: 0.9rem;
-   }
-   .login-btn:hover {
-     background-color: #187bcd;
-   }
-    .cart-icon {
-      width: 24px;
-      height: 24px;
+/* CSS HEADER */
+:root {
+    --max-w: 1200px;
+    --bg-1: #000000;
+    --bg-2: #000000;
+    --muted: #fff;
+    --text: #eef2f7;
+    --accent: #fe2c55;
+    --accent-2: #ff8a2d;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.06);
+    --shadow: rgba(2, 6, 23, 0.45);
+    --radius: 12px;
+}
+
+/* Reset body để không có khoảng trắng */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+* { box-sizing: border-box }
+a { text-decoration: none; color: inherit }
+img { max-width: 100%; display: block }
+
+header.site-header{
+    background: var(--bg-2);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    position: sticky; top:0; z-index:1200;
+    box-shadow: 0 6px 18px rgba(15,23,36,0.04);
+  }
+  .header-container{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:12px 18px;
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  }
+  .logo img{height:56px; display:block}
+
+  .search-box{position:relative; flex:1 1 520px; max-width:60vw; min-width:160px}
+  .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#605f5f;font-size:1.05rem;pointer-events:none}
+  .search-input{
+    width:100%; height:44px; padding:10px 16px 10px 44px; border-radius:999px;
+    border:1px solid #3e3e3f; background:#ffffff; color:#000000; font-size:0.95rem;
+    outline:none; transition:box-shadow .12s, transform .08s, border-color .12s;
+    box-shadow: 0 6px 18px rgba(2,6,23,0.35);
+  }
+  .search-input::placeholder{ color: #5c5a5a}
+
+  .header-right{display:flex;align-items:center;gap:12px;margin-left:auto}
+  .cart-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:8px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;cursor:pointer}
+  .cart-icon{width:28px;height:28px;object-fit:contain}
+  .cart-badge{position:absolute;top:-6px;right:-6px;background:var(--accent);color:#fff;min-width:20px;height:20px;padding:0 6px;border-radius:999px;font-size:0.75rem;display:inline-flex;align-items:center;justify-content:center}
+
+  #user-section{display:flex;align-items:center;gap:8px;font-family:inherit}
+  .user-name{background:#f3f4f6;color:#0b0c0f;padding:6px 12px;border-radius:20px;font-weight:600;max-width:260px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word}
+  .logout-btn{background:transparent;border:1px solid var(--accent);color:var(--accent);padding:6px 12px;border-radius:20px;font-weight:600;cursor:pointer}
+  .logout-btn:hover{background:var(--accent);color:#fff;transform:translateY(-1px)}
+  .login-btn{    
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;}
+
+  nav.main-menu{width:100%;order:2;margin-top:10px;display:flex;justify-content:center}
+  .main-menu ul{display:flex;gap:24px;list-style:none;margin:0;padding:6px 0;align-items:center;flex-wrap:wrap}
+  .main-menu a{color:var(--text);font-weight:700;padding:6px 8px}
+  .main-menu a:hover{color:var(--accent)}
+
+  .brand-menu{position:relative}
+  .brand-menu .submenu {
+      display: none; position: absolute; left: 0; top: calc(100% + 8px); min-width: 180px;
+      background: #000; color: #eef2f7; border-radius: 10px;
+      box-shadow: 0 12px 36px rgba(15,23,36,0.08);
+      overflow: hidden; z-index: 400;
+      transform: translateY(-6px); opacity: 0;
+      transition: opacity .12s, transform .12s; pointer-events: none
     }
+    .brand-menu:hover .submenu,
+    .brand-menu:focus-within .submenu {
+      display: block; transform: translateY(0); opacity: 1; pointer-events: auto
+    }
+    .submenu li a {
+      display: block; padding: 10px 14px; font-weight: 700; color: #eef2f7 !important
+    }
+    .submenu li a:hover { background: #292929; color: #fe2c55 !important }
     main {
       display: flex;
       justify-content: center; /* Căn giữa container */
       margin: 30px auto;
-      padding: 0 20px;
     }
     .container {
       width: 900px;
@@ -209,12 +255,6 @@
     .card-buttons button:hover { background: #e65c00; }
     /* ------------------------------------------- */
 
-    footer {
-      background-color: #1e1e1e;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
 
     @media(max-width: 768px){
       .container { flex-direction: column; height: 80vh; }
@@ -226,53 +266,44 @@
 </head>
 <body>
 
-<header>
- <div class="header-container">
-   <div class="logo">
-     <img src="Hình/LOGO/LOGO.png" alt="HD Logo">
-   </div>
-   <input type="text" placeholder="  Nhập từ cần tìm  " class="search-input" style="width:800px; height:50px; margin-right: 20px; margin-left:30px;">
-   <nav class="main-menu">
-     <ul>
-       <li><a href="index.html">TRANG CHỦ</a></li>
-       <li><a href="Introduce.html">GIỚI THIỆU</a></li>
-       <li class="brand-menu">
-         <a href="store.html">CỬA HÀNG</a>
-         <ul class="submenu">
-           <li><a href="mypham.html">Mỹ phẩm</a></li>
-           <li><a href="thoitrang.html">Thời trang</a></li>
-         </ul>
-       </li>
-       <li class="brand-menu"><a href="livestream.html">TRANG LIVESTREAM</a></li>
-       <li class="brand-menu"><a href="hopthoai.html">HỘP THOẠI</a></li>
-       <li class="brand-menu"><a href="thongbao.html">THÔNG BÁO</a></li>
-     </ul>
-   </nav>
-   <div class="header-right">
-     <a href="cart.html">
-       <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Cart">
-     </a>
-     <script>
-       function updateUserSection() {
-         const userSection = document.getElementById("user-section");
-         const user = JSON.parse(localStorage.getItem("user")) || null;
-         if (user && user.fullname) {
-           userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span><button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
-         } else {
-           userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
-         }
-       }
-       function logout() {
-         localStorage.removeItem("user");
-         updateUserSection();
-         alert("Đã đăng xuất thành công!");
-       }
-       document.addEventListener("DOMContentLoaded", updateUserSection);
-     </script>
-     <div id="user-section"></div>
-   </div>
- </div>
-</header>
+ <!-- ========== HEADER ========== -->
+<header class="site-header">
+    <div class="header-container">
+      <div class="logo">
+        <a href="index.html"><img src="Hình/LOGO/LOGO.png" alt="Logo"></a>
+      </div>
+
+      <div class="search-box" role="search" aria-label="Tìm kiếm">
+        <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+        <input class="search-input" type="search" placeholder="Tìm sản phẩm, thương hiệu..." aria-label="Tìm kiếm">
+      </div>
+
+      <div class="header-right" aria-hidden="false">
+        <a href="cart.html" class="cart-btn" aria-label="Giỏ hàng">
+          <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Giỏ hàng">
+          <span class="cart-badge" id="cartCount" style="display:none">0</span>
+        </a>
+        <div id="user-section"></div>
+      </div>
+
+      <nav class="main-menu" aria-label="Main menu">
+        <ul>
+          <li><a href="index.html">TRANG CHỦ</a></li>
+          <li><a href="Introduce.html">GIỚI THIỆU</a></li>
+          <li class="brand-menu">
+            <a href="store.html">CỬA HÀNG</a>
+            <ul class="submenu" aria-label="Danh mục">
+              <li><a href="mypham.html">Mỹ phẩm</a></li>
+              <li><a href="thoitrang.html">Thời trang</a></li>
+            </ul>
+          </li>
+          <li><a href="livestream.html">TRANG LIVESTREAM</a></li>
+          <li><a href="hopthoai.html">HỘP THOẠI</a></li>
+          <li><a href="thongbao.html">THÔNG BÁO</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
 <main>
   <div class="container">
@@ -342,7 +373,7 @@
   </div>
 </main>
 
-<footer>
+ <footer>
     <div class="footer-container" style="background-color: #000000; color: #ffffff; padding: 20px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; text-align: center;">
       <div class="footer-logo">
         <img src="Hình/LOGO/LOGO.png" alt="TikTok Trendy Shop" style="height: 100px; margin-bottom: 10px;">
@@ -366,7 +397,7 @@
         <p>Chính sách giao hàng</p>
       </div>
     </div>
-</footer>
+  </footer>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -444,5 +475,81 @@
   });
 </script>
 
+<!-- ========== JS (tất cả ở cuối) ========== -->
+  <script>
+  (function(){
+    /* ===== user-section rendering (same logic like index) ===== */
+    function esc(s){ return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+    function updateUserSection(){
+      const root = document.getElementById('user-section');
+      if (!root) return;
+      const user = JSON.parse(localStorage.getItem('user')) || null;
+      if (user && user.fullname){
+        root.innerHTML = '<span class="user-name">Xin chào, ' + esc(user.fullname) + '</span><button class="logout-btn" id="logoutBtn">Đăng xuất</button>';
+        const b = document.getElementById('logoutBtn');
+        if (b && !b._bound){ b._bound = true; b.addEventListener('click', ()=>{ localStorage.removeItem('user'); updateUserSection(); alert("Đã đăng xuất thành công!"); }); }
+      } else {
+        root.innerHTML = '<button class="login-btn" id="loginBtn">Đăng nhập / Đăng ký</button>';
+        const b = document.getElementById('loginBtn');
+        if (b && !b._bound){ b._bound = true; b.addEventListener('click', ()=>{ window.location.href = "login.html"; }); }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', updateUserSection);
+    window.addEventListener('storage', (e)=> { if (e.key === 'user') updateUserSection(); });
+
+    /* ===== image popup (kept simple) ===== */
+    window.showImage = function(card){
+      try {
+        const img = (card && card.querySelector('img')) || null;
+        const src = img ? img.src : '';
+        if (!src) return alert('Không tìm thấy ảnh');
+        let popup = document.getElementById('imagePopup');
+        if (!popup){
+          popup = document.createElement('div');
+          popup.id = 'imagePopup';
+          popup.style.cssText = "display:flex;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(2,6,23,0.85);align-items:center;justify-content:center;z-index:1200";
+          popup.innerHTML = '<div style="position:relative;max-width:92%;max-height:92%;padding:10px;"><button onclick="closeImage()" style="position:absolute;top:-14px;right:-14px;width:36px;height:36px;background:#ff2d55;border-radius:50%;border:0;color:#fff;font-size:20px;cursor:pointer">×</button><img id="popupImage" src="" alt="Popup" style="max-width:100%;max-height:100%;border-radius:10px;border:6px solid #fff"></div>';
+          document.body.appendChild(popup);
+        }
+        document.getElementById('popupImage').src = src;
+        popup.style.display = 'flex';
+        popup.addEventListener('click', function(e){ if (e.target === popup) closeImage(); });
+      } catch (err) { console.error(err); alert('Lỗi hiển thị ảnh'); }
+    };
+    window.closeImage = function(){
+      const popup = document.getElementById('imagePopup');
+      if (popup){ popup.style.display = 'none'; const img = document.getElementById('popupImage'); if (img) img.src = ''; }
+    };
+
+    /* ===== lightweight: prevent placeholder flood in console ===== */
+    window.addEventListener('error', function(e){ /* ignore noisy external placeholder errors */ }, true);
+  })();
+  </script>
+
+  <script>
+  // ✅ Chỉ để 1 hàm updateUserSection, dùng đúng id="user-section"
+  function esc(s){ return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+  function updateUserSection(){
+    const root = document.getElementById("user-section");
+    const user = JSON.parse(localStorage.getItem("user")) || null;
+    if(user && user.username){
+      root.innerHTML = `
+        <span class="user-name">Xin chào, ${esc(user.username)}</span>
+        <button class="logout-btn" id="logoutBtn">Đăng xuất</button>
+      `;
+      document.getElementById("logoutBtn").addEventListener("click", ()=>{
+        localStorage.removeItem("user");
+        updateUserSection();
+        alert("Đã đăng xuất thành công!");
+      });
+    }else{
+      root.innerHTML = `<a href="login.html" class="login-btn">Đăng nhập / Đăng ký</a>`;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", updateUserSection);
+  window.addEventListener("storage", (e)=>{ if(e.key==="user") updateUserSection(); });
+  </script>
 </body>
 </html>
