@@ -1,260 +1,261 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Giới thiệu | TikTok Trendy Shop</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="css/index.css">
+
+  <!-- Fonts & Icons -->
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- ========== CSS (tất cả ở đây) ========== -->
   <style>
-    body {
-  background-color: black;
-  color: white; /* để chữ sáng dễ đọc */
-}
+  :root{
+    --max-w:1200px;
+    --bg-1: #000000;
+    --bg-2: #000000;
+    --muted: #fff;
+    --text: #eef2f7;
+    --accent: #fe2c55;
+    --accent-2: #ff8a2d;
+    --card-bg: rgba(255,255,255,0.03); /* sáng hơn 1 chút so với trước để ko bị ám xám */
+    --card-border: rgba(255,255,255,0.06);
+    --shadow: rgba(2,6,23,0.45);
+    --radius: 12px;
+  }
 
-   .header-right {
-     display: flex;
-     align-items: center;
-     gap: 10px;
-   }
-   .user-name {
-     color: #333;
-     font-weight: bold;
-     padding: 5px 10px;
-     background-color: #f0f0f0;
-     border-radius: 5px;
-     margin-left: 20px;
-   }
-   .logout-btn {
-     background-color: lab(96.48% 4.36 1.55);
-     color: rgb(0, 0, 0);
-     border: none;
-     padding: 5px 10px;
-     border-radius: 5px;
-     cursor: pointer;
-     font-size: 0.9rem;
-     margin-top: 20px;
-     margin-left: 20px;
-     display:flex;
-   }
-   .logout-btn:hover {
-     background-color: #fe2c55;
-   }
-   .login-btn {
-     background-color: #f87e04;
-     color: white;
-     border: none;
-     padding: 5px 10px;
-     border-radius: 5px;
-     cursor: pointer;
-     font-size: 0.9rem;
-   }
-   .login-btn:hover {
-     background-color: #187bcd;
-   }
-    main {
-      display: block !important;
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
+  /* Reset + base */
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:linear-gradient(180deg,var(--bg-1) 0%, var(--bg-2) 100%);color:var(--text);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
 
-    .about-section {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      margin-bottom: 40px;
-    }
+  /* ========== HEADER (ĐỒNG BỘ VỚI INDEX) ========== */
+  header.site-header{
+    background: var(--bg-2);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    position: sticky; top:0; z-index:1200;
+    box-shadow: 0 6px 18px rgba(15,23,36,0.04);
+  }
+  .header-container{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:12px 18px;
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  }
+  .logo img{height:56px; display:block}
 
-    .about-text {
-      flex: 2;
-    }
+  .search-box{position:relative; flex:1 1 520px; max-width:60vw; min-width:160px}
+  .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#605f5f;font-size:1.05rem;pointer-events:none}
+  .search-input{
+    width:100%; height:44px; padding:10px 16px 10px 44px; border-radius:999px;
+    border:1px solid #3e3e3f; background:#ffffff; color:#000000; font-size:0.95rem;
+    outline:none; transition:box-shadow .12s, transform .08s, border-color .12s;
+    box-shadow: 0 6px 18px rgba(2,6,23,0.35);
+  }
+  .search-input::placeholder{ color: #5c5a5a}
 
-    .about-text h2 {
-      color: #fe2c55;
-      margin-bottom: 20px;
-    }
+  .header-right{display:flex;align-items:center;gap:12px;margin-left:auto}
+  .cart-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:8px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;cursor:pointer}
+  .cart-icon{width:28px;height:28px;object-fit:contain}
+  .cart-badge{position:absolute;top:-6px;right:-6px;background:var(--accent);color:#fff;min-width:20px;height:20px;padding:0 6px;border-radius:999px;font-size:0.75rem;display:inline-flex;align-items:center;justify-content:center}
 
-    .about-text p {
-      line-height: 1.6;
-      color: #ffffff;
-    }
+  #user-section{display:flex;align-items:center;gap:8px;font-family:inherit}
+  .user-name{background:#f3f4f6;color:#0b0c0f;padding:6px 12px;border-radius:20px;font-weight:600;max-width:260px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word}
+  .logout-btn{background:transparent;border:1px solid var(--accent);color:var(--accent);padding:6px 12px;border-radius:20px;font-weight:600;cursor:pointer}
+  .logout-btn:hover{background:var(--accent);color:#fff;transform:translateY(-1px)}
+  .login-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:6px 12px;border-radius:999px;color:var(--text);font-weight:700;cursor:pointer}
 
-    .about-image {
-      flex: 1;
-      text-align: center;
-    }
+  nav.main-menu{width:100%;order:2;margin-top:10px;display:flex;justify-content:center}
+  .main-menu ul{display:flex;gap:24px;list-style:none;margin:0;padding:6px 0;align-items:center;flex-wrap:wrap}
+  .main-menu a{color:var(--text);font-weight:700;padding:6px 8px}
+  .main-menu a:hover{color:var(--accent)}
 
-    .about-image img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
+  .brand-menu{position:relative}
+  .brand-menu .submenu{
+    display:none;position:absolute;left:0;top:calc(100% + 8px);min-width:180px;background:#000000;color:var(--text);border-radius:10px;box-shadow:0 12px 36px rgba(15,23,36,0.08);overflow:hidden;z-index:400;transform:translateY(-6px);opacity:0;transition:opacity .12s,transform .12s;pointer-events:none
+  }
+  .brand-menu:hover .submenu,.brand-menu:focus-within .submenu{display:block;transform:translateY(0);opacity:1;pointer-events:auto}
+  .submenu li a{display:block;padding:10px 14px;font-weight:700;color:var(--text) !important}
+  .submenu li a:hover{background:#292929;color:var(--accent)!important}
 
-    .footer-container {
-      background-color: #ffffff;
-      color: #000000;
-      padding: 20px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      flex-wrap: wrap;
-      text-align: center;
-    }
+  /* ========== CONTENT STYLES ========== */
+  main.content { max-width:var(--max-w); margin:28px auto; padding:0 18px 60px; box-sizing:border-box; }
+  .hero {
+    display:flex; gap:20px; align-items:center; padding:22px; border-radius:var(--radius);
+    background: linear-gradient(90deg, #2e0d0d, #923536);
+    box-shadow:0 12px 36px var(--shadow);
+  }
+  .hero-left { flex:1; }
+  .hero h1 { margin:0; color:var(--accent); font-size:1.6rem; }
+  .hero p { margin:8px 0 0 0; color:var(--muted); line-height:1.6; }
 
-    .footer-logo img {
-      height: 100px;
-      margin-bottom: 10px;
-    }
+  .hero-cta { display:flex; gap:10px; margin-top:14px }
+  .btn { padding:10px 16px; border-radius:10px; font-weight:700; cursor:pointer; border:0 }
+  .btn-primary { background:var(--accent); color:#fff; box-shadow:0 8px 30px rgba(254,44,85,0.12) }
+  .btn-primary:hover { transform:translateY(-3px) }
+  .btn-outline { background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--text) }
+  .btn-outline:hover { background:rgba(255,255,255,0.02); transform:translateY(-2px) }
 
-    .footer-info h3,
-    .footer-license h3,
-    .footer-payment h3 {
-      margin: 0 0 10px;
-    }
+  .grid-2 { display:grid; grid-template-columns: 1fr 420px; gap:28px; margin-top:24px; align-items:start; }
+  .card {
+    background: #262424;
+    border:1px solid var(--card-border);
+    padding:18px; border-radius:var(--radius);
+    box-shadow:0 8px 30px rgba(2,6,23,0.30);
+    color:var(--accent);
+  }
+  /* Ensure "Thông tin nhanh" card doesn't look grey — more contrast inside */
+  .card h3 { margin:0 0 8px 0; color:var(--accent); }
+  .muted { color:var(--muted) }
 
-    .image-popup {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
+  .features { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:18px; }
+  .feature { background: rgba(255,255,255,0.02); padding:14px; border-radius:10px; text-align:center }
+  .feature h4 { margin:8px 0 6px 0; color:var(--text) }
+  .feature p { margin:0; color:var(--muted); font-size:0.95rem; }
 
-    .image-popup-content {
-      position: relative;
-      max-width: 90%;
-      max-height: 90%;
-      padding: 20px;
-      box-sizing: border-box;
-    }
+  .about-para { margin-top:18px; color:#fff; line-height:1.7 }
 
-    .image-popup img {
-      max-width: 100%;
-      max-height: 100%;
-      width: auto;
-      height: auto;
-      border: 5px solid #fff;
-      border-radius: 10px;
-      display: block;
-      margin: 0 auto;
-    }
+  /* Tiny visual fix: make contact links clearer (no gray overlay) */
+  .card a { color: #fff; font-weight:700 }
+  .card .muted a { color: var(--accent-2) }
 
-    .close-btn {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      width: 30px;
-      height: 30px;
-      background-color: #ff0000;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 18px;
-      line-height: 30px;
-      text-align: center;
-    }
+  /* Responsive */
+  @media (max-width:1000px){
+    .grid-2{ grid-template-columns: 1fr; }
+    .hero{ flex-direction:column; align-items:flex-start }
+    .features{ grid-template-columns:repeat(2,1fr) }
+  }
+  @media (max-width:600px){
+    .features{ grid-template-columns:1fr }
+  }
 
-    .close-btn:hover {
-      background-color: #cc0000;
-    }
-
-    .avatar_nhom15[src=""] {
-      background-color: #ccc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 14px;
-      text-align: center;
-    }
+  /* Footer small helper */
+  footer .footer-container { max-width:var(--max-w); margin:0 auto; }
   </style>
 </head>
 <body>
-  <!-- Header -->
-<header>
- <div class="header-container">
-   <div class="logo">
-     <img src="Hình/LOGO/LOGO.png" alt="HD Logo">
-   </div>
-   <nav class="main-menu">
-     <ul>
-       <li><a href="index.html">TRANG CHỦ</a></li>
-       <li><a href="Introduce.html">GIỚI THIỆU</a></li>
-       <li class="brand-menu">
-         <a href="store.html">CỬA HÀNG</a>
-         <ul class="submenu">
-           <li><a href="mypham.html">Mỹ phẩm</a></li>
-           <li><a href="thoitrang.html">Thời trang</a></li>
-         </ul>
-       </li>
-       <li class="brand-menu"><a href="livestream.html">TRANG LIVESTREAM</a></li>
-       <li class="brand-menu"><a href="hopthoai.html">HỘP THOẠI</a></li>
-       <li class="brand-menu"><a href="thongbao.html">THÔNG BÁO</a></li>
-     </ul>
-   </nav>
-   <div class="header-right">
-     <a href="cart.html">
-       <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Cart">
-     </a>
 
-     <script>
-   function updateUserSection() {
-     const userSection = document.getElementById("user-section");
-     const user = JSON.parse(localStorage.getItem("user")) || null;
-     if (user && user.fullname) {
-       userSection.innerHTML = `<span class="user-name">Xin chào, ${user.fullname}</span><button class="logout-btn" onclick="logout()">Đăng xuất</button>`;
-     } else {
-       userSection.innerHTML = `<button class="login-btn" onclick="window.location.href='/login.html'">Đăng nhập / Đăng ký</button>`;
-     }
-   }
-   function logout() {
-     localStorage.removeItem("user");
-     updateUserSection();
-     alert("Đã đăng xuất thành công!");
-   }
-   document.addEventListener("DOMContentLoaded", updateUserSection);
- </script>
-     <div id="user-section"></div>
-   </div>    
- </div>
-</header>
-
-  <main>
-    <section class="about-section">
-      <div class="about-text">
-        <h2>VỀ TIKTOK TRENDY SHOP</h2>
-        <p>TikTok Trendy Shop ra đời với mục tiêu mang đến cho bạn một không gian mua sắm online trẻ trung, bắt kịp xu hướng và gần gũi như chính những gì bạn thường thấy trên TikTok mỗi ngày. Chúng tôi tập trung vào hai dòng sản phẩm chính: thời trang và mỹ phẩm – những món đồ không chỉ giúp bạn thể hiện cá tính mà còn nâng tầm phong cách sống hiện đại.</p>
-        <p>Điểm đặc biệt của TikTok Trendy Shop chính là cách chúng tôi kết nối trải nghiệm mua sắm với livestream và video short-form. Thay vì chỉ xem ảnh hay mô tả sản phẩm khô khan, bạn có thể vừa xem livestream, vừa tương tác, vừa mua ngay với vài cú click. Điều này giúp bạn cảm nhận rõ chất liệu, kiểu dáng, công dụng của sản phẩm trước khi quyết định đặt hàng – giống như đi shopping trực tiếp nhưng lại tiện lợi ngay tại nhà.</p>
-        <p>TikTok Trendy Shop không chỉ là một cửa hàng online, mà còn là nơi bạn có thể tìm thấy nguồn cảm hứng về phong cách sống, cái đẹp và những xu hướng mới nhất. Chúng tôi tin rằng mỗi món đồ đều có câu chuyện riêng, và nhiệm vụ của chúng tôi là đưa câu chuyện đó đến với bạn một cách chân thật nhất.</p>
+  <!-- ========== HEADER (giữ nguyên y hệt index) ========== -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo">
+        <a href="index.html"><img src="Hình/LOGO/LOGO.png" alt="Logo"></a>
       </div>
-      <div class="about-image">
-        <img src="Hình/BANNER" alt="Hình banner Lanh des">
+
+      <div class="search-box" role="search" aria-label="Tìm kiếm">
+        <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+        <input class="search-input" type="search" placeholder="Tìm sản phẩm, thương hiệu..." aria-label="Tìm kiếm">
+      </div>
+
+      <div class="header-right" aria-hidden="false">
+        <a href="cart.html" class="cart-btn" aria-label="Giỏ hàng">
+          <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Giỏ hàng">
+          <span class="cart-badge" id="cartCount" style="display:none">0</span>
+        </a>
+        <div id="user-section"></div>
+      </div>
+
+      <nav class="main-menu" aria-label="Main menu">
+        <ul>
+          <li><a href="index.html">TRANG CHỦ</a></li>
+          <li><a href="Introduce.html">GIỚI THIỆU</a></li>
+          <li class="brand-menu">
+            <a href="store.html">CỬA HÀNG</a>
+            <ul class="submenu" aria-label="Danh mục">
+              <li><a href="mypham.html">Mỹ phẩm</a></li>
+              <li><a href="thoitrang.html">Thời trang</a></li>
+            </ul>
+          </li>
+          <li><a href="livestream.html">TRANG LIVESTREAM</a></li>
+          <li><a href="hopthoai.html">HỘP THOẠI</a></li>
+          <li><a href="thongbao.html">THÔNG BÁO</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="content" role="main">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-left">
+        <h1 id="heroTitle">TikTok Trendy Shop — Mua sắm theo xu hướng</h1>
+        <p class="muted">Xem livestream, tương tác trực tiếp và mua hàng ngay — trải nghiệm mua sắm hiện đại, nhanh chóng và an toàn.</p>
+
+        <div class="hero-cta">
+          <a href="store.html" class="btn btn-primary">Mua sắm ngay</a>
+          <a href="livestream.html" class="btn btn-outline">Xem livestream</a>
+        </div>
+      </div>
+
+      <div style="width:360px">
+        <img src="Hình/BANNER/hero.jpg" alt="Hero banner" style="border-radius:10px" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;720&quot; height=&quot;420&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%230f1720&quot;/><text x=&quot;50%25&quot; y=&quot;50%25&quot; fill=&quot;%23fff&quot; font-family=&quot;Arial&quot; font-size=&quot;22&quot; text-anchor=&quot;middle&quot;>TikTok Trendy Shop</text></svg>'">
       </div>
     </section>
 
-    <section class="about-section">
-      <div class="about-text">
-        <h2>CAM KẾT</h2>
-        <p>1.Sản phẩm chính hãng, chất lượng – được chọn lọc kỹ càng để mang đến trải nghiệm đáng tin cậy.</p>
-        <p>2.Giá cả hợp lý, nhiều ưu đãi – để bạn vừa bắt trend nhanh vừa tiết kiệm.</p>
-        <p>3.Giao hàng nhanh chóng toàn quốc – giúp bạn nhận sản phẩm đúng hẹn, an tâm mua sắm.</p>
-        <p>4.Dịch vụ tận tâm – đội ngũ hỗ trợ luôn sẵn sàng giải đáp thắc mắc và lắng nghe phản hồi từ bạn.</p>
-      </div>
-      <div class="about-image">
-        <img src="Hình/BANNER" alt="Hình banner Lanh des">
-      </div>
-    </section>
+    <!-- Grid: about + aside -->
+    <div class="grid-2">
+      <!-- Left: about -->
+      <div>
+        <div class="card">
+          <h3>Giới thiệu ngắn</h3>
+          <p class="about-para">TikTok Trendy Shop ra đời nhằm mang đến trải nghiệm mua sắm kết hợp nội dung video ngắn và livestream. Chúng tôi tập trung vào thời trang và mỹ phẩm — những sản phẩm trẻ trung, hợp mốt, giúp khách hàng thể hiện phong cách cá nhân.</p>
 
-   
+          <div class="features" aria-hidden="false" style="margin-top:16px;">
+            <div class="feature">
+              <i class="fa-solid fa-bolt" style="font-size:24px;color:var(--accent)"></i>
+              <h4>Ưu đãi nhanh</h4>
+              <p>Flash sale, mã giảm giá liên tục.</p>
+            </div>
+            <div class="feature">
+              <i class="fa-solid fa-truck" style="font-size:24px;color:var(--accent)"></i>
+              <h4>Giao hàng toàn quốc</h4>
+              <p>Nhanh chóng, an toàn, có tracking.</p>
+            </div>
+            <div class="feature">
+              <i class="fa-solid fa-thumbs-up" style="font-size:24px;color:var(--accent)"></i>
+              <h4>Chất lượng đảm bảo</h4>
+              <p>Sản phẩm được kiểm duyệt kỹ trước khi bán.</p>
+            </div>
+          </div>
+
+          <h3 style="margin-top:18px">Tại sao chọn chúng tôi?</h3>
+          <p class="about-para">Chúng tôi kết hợp trải nghiệm xem — mua trong cùng 1 nền tảng: vừa xem livestream, vừa hỏi, vừa đặt hàng. Đội ngũ kiểm tra chất lượng và hỗ trợ khách hàng hoạt động 24/7 để đảm bảo bạn yên tâm khi mua sắm.</p>
+        </div>
+      </div>
+
+      <!-- Right: aside (Thông tin nhanh) -->
+      <aside>
+        <div class="card">
+          <h3>Thông tin nhanh</h3>
+          <p class="muted"><strong>Địa chỉ:</strong> Khu phố 6, phường Linh Trung, TP Thủ Đức, TP HCM</p>
+          <p class="muted"><strong>Email:</strong> <a href="mailto:tiktoktrendyshop@gmail.com">tiktoktrendyshop@gmail.com</a></p>
+          <!-- Hotline đã được bỏ theo yêu cầu -->
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:12px 0">
+          <h4>Liên hệ / Hợp tác</h4>
+          <p class="muted">Gửi email hoặc liên hệ để hợp tác với KOL và nhà cung cấp uy tín.</p>
+
+          <div style="margin-top:12px; display:flex; gap:10px">
+            <a class="btn btn-primary" href="hopthoai.html">Liên hệ</a>
+            <a class="btn btn-outline" href="store.html">Xem cửa hàng</a>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h3>Chính sách nổi bật</h3>
+          <ul style="margin:8px 0 0 18px; color:#fff;">
+            <li>Đổi trả 7 ngày</li>
+            <li>Hoàn tiền nếu hàng giả</li>
+            <li>Giao nhanh trong TP. HCM</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
   </main>
 
+  <!-- ========== FOOTER (giữ nguyên) ========== -->
   <footer>
     <div class="footer-container" style="background-color: #000000; color: #ffffff; padding: 20px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; text-align: center;">
       <div class="footer-logo">
@@ -281,104 +282,55 @@
     </div>
   </footer>
 
-  <div class="image-popup" id="imagePopup">
-    <div class="image-popup-content">
-      <button class="close-btn" onclick="closeImage()">×</button>
-      <img id="popupImage" src="" alt="Popup Image">
-    </div>
-  </div>
-
+  <!-- ========== JS (tất cả ở cuối) ========== -->
   <script>
-    function showImage(card) {
-      console.log("showImage called for card:", card);
-      const avatar = card.querySelector('.avatar_nhom15');
-      const src = avatar ? avatar.src : '';
-      console.log("Image src:", src);
-
-      if (!src) {
-        console.error("No avatar image found!");
-        alert("Không tìm thấy hình ảnh để hiển thị.");
-        return;
-      }
-
-      const popup = document.getElementById('imagePopup');
-      const popupImage = document.getElementById('popupImage');
-
-      if (!popup || !popupImage) {
-        console.error("Popup elements not found!");
-        return;
-      }
-
-      const img = new Image();
-      img.src = src;
-      img.onload = () => {
-        console.log("Image loaded successfully:", src);
-        popupImage.src = src;
-        popup.style.display = 'flex';
-      };
-      img.onerror = () => {
-        console.error("Failed to load image:", src);
-        alert("Không thể tải hình ảnh. Vui lòng kiểm tra đường dẫn: " + src);
-      };
-    }
-
-    function closeImage() {
-      console.log("closeImage called");
-      const popup = document.getElementById('imagePopup');
-      if (popup) {
-        popup.style.display = 'none';
-      }
-    }
-
-    document.getElementById('imagePopup').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeImage();
-      }
-    });
-
-    function contactMe_nhom15(name, button) {
-  console.log("contactMe called for:", name);
-  let email = "";
-  
-  if (name === "Nguyễn Thanh Hảo") {
-    email = "23126076@student.hcmute.edu.vn";
-  } else if (name === "Đoàn Thị Mỹ Dung") {
-    email = "23126068@student.hcmute.edu.vn";
-  }
-  
-  alert(`Liên hệ với ${name} qua email: ${email}`);
-  button.classList.add('clicked');
-}
-
-    function updateUserSection() {
-      const userSection = document.getElementById("user-section");
-      if (!userSection) {
-        console.error("Element with id 'user-section' not found!");
-        return;
-      }
-      const user = JSON.parse(localStorage.getItem("user")) || null;
-      userSection.innerHTML = ''; // Xóa nội dung cũ trước khi cập nhật
-      if (user && user.fullname) {
-        userSection.innerHTML = `
-          <span class="user-name">Xin chào, ${user.fullname}</span>
-          <button class="logout-btn" onclick="logout()">Đăng xuất</button>
-        `;
+  (function(){
+    /* ===== user-section rendering (same logic like index) ===== */
+    function esc(s){ return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+    function updateUserSection(){
+      const root = document.getElementById('user-section');
+      if (!root) return;
+      const user = JSON.parse(localStorage.getItem('user')) || null;
+      if (user && user.fullname){
+        root.innerHTML = '<span class="user-name">Xin chào, ' + esc(user.fullname) + '</span><button class="logout-btn" id="logoutBtn">Đăng xuất</button>';
+        const b = document.getElementById('logoutBtn');
+        if (b && !b._bound){ b._bound = true; b.addEventListener('click', ()=>{ localStorage.removeItem('user'); updateUserSection(); alert("Đã đăng xuất thành công!"); }); }
       } else {
-        userSection.innerHTML = `
-          <button class="login-btn" onclick="window.location.href='/login.html'">
-            Đăng nhập / Đăng ký
-          </button>
-        `;
+        root.innerHTML = '<button class="login-btn" id="loginBtn">Đăng nhập / Đăng ký</button>';
+        const b = document.getElementById('loginBtn');
+        if (b && !b._bound){ b._bound = true; b.addEventListener('click', ()=>{ window.location.href = "login.html"; }); }
       }
     }
+    document.addEventListener('DOMContentLoaded', updateUserSection);
+    window.addEventListener('storage', (e)=> { if (e.key === 'user') updateUserSection(); });
 
-    function logout() {
-      localStorage.removeItem("user");
-      updateUserSection();
-      alert("Đã đăng xuất thành công!");
-    }
+    /* ===== image popup (kept simple) ===== */
+    window.showImage = function(card){
+      try {
+        const img = (card && card.querySelector('img')) || null;
+        const src = img ? img.src : '';
+        if (!src) return alert('Không tìm thấy ảnh');
+        let popup = document.getElementById('imagePopup');
+        if (!popup){
+          popup = document.createElement('div');
+          popup.id = 'imagePopup';
+          popup.style.cssText = "display:flex;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(2,6,23,0.85);align-items:center;justify-content:center;z-index:1200";
+          popup.innerHTML = '<div style="position:relative;max-width:92%;max-height:92%;padding:10px;"><button onclick="closeImage()" style="position:absolute;top:-14px;right:-14px;width:36px;height:36px;background:#ff2d55;border-radius:50%;border:0;color:#fff;font-size:20px;cursor:pointer">×</button><img id="popupImage" src="" alt="Popup" style="max-width:100%;max-height:100%;border-radius:10px;border:6px solid #fff"></div>';
+          document.body.appendChild(popup);
+        }
+        document.getElementById('popupImage').src = src;
+        popup.style.display = 'flex';
+        popup.addEventListener('click', function(e){ if (e.target === popup) closeImage(); });
+      } catch (err) { console.error(err); alert('Lỗi hiển thị ảnh'); }
+    };
+    window.closeImage = function(){
+      const popup = document.getElementById('imagePopup');
+      if (popup){ popup.style.display = 'none'; const img = document.getElementById('popupImage'); if (img) img.src = ''; }
+    };
 
-    document.addEventListener("DOMContentLoaded", updateUserSection);
+    /* ===== lightweight: prevent placeholder flood in console ===== */
+    window.addEventListener('error', function(e){ /* ignore noisy external placeholder errors */ }, true);
+  })();
   </script>
 </body>
 </html>
