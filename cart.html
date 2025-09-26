@@ -1,268 +1,259 @@
-<<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Giỏ hàng | TikTok Trendy Shop</title>
- <link rel="stylesheet" href="css/index.css">
- <style>
-   .header-right {
-     display: flex;
-     align-items: center;
-     gap: 10px;
-   }
-   .user-name {
-     color: #333;
-     font-weight: bold;
-     padding: 5px 10px;
-     background-color: #f0f0f0;
-     border-radius: 5px;
-     margin-left: 20px;
-   }
-   .logout-btn {
-     background-color: lab(96.48% 4.36 1.55);
-     color: rgb(0, 0, 0);
-     border: none;
-     padding: 5px 10px;
-     border-radius: 5px;
-     cursor: pointer;
-     font-size: 0.9rem;
-     margin-top: 20px;
-     margin-left: 20px;
-   }
-   .logout-btn:hover {
-     background-color: #fe2c55;
-   }
-   .login-btn {
-     background-color: #fe8300;
-     color: white;
-     border: none;
-     padding: 5px 10px;
-     border-radius: 5px;
-     cursor: pointer;
-     font-size: 0.9rem;
-   }
-   .login-btn:hover {
-     background-color: #187bcd;
-   }
-   
-    .cart-icon {
-      width: 24px;
-      height: 24px;
-    }
-    h1 {
-    text-align: center;
-    margin: 20px 0 30px; /* tạo khoảng cách trên dưới */
-    color: #333;
-    font-size: 2rem;
-    font-weight: bold;
-    border-bottom: 3px solid #ff9800; /* gạch cam phía dưới */
-    display: inline-block;
-    padding-bottom: 10px;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Giỏ hàng | TikTok Trendy Shop</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- ========================= CSS ========================= -->
+  <style>
+ :root{
+    --max-w:1200px;
+    --bg-1: #000000;
+    --bg-2: #000000;
+    --muted: #bfc5ca;
+    --text: #eef2f7;
+    --accent: #fe2c55;
+    --accent-2: #ff8a2d;
+    --card-bg: rgba(255,255,255,0.03);
+    --card-border: rgba(255,255,255,0.06);
+    --shadow: rgba(2,6,23,0.45);
+    --radius: 14px; /* bo tròn chung */
   }
-    main {
-      max-width: 1000px;
-      margin: auto;
-      background: #fff;
+
+  /* Reset + base */
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:#121212;color:var(--text);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+
+  /* ========== HEADER (ĐỒNG BỘ VỚI INDEX) ========== */
+  header.site-header{
+    background: var(--bg-2);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    position: sticky; top:0; z-index:1200;
+    box-shadow: 0 6px 18px rgba(15,23,36,0.04);
+  }
+  .header-container{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:12px 18px;
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  }
+  .logo img{height:56px; display:block; border-radius:8px; box-shadow: 0 4px 14px rgba(0,0,0,0.4);}
+
+  .search-box{position:relative; flex:1 1 520px; max-width:60vw; min-width:160px}
+  .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#605f5f;font-size:1.05rem;pointer-events:none}
+  .search-input{
+    width:100%; height:48px; padding:10px 16px 10px 44px; border-radius:999px;
+    border:1px solid #3e3e3f; background:#ffffff; color:#000000; font-size:0.95rem;
+    outline:none; transition:box-shadow .12s, transform .08s, border-color .12s;
+    box-shadow: 0 6px 18px rgba(2,6,23,0.12);
+  }
+  .search-input::placeholder{ color: #5c5a5a}
+
+  .header-right{display:flex;align-items:center;gap:12px;margin-left:auto}
+  .cart-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:8px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);background:transparent;cursor:pointer}
+  .cart-icon{width:28px;height:28px;object-fit:contain}
+  .cart-badge{position:absolute;top:-6px;right:-6px;background:var(--accent);color:#fff;min-width:20px;height:20px;padding:0 6px;border-radius:999px;font-size:0.75rem;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(0,0,0,0.3)}
+
+  #user-section{display:flex;align-items:center;gap:8px;font-family:inherit}
+  .user-name{background:#f3f4f6;color:#0b0c0f;padding:6px 12px;border-radius:20px;font-weight:600;max-width:260px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word}
+  .logout-btn{background:transparent;border:1px solid var(--accent);color:var(--accent);padding:6px 12px;border-radius:20px;font-weight:600;cursor:pointer}
+  .logout-btn:hover{background:var(--accent);color:#fff;transform:translateY(-1px)}
+  .login-btn{ background: transparent; border: 1px solid #fff; color: #fff; padding: 6px 16px; border-radius: 20px; font-weight: 600; cursor: pointer; }
+
+  nav.main-menu{width:100%;order:2;margin-top:10px;display:flex;justify-content:center}
+  .main-menu ul{display:flex;gap:24px;list-style:none;margin:0;padding:6px 0;align-items:center;flex-wrap:wrap}
+  .main-menu a{color:var(--text);font-weight:700;padding:6px 8px}
+  .main-menu a:hover{color:var(--accent)}
+
+  .brand-menu{position:relative}
+  .brand-menu .submenu{
+    display:none;position:absolute;left:0;top:calc(100% + 8px);min-width:180px;background:#000;color:var(--text);border-radius:10px;box-shadow:0 12px 36px rgba(15,23,36,0.08);overflow:hidden;z-index:400;transform:translateY(-6px);opacity:0;transition:opacity .12s,transform .12s;pointer-events:none
+  }
+  .brand-menu:hover .submenu,.brand-menu:focus-within .submenu{display:block;transform:translateY(0);opacity:1;pointer-events:auto}
+  .submenu li a{display:block;padding:10px 14px;font-weight:700;color:var(--text) !important}
+  .submenu li a:hover{background:#292929;color:var(--accent)!important}
+
+    /* ========== PAGE LAYOUT ========== */
+    .page {
+      max-width: var(--max-w);
+      margin: 28px auto;
+      padding: 0 18px 60px;
+    }
+
+    main.cart-wrap {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 26px;
+      align-items: start;
+      margin-top: 18px;
+    }
+
+    /* Left: cart list */
+    .cart-panel {
+      background: #242424;
+      border: 1px solid var(--card-border);
       padding: 20px;
-      border-radius: 10px;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 30px rgba(15,23,36,0.04);
+      overflow: hidden;
     }
-    .cart-content {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+
+    .cart-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:14px;
+      gap:12px;
     }
+    .cart-header h1{font-size:22px;margin:0;color:#fff}
+    .cart-search {
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .cart-search input{
+      height:40px;padding:6px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);outline:none;background:#fff;color:#000;
+    }
+    .cart-search button{
+      height:40px;padding:6px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--muted);cursor:pointer;
+    }
+
+    .cart-list { display:flex; flex-direction:column; gap:14px; }
+
     .cart-item {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 20px 0;
-      border-bottom: 1px solid #ccc;
+      display:flex; gap:18px; align-items:flex-start;
+      padding:14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.03);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      overflow: hidden;
     }
-    .cart-item img {
-      width: 140px;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-    .cart-info {
-      flex: 1;
-    }
-    .cart-info h2 {
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-    }
-    .cart-info .sku {
-      color: #666;
-      font-size: 0.9rem;
-    }
-    .cart-info .brand {
-      color: #666;
-      font-size: 0.9rem;
-    }
-    .cart-info .size {
-      background: #fdd835;
-      color: #111;
-      padding: 3px 8px;
-      display: inline-block;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      margin-bottom: 5px;
-    }
-    .cart-info .price {
-      font-weight: bold;
-      color: #e60000;
-      font-size: 1rem;
-    }
-    .quantity-controls {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .quantity-controls button {
-      background: #ddd;
-      border: none;
-      padding: 5px 10px;
-      cursor: pointer;
-      font-size: 1.1rem;
-    }
-    .quantity-controls input {
-      width: 40px;
-      text-align: center;
-    }
-    .remove-btn {
-      background: #000000;
-      color: #fff;
-      border: none;
-      font-size: 18px;
-      padding: 6px 12px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-    #cart-summary {
-      padding-top: 20px;
-      border-top: 1px solid #ccc;
-      font-size: 1.2rem;
-    }
-    #cart-summary p {
-      margin: 0 0 10px;
-    }
-    #cart-summary span {
-      color: #e60000;
-      font-weight: bold;
-    }
-    .summary-buttons {
-      margin-top: 20px;
-      text-align: right;
-    }
-    .summary-buttons button {
-      background-color: #fdd835;
-      color: black;
-      border: none;
-      font-weight: bold;
-      padding: 10px 20px;
-      margin-left: 10px;
-      border-radius: 30px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    /* Added styles for user section */
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .user-name {
-      color: #333;
-      font-weight: bold;
-      font-size: 0.9rem;
-      padding: 5px 10px;
-      background-color: #f0f0f0;
-      border-radius: 5px;
-    }
-    .logout-btn {
-      background-color: #ff4d4f;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-    .logout-btn:hover {
-      background-color: #c7b5b5;
-    }
-    .login-btn {
-      background-color: #ff8c00;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-    .login-btn:hover {
-      background-color: #fd8700;
-    }
-    .cart-icon {
-      width: 24px;
-      height: 24px;
-    }
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
+    .cart-item img { width:140px;height:110px;object-fit:cover;border-radius:10px;flex:0 0 140px }
+    .cart-info { flex:1; display:flex;flex-direction:column; gap:8px }
+    .cart-info h3{margin:0;font-size:1.05rem;color:#fff}
+    .meta-row { display:flex; gap:10px; align-items:center; color:var(--muted); font-size:0.9rem }
+    .tag-size { background:#f3f4f6; color:#111; padding:4px 8px; border-radius:8px; font-weight:600; font-size:0.85rem }
 
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+    .price { margin-top:auto; font-weight:800; color:var(--accent-2) }
+    .line-total { font-weight:700;color:var(--accent); }
 
-    main {
-      flex: 1;
-    }
+    .quantity-controls { display:flex; align-items:center; gap:8px; margin-top:8px; }
+    .qty-btn { width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:#fff;cursor:pointer;font-weight:700 }
+    .qty-input { width:64px;text-align:center;border:1px solid rgba(255,255,255,0.04);border-radius:8px;height:36px;padding:6px;background:#fff }
 
-    footer {
-     margin-top: auto;
+    .remove-btn { background:transparent;border:1px solid rgba(255,255,255,0.04);border-radius:10px;padding:6px 10px;cursor:pointer;color:var(--muted) }
+    .remove-btn:hover{background:rgba(254,44,85,0.06);border-color:var(--accent);color:var(--accent)}
+
+    /* Right: summary */
+    .summary-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 30px rgba(15,23,36,0.04);
+      position:sticky;
+      top:84px;
+      height:fit-content;
+    }
+    .summary-panel h3{margin:0 0 8px 0;color:#fff}
+    .summary-row{display:flex;justify-content:space-between;padding:8px 0;color:var(--muted)}
+    .summary-total{display:flex;justify-content:space-between;padding-top:12px;border-top:1px dashed rgba(255,255,255,0.04);font-weight:800;font-size:1.1rem;margin-top:8px;color:#fff}
+    .checkout-btn { width:100%; padding:12px 14px; border-radius:10px; border:0; background:var(--accent); color:#fff; font-weight:800; cursor:pointer; margin-top:14px; box-shadow: 0 10px 30px rgba(254,44,85,0.12) }
+    .continue-btn { width:100%; padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--text); font-weight:700; cursor:pointer; margin-top:8px }
+
+    /* Empty cart */
+    .empty { text-align:center; padding:36px; color:var(--muted); border-radius:8px; background: transparent; }
+
+    /* Responsive */
+    @media (max-width:980px){
+      main.cart-wrap { grid-template-columns: 1fr; }
+      .summary-panel { position: static; top:auto; margin-top:12px; }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
+
+  <!-- ========== HEADER (giống index) ========== -->
+  <header class="site-header">
     <div class="header-container">
       <div class="logo">
-        <img src="Hình/LOGO/LOGO.png" alt="Shoe Store Logo">
+        <a href="index.html"><img src="Hình/LOGO/LOGO.png" alt="Logo"></a>
       </div>
-      <div class="header-right">
-        <input type="text" id="cart-search" placeholder="Nhập từ cần tìm">
-        <a href="cart.html">
-          <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Cart">
+
+      <div class="search-box" role="search" aria-label="Tìm kiếm">
+        <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+        <input class="search-input" type="search" placeholder="Tìm sản phẩm, thương hiệu..." aria-label="Tìm kiếm">
+      </div>
+
+      <div class="header-right" aria-hidden="false">
+        <a href="cart.html" class="cart-btn" aria-label="Giỏ hàng">
+          <img class="cart-icon" src="Hình/CART/shopping-cart-304843_1280.webp" alt="Giỏ hàng">
+          <span class="cart-badge" id="cartCount" style="display:none">0</span>
         </a>
-        <div id="user-section">
-          <!-- User info or login button will be dynamically inserted here -->
-        </div>
-      </div>     
+        <div id="user-section"></div>
+      </div>
+
+      <nav class="main-menu" aria-label="Main menu">
+        <ul>
+          <li><a href="index.html">TRANG CHỦ</a></li>
+          <li><a href="Introduce.html">GIỚI THIỆU</a></li>
+          <li class="brand-menu">
+            <a href="store.html">CỬA HÀNG</a>
+            <ul class="submenu" aria-label="Danh mục">
+              <li><a href="mypham.html">Mỹ phẩm</a></li>
+              <li><a href="thoitrang.html">Thời trang</a></li>
+            </ul>
+          </li>
+          <li><a href="livestream.html">TRANG LIVESTREAM</a></li>
+          <li><a href="hopthoai.html">HỘP THOẠI</a></li>
+          <li><a href="thongbao.html">THÔNG BÁO</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
-
-  <main>
-    <h1>GIỎ HÀNG</h1>
-    <div class="cart-content">
-      <div id="cart-container"></div>
-      <div id="cart-summary">
-        <p>Tổng tiền: <span id="total-price">0</span>đ</p>
-        <div class="summary-buttons">
-          <a href="index.html"><button>Mua tiếp</button></a>
-          <button id="checkout-from-cart">Đặt hàng</button>
+  <!-- ========== PAGE ========== -->
+  <div class="page">
+    <main class="cart-wrap">
+      <!-- LEFT: Cart panel -->
+      <section class="cart-panel" aria-labelledby="cartTitle">
+        <div class="cart-header">
+          <h1 id="cartTitle">Giỏ hàng</h1>
+          <div class="cart-search">
+            <input id="cart-search" type="search" placeholder="Tìm trong giỏ..." aria-label="Tìm trong giỏ">
+            <button id="clear-search" title="Xóa tìm kiếm">✕</button>
+          </div>
         </div>
-      </div>
-    </div>
-  </main>
 
- <footer>
+        <div class="cart-list" id="cart-container">
+          <!-- các mục giỏ hàng được render ở đây bởi JS -->
+        </div>
+      </section>
+
+      <!-- RIGHT: Summary -->
+      <aside class="summary-panel" aria-labelledby="summaryTitle">
+        <h3 id="summaryTitle">Tóm tắt đơn hàng</h3>
+        <div id="summaryDetails">
+          <div class="summary-row"><span>Số mặt hàng</span><span id="summaryCount">0</span></div>
+          <div class="summary-row"><span>Phí vận chuyển</span><span id="shippingFee">Miễn phí</span></div>
+          <div class="summary-total"><span>Tổng</span><span id="total-price">0 đ</span></div>
+
+          <button class="checkout-btn" id="checkout-from-cart">Tiến hành thanh toán</button>
+          <a href="index.html"><button class="continue-btn">Tiếp tục mua sắm</button></a>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- ========== FOOTER (giữ nguyên) ========== -->
+  <footer>
     <div class="footer-container" style="background-color: #000000; color: #ffffff; padding: 20px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; text-align: center;">
       <div class="footer-logo">
         <img src="Hình/LOGO/LOGO.png" alt="TikTok Trendy Shop" style="height: 100px; margin-bottom: 10px;">
@@ -274,7 +265,7 @@
         <p>Email: tiktoktrendyshop@gmail.com</p>
       </div>
       <div class="footer-license">
-        <h3 style="margin: 0 0 10px;">HỒ TRỢ KHÁCH HÀNG</h3>
+        <h3 style="margin: 0 0 10px;">HỖ TRỢ KHÁCH HÀNG</h3>
         <p>Chăm sóc khách hàng</p>
         <p>Hướng dẫn mua hàng</p>
         <p>Hỗ trợ đổi trả hàng</p>
@@ -288,136 +279,303 @@
     </div>
   </footer>
 
+  <!-- ========================= JS ========================= -->
   <script>
-    const cartContainer = document.getElementById("cart-container");
-    const totalPriceEl = document.getElementById("total-price");
-    const searchInput = document.getElementById("cart-search");
+  (function(){
+    /* ---------- Helper ---------- */
+    function esc(s){ return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+    function money(n){ return Number(n||0).toLocaleString() + ' đ'; }
 
-    // User section logic (same as index.html)
-    function updateUserSection() {
-      const userSection = document.getElementById("user-section");
-      const user = JSON.parse(localStorage.getItem("user")) || null;
-
-      if (user && user.fullname) {
-        // User is logged in, display their name and a logout button
-        userSection.innerHTML = `
-          <span class="user-name">Xin chào, ${user.fullname}</span>
-          <button class="logout-btn" onclick="logout()">Đăng xuất</button>
-        `;
+    /* ---------- User section (same behavior as index) ---------- */
+    function updateUserSection(){
+      const root = document.getElementById('user-section');
+      if(!root) return;
+      const user = JSON.parse(localStorage.getItem('user')) || null;
+      if(user && (user.fullname || user.username)){
+        const name = esc(user.fullname || user.username);
+        root.innerHTML = '<span class="user-name">Xin chào, ' + name + '</span><button class="logout-btn" id="logoutBtn">Đăng xuất</button>';
+        const btn = document.getElementById('logoutBtn');
+        if(btn && !btn._bound){ btn._bound = true; btn.addEventListener('click', () => {
+          // optional: remove user-specific cart entries (kept optional behavior)
+          try {
+            const u = user.fullname || user.username;
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(it => it.username !== u);
+            localStorage.setItem('cart', JSON.stringify(cart));
+          } catch(e) {}
+          localStorage.removeItem('user');
+          updateUserSection();
+          loadCart(document.getElementById('cart-search').value || '');
+          updateCartBadge();
+          alert('Đã đăng xuất thành công!');
+        }); }
       } else {
-        // User is not logged in, display the login/register button
-        userSection.innerHTML = `
-          <button class="login-btn" onclick="window.location.href='/login.html'">
-            Đăng nhập / Đăng ký
-          </button>
-        `;
+        root.innerHTML = '<button class="login-btn" id="loginBtn">Đăng nhập / Đăng ký</button>';
+        const btn = document.getElementById('loginBtn');
+        if(btn && !btn._bound){ btn._bound = true; btn.addEventListener('click', ()=> window.location.href = 'login.html'); }
       }
     }
+    document.addEventListener('DOMContentLoaded', updateUserSection);
+    window.addEventListener('storage', (e)=> { if(e.key === 'user') updateUserSection(); });
 
-    function logout() {
-      const user = JSON.parse(localStorage.getItem("user"));
-      if (user && user.fullname) {
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart = cart.filter(item => item.username !== user.fullname); // Remove items for this user
-        localStorage.setItem("cart", JSON.stringify(cart));
-      }
-      localStorage.removeItem("user");
-      updateUserSection();
-      alert("Đã đăng xuất thành công!");
+    /* ---------- Cart rendering + operations ---------- */
+    const cartContainer = document.getElementById('cart-container');
+    const totalPriceEl = document.getElementById('total-price');
+    const summaryCountEl = document.getElementById('summaryCount');
+    const shippingFeeEl = document.getElementById('shippingFee');
+
+    const searchInput = document.getElementById('cart-search');
+    const clearSearchBtn = document.getElementById('clear-search');
+
+    function updateCartBadge(){
+      try {
+        const user = JSON.parse(localStorage.getItem('user')) || null;
+        const rawCart = JSON.parse(localStorage.getItem('cart')) || [];
+        let totalQty = 0;
+        if (user && (user.fullname || user.username)) {
+          const username = user.fullname || user.username;
+          rawCart.forEach(it => { if (it.username === username) totalQty += Number(it.quantity||1); });
+        } else {
+          // show total of non-user items (or all)
+          rawCart.forEach(it => { totalQty += Number(it.quantity||1); });
+        }
+        const badge = document.getElementById('cartCount');
+        if (!badge) return;
+        if (totalQty > 0) {
+          badge.style.display = 'inline-flex';
+          badge.textContent = totalQty;
+        } else {
+          badge.style.display = 'none';
+        }
+      } catch(e){ /* ignore */ }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      updateUserSection(); // Initialize user section on page load
-    });
+    function loadCart(searchTerm = '') {
+      const user = JSON.parse(localStorage.getItem('user')) || null;
+      const rawCart = JSON.parse(localStorage.getItem('cart')) || [];
+      cartContainer.innerHTML = '';
 
-    // Existing cart logic
-    function loadCart(searchTerm = "") {
-      const user = JSON.parse(localStorage.getItem("user")) || null;
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      cartContainer.innerHTML = "";
-      let total = 0;
+      const username = user && (user.fullname || user.username) ? (user.fullname || user.username) : null;
+      const filtered = rawCart
+        .map((it, idx) => ({it, idx}))
+        .filter(o => {
+          if(username && o.it.username !== username) return false;
+          if(!username && o.it.username) return false; // if not logged in, hide user-specific items
+          if(!searchTerm) return true;
+          return (o.it.name || '').toLowerCase().includes(searchTerm.toLowerCase());
+        });
 
-      // Filter cart items for the current user
-      const filteredCart = cart.filter(item => 
-        (user && user.fullname && item.username === user.fullname) &&
-        item.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-
-      if (filteredCart.length === 0) {
-        cartContainer.innerHTML = searchTerm ? "<p>Không tìm thấy sản phẩm nào</p>" : "<p>Giỏ hàng trống</p>";
-        totalPriceEl.textContent = "0";
+      if(filtered.length === 0){
+        const emptyEl = document.createElement('div');
+        emptyEl.className = 'empty';
+        emptyEl.textContent = searchTerm ? 'Không tìm thấy sản phẩm.' : 'Giỏ hàng trống.';
+        cartContainer.appendChild(emptyEl);
+        totalPriceEl.textContent = money(0);
+        summaryCountEl.textContent = '0';
+        updateCartBadge();
         return;
       }
 
-      filteredCart.forEach((item, index) => {
-        // Ensure price and quantity are numbers
-        const price = parseFloat(item.price) || 0;
-        const quantity = parseInt(item.quantity) || 1;
-        const itemTotal = price * quantity;
+      let total = 0;
+      filtered.forEach(obj => {
+        const item = obj.it;
+        const idx = obj.idx;
+        const price = Number(item.price) || 0;
+        const qty = parseInt(item.quantity) || 1;
+        const line = price * qty;
+        total += line;
 
-        total += itemTotal;
-
-        const itemEl = document.createElement("div");
-        itemEl.className = "cart-item";
+        const itemEl = document.createElement('div');
+        itemEl.className = 'cart-item';
         itemEl.innerHTML = `
-          <img src="${item.image || '/images/default.png'}" alt="${item.name}">
+          <img src="${esc(item.image || 'Hình/PLACEHOLDER/noimage.png')}" alt="${esc(item.name)}" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x220?text=No+Image'">
           <div class="cart-info">
-            <h2>${item.name}</h2>
-            <div class="brand">Thương hiệu: ${item.brand || "N/A"}</div>
-            <div class="size">Size(nếu có): ${item.size || " "}</div>
-            <div class="sku">Mã SP: ${item.id}</div>
-            <div class="price">${price.toLocaleString()}đ</div>
-            <div class="quantity-controls">
-              <button onclick="decreaseQty(${index})">-</button>
-              <input type="number" min="1" value="${quantity}" readonly>
-              <button onclick="increaseQty(${index})">+</button>
+            <h3>${esc(item.name)}</h3>
+            <div class="meta-row">
+              <div class="brand">${esc(item.brand || '')}</div>
+              <div class="sku">Mã: ${esc(item.id || '')}</div>
             </div>
-            <div>Thành tiền: <span class="price">${itemTotal.toLocaleString()}đ</span></div>
+            <div class="meta-row">
+              <div class="tag-size">Size: ${esc(item.size || '-')}</div>
+            </div>
+            <div class="quantity-controls">
+              <button class="qty-btn" data-action="dec" data-index="${idx}">−</button>
+              <input class="qty-input" type="number" min="1" value="${qty}" readonly>
+              <button class="qty-btn" data-action="inc" data-index="${idx}">+</button>
+              <div style="margin-left:12px" class="price">${price.toLocaleString()} đ</div>
+            </div>
+            <div style="margin-top:8px;color:var(--muted)">Thành tiền: <span class="line-total">${line.toLocaleString()} đ</span></div>
           </div>
-          <button class="remove-btn" onclick="removeItem(${index})">×</button>
+          <div style="display:flex;align-items:flex-start;gap:8px;flex-direction:column;">
+            <button class="remove-btn" data-index="${idx}" title="Xóa">×</button>
+          </div>
         `;
         cartContainer.appendChild(itemEl);
       });
 
-      totalPriceEl.textContent = total.toLocaleString();
+      totalPriceEl.textContent = money(total);
+      summaryCountEl.textContent = filtered.reduce((s,_) => s + (Number(_.it.quantity)||1), 0);
+      shippingFeeEl.textContent = total >= 500000 ? 'Miễn phí' : 'Tùy khu vực';
+      updateCartBadge();
     }
 
-    function removeItem(index) {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      cart.splice(index, 1);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      loadCart(searchInput.value.trim());
-    }
-
-    function increaseQty(index) {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      cart[index].quantity = (parseInt(cart[index].quantity) || 1) + 1;
-      localStorage.setItem("cart", JSON.stringify(cart));
-      loadCart(searchInput.value.trim());
-    }
-
-    function decreaseQty(index) {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      if ((parseInt(cart[index].quantity) || 1) > 1) {
-        cart[index].quantity--;
-        localStorage.setItem("cart", JSON.stringify(cart));
-        loadCart(searchInput.value.trim());
+    // Delegated events for qty and remove
+    cartContainer.addEventListener('click', function(e){
+      const btn = e.target.closest('button');
+      if(!btn) return;
+      if(btn.classList.contains('qty-btn')){
+        const idx = parseInt(btn.getAttribute('data-index'));
+        const action = btn.getAttribute('data-action');
+        if(!isNaN(idx)) {
+          if(action === 'inc') changeQty(idx, +1);
+          if(action === 'dec') changeQty(idx, -1);
+        }
+      } else if(btn.classList.contains('remove-btn')){
+        const idx = parseInt(btn.getAttribute('data-index'));
+        if(!isNaN(idx)) removeItem(idx);
       }
-    }
-
-    // Add search functionality
-    searchInput.addEventListener('input', () => {
-      const searchTerm = searchInput.value.trim();
-      loadCart(searchTerm);
     });
 
-    // Initial load of cart
-    loadCart();
-    document.getElementById("checkout-from-cart").addEventListener("click", () => {
-  localStorage.removeItem("buyNow"); // Xóa dữ liệu mua ngay nếu có
-  window.location.href = "checkout.html"; // Điều hướng tới trang thanh toán
-});
+    function changeQty(originalIndex, delta){
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if(!cart[originalIndex]) return;
+      const current = parseInt(cart[originalIndex].quantity) || 1;
+      const next = Math.max(1, current + delta);
+      cart[originalIndex].quantity = next;
+      localStorage.setItem('cart', JSON.stringify(cart));
+      loadCart(searchInput.value.trim());
+      updateCartBadge();
+    }
 
+    function removeItem(originalIndex){
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if(!cart[originalIndex]) return;
+      cart.splice(originalIndex, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      loadCart(searchInput.value.trim());
+      updateCartBadge();
+    }
+
+    /* ---------- Search controls ---------- */
+    searchInput.addEventListener('input', function(){ loadCart(this.value.trim()); });
+    clearSearchBtn.addEventListener('click', function(){ searchInput.value = ''; loadCart(''); });
+
+    /* ---------- Checkout button ---------- */
+    document.getElementById('checkout-from-cart').addEventListener('click', function(){
+      try { localStorage.removeItem('buyNow'); } catch(e){}
+      window.location.href = 'checkout.html';
+    });
+
+    /* Initial render on DOM ready */
+    document.addEventListener('DOMContentLoaded', function(){
+      loadCart('');
+      updateUserSection();
+      updateCartBadge();
+    });
+
+    /* Keep console quiet for placeholder image network errors */
+    window.addEventListener('error', function(e){}, true);
+
+  })();
+  </script>
+
+  <!-- small shared JS for user-section duplication prevention -->
+  <script>
+    // fallback duplicate-safe updateUserSection (keeps id user-section consistent)
+    (function(){
+      function esc(s){ return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+      function updateUserSectionSafe(){
+        const root = document.getElementById("user-section");
+        if(!root) return;
+        const user = JSON.parse(localStorage.getItem("user")) || null;
+        if(user && (user.username || user.fullname)){
+          root.innerHTML = `<span class="user-name">Xin chào, ${esc(user.username || user.fullname)}</span><button class="logout-btn" id="logoutBtnLocal">Đăng xuất</button>`;
+          const b = document.getElementById("logoutBtnLocal");
+          if(b && !b._bound){ b._bound = true; b.addEventListener('click', ()=>{ localStorage.removeItem('user'); updateUserSection(); updateUserSectionSafe(); location.reload(); }); }
+        } else {
+          root.innerHTML = `<a href="login.html" class="login-btn">Đăng nhập / Đăng ký</a>`;
+        }
+      }
+      // don't override main updateUserSection if present; call for safety after DOM ready
+      document.addEventListener('DOMContentLoaded', function(){ try{ if(typeof updateUserSection === 'function') updateUserSection(); } catch(e){} updateUserSectionSafe(); });
+    })();
+  </script>
+
+    <!-- ========== JS (tất cả ở cuối) ========== -->
+  <script>
+  (function(){
+    /* ===== user-section rendering (same logic like index) ===== */
+    function esc(s){ return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+    function updateUserSection(){
+      const root = document.getElementById('user-section');
+      if (!root) return;
+      const user = JSON.parse(localStorage.getItem('user')) || null;
+      if (user && user.fullname){
+        root.innerHTML = '<span class="user-name">Xin chào, ' + esc(user.fullname) + '</span><button class="logout-btn" id="logoutBtn">Đăng xuất</button>';
+        const b = document.getElementById('logoutBtn');
+        if (b && !b._bound){ b._bound = true; b.addEventListener('click', ()=>{ localStorage.removeItem('user'); updateUserSection(); alert("Đã đăng xuất thành công!"); }); }
+      } else {
+        root.innerHTML = '<button class="login-btn" id="loginBtn">Đăng nhập / Đăng ký</button>';
+        const b = document.getElementById('loginBtn');
+        if (b && !b._bound){ b._bound = true; b.addEventListener('click', ()=>{ window.location.href = "login.html"; }); }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', updateUserSection);
+    window.addEventListener('storage', (e)=> { if (e.key === 'user') updateUserSection(); });
+
+    /* ===== image popup (kept simple) ===== */
+    window.showImage = function(card){
+      try {
+        const img = (card && card.querySelector('img')) || null;
+        const src = img ? img.src : '';
+        if (!src) return alert('Không tìm thấy ảnh');
+        let popup = document.getElementById('imagePopup');
+        if (!popup){
+          popup = document.createElement('div');
+          popup.id = 'imagePopup';
+          popup.style.cssText = "display:flex;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(2,6,23,0.85);align-items:center;justify-content:center;z-index:1200";
+          popup.innerHTML = '<div style="position:relative;max-width:92%;max-height:92%;padding:10px;"><button onclick="closeImage()" style="position:absolute;top:-14px;right:-14px;width:36px;height:36px;background:#ff2d55;border-radius:50%;border:0;color:#fff;font-size:20px;cursor:pointer">×</button><img id="popupImage" src="" alt="Popup" style="max-width:100%;max-height:100%;border-radius:10px;border:6px solid #fff"></div>';
+          document.body.appendChild(popup);
+        }
+        document.getElementById('popupImage').src = src;
+        popup.style.display = 'flex';
+        popup.addEventListener('click', function(e){ if (e.target === popup) closeImage(); });
+      } catch (err) { console.error(err); alert('Lỗi hiển thị ảnh'); }
+    };
+    window.closeImage = function(){
+      const popup = document.getElementById('imagePopup');
+      if (popup){ popup.style.display = 'none'; const img = document.getElementById('popupImage'); if (img) img.src = ''; }
+    };
+
+    /* ===== lightweight: prevent placeholder flood in console ===== */
+    window.addEventListener('error', function(e){ /* ignore noisy external placeholder errors */ }, true);
+  })();
+  </script>
+
+  <script>
+  // ✅ Chỉ để 1 hàm updateUserSection, dùng đúng id="user-section"
+  function esc(s){ return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+  function updateUserSection(){
+    const root = document.getElementById("user-section");
+    const user = JSON.parse(localStorage.getItem("user")) || null;
+    if(user && user.username){
+      root.innerHTML = `
+        <span class="user-name">Xin chào, ${esc(user.username)}</span>
+        <button class="logout-btn" id="logoutBtn">Đăng xuất</button>
+      `;
+      document.getElementById("logoutBtn").addEventListener("click", ()=>{
+        localStorage.removeItem("user");
+        updateUserSection();
+        alert("Đã đăng xuất thành công!");
+      });
+    }else{
+      root.innerHTML = `<a href="login.html" class="login-btn">Đăng nhập / Đăng ký</a>`;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", updateUserSection);
+  window.addEventListener("storage", (e)=>{ if(e.key==="user") updateUserSection(); });
   </script>
 </body>
 </html>
