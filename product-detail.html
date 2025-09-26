@@ -8,6 +8,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
  <style>
+
+.user-name {
+  background: #f3f4f6;
+    color: #0b0c0f;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    max-width: 260px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+}
+
 .products {
   display: flex;
   width: 100%;
@@ -322,8 +337,7 @@
     box-shadow: 0 6px 18px rgba(2,6,23,0.35);
   }
   .search-input::placeholder{ color: #5c5a5a}
-
-/* Vùng chứa icon giỏ hàng và thông tin người dùng */
+/* Vùng chứa icon giỏ hàng và nút đăng nhập */
 .header-right {
   display: flex;
   align-items: center;
@@ -368,36 +382,12 @@
   justify-content: center;
 }
 
-/* Vùng chứa thông tin người dùng */
-.user-info {
+/* Vùng chứa thông tin người dùng (tên hoặc nút đăng nhập) */
+#user-section {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-/* Lời chào */
-.user-greeting {
-  color: #fff;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-/* Nút Đăng xuất */
-.logout-btn {
-  background: transparent;
-  border: 1px solid #fff;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: all 0.2s ease;
-}
-
-.logout-btn:hover {
-  background: #fff;
-  color: #000;
+  gap: 8px;
+  font-family: inherit;
 }
 
 /* Nút Đăng nhập / Đăng ký */
@@ -409,14 +399,24 @@
   border-radius: 20px;
   font-weight: 600;
   cursor: pointer;
-  font-size: 0.9rem;
 }
 
-.login-btn:hover {
-  background: #fff;
-  color: #000;
+/* Nút Đăng xuất (khi người dùng đã đăng nhập) */
+.logout-btn {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
+.logout-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-1px);
+}
   nav.main-menu{width:100%;order:2;margin-top:10px;display:flex;justify-content:center}
   .main-menu ul{display:flex;gap:24px;list-style:none;margin:0;padding:6px 0;align-items:center;flex-wrap:wrap}
   .main-menu a{color:var(--text);font-weight:700;padding:6px 8px}
@@ -429,41 +429,6 @@
   .brand-menu:hover .submenu,.brand-menu:focus-within .submenu{display:block;transform:translateY(0);opacity:1;pointer-events:auto}
   .submenu li a{display:block;padding:10px 14px;font-weight:700;color:var(--text) !important}
   .submenu li a:hover{background:#292929;color:var(--accent)!important}
-
-/* Hiệu ứng sản phẩm bay vào giỏ hàng */
-.flying-product {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center;
-  z-index: 10000;
-  pointer-events: none;
-  transition: all 0.8s cubic-bezier(0.65, 0, 0.35, 1);
-}
-
-.add-to-cart-success {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  z-index: 10001;
-  animation: slideIn 0.5s ease, fadeOut 0.5s ease 2s forwards;
-}
-
-@keyframes slideIn {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
    
  </style>
 </head>
@@ -581,7 +546,8 @@
     </div>
   </footer>
 
-<script>
+ <script src="js/product-detail.js"></script>
+ <script>
 // =======================================================
 // TOÀN BỘ SCRIPT ĐÃ ĐƯỢC GỘP VÀ SỬA LỖI TRONG MỘT KHỐI DUY NHẤT
 // =======================================================
@@ -621,56 +587,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function getCart() { return safeParse(localStorage.getItem('cart')) || []; }
     function setCart(cart) { localStorage.setItem('cart', JSON.stringify(cart)); window.dispatchEvent(new Event('storage')); }
 
-    // ========== HÀM HIỆU ỨNG SẢN PHẨM BAY VÀO GIỎ HÀNG ==========
-    function flyToCart(productImage, startX, startY) {
-        const cartBtn = document.querySelector('.cart-btn');
-        const cartRect = cartBtn.getBoundingClientRect();
-        const cartX = cartRect.left + cartRect.width / 2;
-        const cartY = cartRect.top + cartRect.height / 2;
-        
-        // Tạo phần tử sản phẩm bay
-        const flyingProduct = document.createElement('div');
-        flyingProduct.className = 'flying-product';
-        flyingProduct.style.backgroundImage = `url(${productImage})`;
-        flyingProduct.style.left = startX + 'px';
-        flyingProduct.style.top = startY + 'px';
-        document.body.appendChild(flyingProduct);
-        
-        // Hiệu ứng bay
-        setTimeout(() => {
-            flyingProduct.style.left = cartX + 'px';
-            flyingProduct.style.top = cartY + 'px';
-            flyingProduct.style.transform = 'scale(0.1)';
-            flyingProduct.style.opacity = '0.5';
-        }, 10);
-        
-        // Xóa phần tử sau khi hiệu ứng kết thúc
-        setTimeout(() => {
-            document.body.removeChild(flyingProduct);
-            // Hiển thị thông báo thành công
-            showSuccessMessage('Đã thêm vào giỏ hàng!');
-        }, 800);
-    }
-    
-    function showSuccessMessage(message) {
-        const existingMessage = document.querySelector('.add-to-cart-success');
-        if (existingMessage) {
-            document.body.removeChild(existingMessage);
-        }
-        
-        const successMessage = document.createElement('div');
-        successMessage.className = 'add-to-cart-success';
-        successMessage.textContent = message;
-        document.body.appendChild(successMessage);
-        
-        // Tự động xóa thông báo sau 2.5 giây
-        setTimeout(() => {
-            if (document.body.contains(successMessage)) {
-                document.body.removeChild(successMessage);
-            }
-        }, 2500);
-    }
-
     // ========== HÀM CẬP NHẬT GIAO DIỆN ==========
     function updateUserSection() {
         const root = document.getElementById('user-section');
@@ -678,14 +594,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!root) return;
 
         if (user && (user.fullname || user.username)) {
-            // SỬA CHỖ NÀY: Tách riêng lời chào và nút đăng xuất
-            const userName = user.username || user.fullname;
-            root.innerHTML = `
-                <div class="user-info">
-                    <span class="user-greeting">Xin chào, ${userName}</span>
-                    <button class="logout-btn" id="logoutBtn">Đăng xuất</button>
-                </div>
-            `;
+            const name = user.fullname || user.username;
+            root.innerHTML = `<span class="user-name">Xin chào, ${name}</span><button class="logout-btn" id="logoutBtn">Đăng xuất</button>`;
             document.getElementById('logoutBtn').addEventListener('click', () => {
                 localStorage.removeItem('user');
                 alert('Đã đăng xuất thành công!');
@@ -727,7 +637,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Logic cho bộ chọn số lượng
         const qtyDisplay = document.getElementById('quantity');
-        let qty = 1;
+        let qty = 0;
         document.getElementById('increase-quantity').addEventListener('click', () => { 
             qty++; 
             qtyDisplay.textContent = qty; 
@@ -739,8 +649,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Logic nút "Thêm vào giỏ hàng" - ĐÃ THAY ĐỔI THÀNH HIỆU ỨNG BAY
-        document.getElementById('add-to-cart').addEventListener('click', function(event) {
+        // =================================================================
+        // === LOGIC NÚT "THÊM VÀO GIỎ HÀNG" ĐÃ ĐƯỢC THÊM VÀO ĐÂY ===
+        // =================================================================
+        document.getElementById('add-to-cart').addEventListener('click', function() {
             const user = getUser();
             if (!user) { 
                 alert('Vui lòng đăng nhập để thêm sản phẩm!'); 
@@ -770,15 +682,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
             
-            setCart(cart);
-            updateCartBadge();
-            
-            // THAY VÌ ALERT, SỬ DỤNG HIỆU ỨNG BAY
-            const buttonRect = event.target.getBoundingClientRect();
-            const startX = buttonRect.left + buttonRect.width / 2;
-            const startY = buttonRect.top + buttonRect.height / 2;
-            
-            flyToCart(product.image, startX, startY);
+            setCart(cart); // Lưu giỏ hàng mới vào localStorage
+            updateCartBadge(); // <<< CẬP NHẬT ICON GIỎ HÀNG NGAY LẬP TỨC
+            alert('Đã thêm vào giỏ hàng thành công!');
         });
 
         // Logic cho nút "Mua ngay"
@@ -790,6 +696,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return; 
             }
             // Logic mua ngay có thể khác, ví dụ lưu vào một key riêng và chuyển trang
+            alert("Chuyển đến trang thanh toán...");
             window.location.href = 'checkout.html';
         });
     }
@@ -806,6 +713,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
 </body>
 </html>
